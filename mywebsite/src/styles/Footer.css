@@ -1,0 +1,26 @@
+/* Footer.css */
+
+.footer {
+    color: black
+    padding: 1rem;
+    text-align: center;
+    /* Centers the text horizontally */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    /* Stacks the text vertically */
+    align-items: center;
+    /* Centers the text horizontally */
+}
+
+.footer-text {
+    margin: 0;
+    font-size: 0.875rem;
+    /* Slightly smaller text size */
+}
+
+.footer-text+.footer-text {
+    margin-top: 0.5rem;
+    /* Adds space between the two text elements */
