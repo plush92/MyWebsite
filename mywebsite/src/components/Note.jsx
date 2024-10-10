@@ -8,4 +8,4 @@ function Note() {
     </div>);
 }
 
-export default Note
+export default Note 
