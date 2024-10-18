@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // Import Components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Note from "./components/Note";
 import Nav from "./components/Nav";
 
 // Import Pages
@@ -17,17 +16,18 @@ function App() {
   return (
     <React.StrictMode>
       <Router>
-        <div>
+        <div className="app-container">
           <Header />
           <Nav />
-          <Note />
+          <main className="content">
+            {/* React Router v6 Routes */}
+            <Routes>
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/projects" element={<Projects />} />
+            </Routes>
+          </main>
           <Footer />
         </div>
-        {/* React Router v6 Routes */}
-        <Routes>
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/projects" element={<Projects />} />
-        </Routes>
       </Router>
     </React.StrictMode>
   );
