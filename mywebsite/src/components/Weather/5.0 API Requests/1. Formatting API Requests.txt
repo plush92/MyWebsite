@@ -1,0 +1,21 @@
+How to format:
+We need to understand endpoints, path parameters, and query parameters
+
+Endpoints:
+    specific paths on an API server.
+    For example, /random or /filter (examples in the "Bored" API). They redirect to different functions or resources
+Query Parameters:
+    Added after the question mark in the URL to filter or modify the request further.
+    They come in key-value pairs, such as 'type=social' and 'participants=2', used to refine search results
+
+Example:
+    bored-api.appbrewery.com/endpoint?query=value&query2=value&query3=value
+
+Path Parameters:
+    Used to identify a specific resource.
+    For example:
+        /activity/5914292 usese '5914292' as a path parameter to fetch a specific identify
+        /users/{userId} (the userID in this case would be the path parameter)
+    Dynamic values: Path parameters are placeholders that are replaced with actual values to specify a unique resource
+    Uniqueness: Each path parameter typically corresponds to a unique identifier or key that distinguishes one resource from another
+    Required in URL: they are not optional!

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Taco Recipes</title>
+  <link rel="stylesheet" type="text/css" href="/styles/main.css"> <!-- Links to an external CSS stylesheet. -->
+</head>
+
+<body>
+  <h1>Taco Town 🌮</h1> <!-- Displays the main heading of the page. -->
+
+  <form action="/recipe" method="POST" class="buttons"> <!-- Creates a form that submits data to the '/recipe' route using the POST method and applies the 'buttons' class. -->
+    <button type="submit" value="chicken" name="choice">🍗</button> <!-- Adds a submit button with the value 'chicken' and text '🍗'. -->
+    <button type="submit" value="beef" name="choice">🥩</button> <!-- Adds a submit button with the value 'beef' and text '🥩'. -->
+    <button type="submit" value="fish" name="choice">🐟</button> <!-- Adds a submit button with the value 'fish' and text '🐟'. -->
+  </form>
+
+  <div id="recipeContainer" class="hidden"> <!-- Defines a div with an id of 'recipeContainer' and applies the 'hidden' class to initially hide it. -->
+
+    <% if (locals.recipe) { %> <!-- Begins an EJS conditional statement that checks if 'recipe' exists in the 'locals' object. -->
+
+      <h2 id="recipeTitle">
+        <%= recipe.name %> <!-- Outputs the value of 'recipe.name' into the HTML, escaping any HTML special characters. -->
+      </h2>
+
+      <h3>Ingredients:</h3>
+      <ul id="ingredientsList"> <!-- Defines an unordered list for displaying ingredients. -->
+        <li>
+          <%= recipe.ingredients.protein.name %>, <%= recipe.ingredients.protein.preparation %> <!-- Outputs the protein name and preparation into list items, escaping HTML special characters. -->
+        </li>
+        <li>
+          <%= recipe.ingredients.salsa.name %> <!-- Outputs the salsa name into a list item, escaping HTML special characters. -->
+        </li>
+        <% recipe.ingredients.toppings.forEach(topping => { %> <!-- Begins an EJS loop to iterate over each topping in the 'toppings' array. -->
+          <li>
+            <%= topping.quantity %> of <%= topping.name %> <!-- Outputs the quantity and name of each topping into a list item, escaping HTML special characters. -->
+          </li>
+          <% }) %> <!-- Ends the 'forEach' loop. -->
+      </ul>
+
+      <% } else { %> <!-- Ends the 'if' block and begins the 'else' block for the conditional statement. -->
+        <h2>Pick your favourite taco ingredient 👆</h2> <!-- Displays a message prompting the user to pick a taco ingredient if no recipe is available. -->
+      <% } %> <!-- Ends the 'else' block and the conditional statement. -->
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+What are APIs?
+    Application programming interface. It allows your application to communicate with other applications and retrieve data from them
+    More specifically, it's a set of rules and protocols defining how software components interact
+
+Common ways they're used:
+    Amazon bookstore:
+        Searching:
+            when you search for a book on Amazon, the website communicates with various databases info about available books, prices, reviews and More
+            APIs enable these communications by defining how the frontend (user interface) interacts with the backend (databases and servers)
+        Payment:
+            when you pay, Amazon uses payment gateway APIs like Paypal, Stripe, or its own
+            these APIs handle communication between Amazon's servers and the financial institutions to authorize and complete the payment securely
+        Shipping/Inventory
+            Amazon uses APIs to track inventory levels and update the status of orders in real time
+            Shipping APIs (from UPS, Fedex, etc) provide tracking info and update customers on the delivery status
+    
+    Netflix:
+        Content delivery:
+            APIs manage the retrieval and delivery of the video content on the servers to your device
+        User recommendations
+            It uses complex algorithms that rely on APIs to fetch user data to geneate personalized suggestions
+        Authentication and security
+            logging into netflix, euthentication APIs verify your credentials and manage user sessions
+            security APIs ensure that your personal data and payment info are protected
+    
+    General ways APIs are used:
+        Integration - different services can communicate and interact with each other
+        Real time updates
+        Automation
+        Scalability: APIs allow the platforms to operate more efficiently, allowing better Scalability
+    
+API frameworks:
+    REST, GraphQL, SOAP, and gRPC. RESTful APIs
+    We are learning RESTful 
+
+

@@ -11,6 +11,9 @@ function Projects() {
         {/* Render the TicTacToe Board */}
         <Board />
       </div>
+      <div>
+        {/*Render the Weather API */}
+      </div>
     </div>
   );
 }
