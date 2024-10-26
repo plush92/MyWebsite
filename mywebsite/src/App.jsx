@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Nav from "./components/Nav";
+import Board from './components/TicTacToe/Board';
 
 // Import Pages
 import Contact from "./pages/Contact";
@@ -24,6 +25,7 @@ function App() {
             <Routes>
               <Route path="/contact" element={<Contact />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/tic-tac-toe" element={<Board />} />
             </Routes>
           </main>
           <Footer />

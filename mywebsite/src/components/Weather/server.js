@@ -8,12 +8,10 @@ const app = express();
 const apiKey = "a257574df2d375ad4375144c64a91593"; //API Key
 
 const apiUrl = `https://api.openweathermap.org/data/2.5/weather?`; //requires lat/lon
-const api_direct = "http://api.openweathermap.org/geo/1.0/direct?" //enter city name, return all results matching city name. put a limit
-const api_zip = "http://api.openweathermap.org/geo/1.0/zip?" //search by zip code
 
 const lon = "27.264317"
 const lat = "-80.285796"
-const city = "London"
+
 
 app.use(express.static("public"));
 
@@ -38,8 +36,9 @@ app.use(express.static("public"));
 // Route to get weather data
 app.get('/weather', async (req, res) => {
   try {
-    const response = await axios.get(`${apiUrl}lat=${lat}&lon=${lon}&appid=${apiKey}`);
+    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=34.0901&lon=-118.4065`);
     res.json(response.data);
+    console.log(response.data)
   } catch (error) {
     console.error('Error fetching weather data:', error);
     res.status(500).send('Error retrieving weather data');

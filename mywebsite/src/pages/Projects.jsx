@@ -1,4 +1,4 @@
-import Board from "../components/TicTacToe/Board";
+import { Link } from 'react-router-dom';
 
 function Projects() {
   return (
@@ -8,15 +8,10 @@ function Projects() {
       
       <div>
         <h2>Tic-Tac-Toe Game</h2>
-        {/* Render the TicTacToe Board */}
-        <Board />
-      </div>
-      <div>
-        {/*Render the Weather API */}
+        <Link to="/tic-tac-toe">Play Tic Tac Toe</Link>
       </div>
     </div>
   );
 }
-
 
 export default Projects;
