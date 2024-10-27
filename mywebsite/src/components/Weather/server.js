@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config(); // Load environment variables
+
 import express from "express";
 import axios from "axios";
 import cors from 'cors'; // Import the CORS middleware
@@ -5,14 +8,17 @@ import cors from 'cors'; // Import the CORS middleware
 const PORT = 5001;
 const app = express();
 
-// const apiKey = "a257574df2d375ad4375144c64a91593"; //API Key
+const apiKey = process.env.API_KEY;
+console.log("API Key:", apiKey);
+console.log("Environment Variables:", process.env);
+
 
 app.use(express.static("public"));
 app.use(cors()); 
 
 app.get('/weather', async (req, res) => {
   try {
-    const response = await axios.get('https://api.openweathermap.org/data/2.5/weather?lat=34.0901&lon=-118.4065&appid=a257574df2d375ad4375144c64a91593');
+    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=34.0901&lon=-118.4065&appid=${apiKey}`);
     res.json(response.data);
     console.log(response.data) //you should also see the JSON data populate in the terminal
   } catch (error) {
