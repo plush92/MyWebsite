@@ -1,5 +1,6 @@
 import express from "express";
 import axios from "axios";
+import cors from 'cors'; // Import the CORS middleware
 
 const PORT = 5001;
 const app = express();
@@ -7,6 +8,7 @@ const app = express();
 // const apiKey = "a257574df2d375ad4375144c64a91593"; //API Key
 
 app.use(express.static("public"));
+app.use(cors()); 
 
 app.get('/weather', async (req, res) => {
   try {
