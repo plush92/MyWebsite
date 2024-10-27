@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Nav from "./components/Nav";
 import Board from './components/TicTacToe/Board';
+import Weather from "./components/Weather/Weather";
 
 // Import Pages
 import Contact from "./pages/Contact";
@@ -26,6 +27,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/tic-tac-toe" element={<Board />} />
+              <Route path="/weather" element={<Weather />} />
             </Routes>
           </main>
           <Footer />

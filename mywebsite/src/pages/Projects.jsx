@@ -9,6 +9,8 @@ function Projects() {
       <div>
         <h2>Tic-Tac-Toe Game</h2>
         <Link to="/tic-tac-toe">Play Tic Tac Toe</Link>
+        <h2>Weather</h2>
+        <Link to="/weather">Weather</Link>
       </div>
     </div>
   );
