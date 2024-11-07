@@ -1,7 +1,7 @@
 function Heading() {
     return (<header>
-        <h1>Hey - I'm Brendan :-)</h1>
-        <h2>I like learning and making things</h2>
+        <h1>Hey :-)</h1>
+        <h2></h2>
     </header>)
 }
 
