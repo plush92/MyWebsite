@@ -1,36 +1,72 @@
 import dotenv from 'dotenv';
-dotenv.config(); // Load environment variables
+dotenv.config();
 
-import express from "express";
-import axios from "axios";
-import cors from 'cors'; // Import the CORS middleware
+import express from 'express';
+import axios from 'axios';
+import cors from 'cors';
 
-const PORT = 5001;
 const app = express();
-
+const PORT = process.env.PORT || 5001;
 const apiKey = process.env.API_KEY;
-console.log("API Key:", apiKey);
-console.log("Environment Variables:", process.env);
 
+console.log('API Key:', apiKey); // Confirm API key is available
 
-app.use(express.static("public"));
-app.use(cors()); 
+// Apply CORS middleware
+app.use(cors({
+  origin: 'http://localhost:5173', // Replace with your frontend URL if different
+  methods: ['GET'],                // Specify allowed methods
+  credentials: true                // Include credentials if needed
+}));
 
+// Serve static files if needed (optional)
+app.use(express.static('public'));
+
+// Main route to get weather data
 app.get('/weather', async (req, res) => {
+  console.log('Received request for weather data');
+  const { lat, lon } = req.query;
+
   try {
-    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=34.0901&lon=-118.4065&appid=${apiKey}`);
-    res.json(response.data);
-    console.log(response.data) //you should also see the JSON data populate in the terminal
+    let weatherData;
+
+    if (lat && lon) {
+      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+      const response = await axios.get(weatherUrl);
+      weatherData = response.data;
+      console.log(weatherData);
+
+    }
+
+    res.json(weatherData);
+
   } catch (error) {
     console.error('Error fetching weather data:', error);
-    res.status(500).send('Error retrieving weather data');
+    res.status(500).json({ error: 'Error fetching weather data' });
   }
 });
 
-app.listen(PORT, () => {
+// Start the server
+const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-//when you run "node server.js" in terminal, 
-//and go to the route http://localhost:5173/weather, 
+// Detect for errors
+server.on('error', (error) => {
+  console.error(`Failed to start server on port ${PORT}:`, error);
+});
+
+//Otherwise, confirm it successfully connected
+server.on('listening', () => {
+  console.log(`Server successfully started on port ${PORT}`);
+});
+
+
+
+//cd into the main folder (mywebsite)
+//in one terminal, run node '/Users/brendanduffy/Documents/MyWebsite/mywebsite/src/components/Weather/server.js'
+//then run "npm run dev" in a separate terminal
+//your website will pull up
+//and if you go to the route http://localhost:5173/weather, 
 //you should see the JSON data populate
+
+
