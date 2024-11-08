@@ -45,6 +45,28 @@ app.get('/weather', async (req, res) => {
   }
 });
 
+app.get('/zip', async (req, res) => {
+  console.log('Received request for zip data');
+  const { zip } = req.query;
+
+  try {
+    let zipData;
+
+    if (zip) {
+      const zipUrl = `https://api.openweathermap.org/geo/1.0/zip?zip=${zip}&appid=${apiKey}`;
+      const response = await axios.get(zipUrl);
+      zipData = response.data;
+      console.log(zipData);
+    }
+
+    res.json(zipData);
+
+  } catch (error) {
+    console.error('Error fetching zip data:', error);
+    res.status(500).json({ error: 'Error fetching zip data' });
+  }
+});
+
 // Start the server
 const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

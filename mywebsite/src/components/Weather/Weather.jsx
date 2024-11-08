@@ -5,6 +5,8 @@ function Weather() {
   const [lat, setLat] = useState('');
   const [lon, setLon] = useState('');
   const [weatherData, setWeatherData] = useState(null);
+  const [zip, setZip] = useState('');
+  const [zipData, setzipData] = useState(null);
 
   const fetchWeather = async () => {
     try {
@@ -35,6 +37,29 @@ function Weather() {
     }
   };
 
+  const fetchZip = async () => {
+    try {
+      const zipUrl = 'http://localhost:5001/zip';
+
+      const params = new URLSearchParams();
+
+      if (zip) {
+        params.append('zip', zip)
+      } else {
+        alert('Please provide a valid zip code');
+        return;
+      }
+
+      const zipdataUrl = `${zipUrl}?${params.toString()}`;
+
+      const response = await axios.get(zipdataUrl);
+      setzipData(response.data);
+
+    } catch (error) {
+      console.error("Error fetching zip data:", error);
+    }
+  };
+
   return (
     <div>
       <h2>Weather</h2>
@@ -47,8 +72,13 @@ function Weather() {
           <label>Longitude:</label>
           <input type="text" value={lon} onChange={(e) => setLon(e.target.value)} />
         </div>
+        <div>
+          <label>Zip Code:</label>
+          <input type="text" value={zip} onChange={(e) => setZip(e.target.value)} />
+        </div>
       </div>
       <button onClick={fetchWeather}>Get Weather</button>
+      <button onClick={fetchZip}>Get Zip Data</button>
 
       {weatherData ? (
         <div>
@@ -59,6 +89,17 @@ function Weather() {
         </div>
       ) : (
         <p>Please enter details to get weather data</p>
+      )}
+      {zipData ? (
+        <div>
+          <h3>Zip data for {zipData.zip}</h3>
+          <p>Name: {zipData.name}</p>
+          <p>Lat: {zipData.lat}</p>
+          <p>Lon: {zipData.lon}</p>
+          <p>Country: {zipData.country}</p>
+        </div>
+      ) : (
+          <p>Please enter Zip details to get zip data</p>
       )}
     </div>
   );
