@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function Weather() {
@@ -7,6 +7,12 @@ function Weather() {
   const [weatherData, setWeatherData] = useState(null);
   const [zip, setZip] = useState('');
   const [zipData, setzipData] = useState(null);
+
+  useEffect(() => { //uses hook to detect if lat/lon are entered
+    if (lat && lon) {
+      fetchWeather();
+    }
+  }, [lat, lon]); //if lat/lon are entered, fetchWeather when lat and lon are set
 
   const fetchWeather = async () => {
     try {
@@ -40,7 +46,6 @@ function Weather() {
   const fetchZip = async () => {
     try {
       const zipUrl = 'http://localhost:5001/zip';
-
       const params = new URLSearchParams();
 
       if (zip) {
@@ -51,9 +56,12 @@ function Weather() {
       }
 
       const zipdataUrl = `${zipUrl}?${params.toString()}`;
-
       const response = await axios.get(zipdataUrl);
-      setzipData(response.data);
+      const data = response.data;
+      setzipData(data);
+
+      setLat(data.lat);
+      setLon(data.lon);
 
     } catch (error) {
       console.error("Error fetching zip data:", error);
