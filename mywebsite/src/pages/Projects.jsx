@@ -11,6 +11,8 @@ function Projects() {
         <Link to="/tic-tac-toe">Play Tic Tac Toe</Link>
         <h2>Weather</h2>
         <Link to="/weather">Weather</Link>
+        <h2>Econ Dashboard</h2>
+        <Link to="/econ">Econ Dashboard</Link>
       </div>
     </div>
   );
