@@ -13,7 +13,7 @@ import Weather from "./components/Weather/Weather";
 // Import Pages
 import Contact from "./pages/Contact";
 import Projects from "./pages/Projects";
-import EconDashboard from "./components/Econ Dashboard/EconDashboard";
+import EconDashboard from "./components/EconDashboard/EconDashboard";
 
 function App() {
   return (
