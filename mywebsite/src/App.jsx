@@ -14,6 +14,7 @@ import Weather from "./components/Weather/Weather";
 import Contact from "./pages/Contact";
 import Projects from "./pages/Projects";
 import EconDashboard from "./components/EconDashboard/EconDashboard";
+import CryptoDashboard from "./components/CryptoDashboard/CryptoDashboard";
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
               <Route path="/projects" element={<Projects />} />
               <Route path="/tic-tac-toe" element={<Board />} />
               <Route path="/weather" element={<Weather />} />
-              <Route path="/econ" element={<EconDashboard/>} />
+              <Route path="/econ" element={<EconDashboard />} />
+              <Route path="/crypto" element={<CryptoDashboard/>} />
             </Routes>
           </main>
           <Footer />
