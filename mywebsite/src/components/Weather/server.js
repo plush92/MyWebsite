@@ -7,7 +7,7 @@ import cors from 'cors';
 
 const app = express();
 const PORT = process.env.PORT || 5001;
-const apiKey = process.env.API_KEY;
+const apiKey = process.env.WEATHER_API;
 
 console.log('API Key:', apiKey); // Confirm API key is available
 
