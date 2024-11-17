@@ -1,15 +1,23 @@
 import dotenv from 'dotenv';
-dotenv.config();
-
+import path from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express';
 import axios from 'axios';
 import cors from 'cors';
 
+// Simulate __dirname for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load .env file explicitly
+dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
+
+// Initialize Express
 const app = express();
 const PORT = process.env.PORT || 5001;
 const apiKey = process.env.WEATHER_API;
 
-console.log('API Key:', apiKey); // Confirm API key is available
+console.log('API Key:', apiKey || 'Not Found'); // Debugging API Key
 
 // Apply CORS middleware
 app.use(cors({
@@ -18,7 +26,7 @@ app.use(cors({
   credentials: true                // Include credentials if needed
 }));
 
-// Serve static files if needed (optional)
+// Serve static files (optional)
 app.use(express.static('public'));
 
 // Main route to get weather data
@@ -27,42 +35,38 @@ app.get('/weather', async (req, res) => {
   const { lat, lon } = req.query;
 
   try {
-    let weatherData;
-
-    if (lat && lon) {
-      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
-      const response = await axios.get(weatherUrl);
-      weatherData = response.data;
-      console.log(weatherData);
-
+    if (!lat || !lon) {
+      return res.status(400).json({ error: 'Latitude and Longitude are required' });
     }
 
-    res.json(weatherData);
+    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    const response = await axios.get(weatherUrl);
+    console.log(response.data); // Debugging response data
+    res.json(response.data);
 
   } catch (error) {
-    console.error('Error fetching weather data:', error);
+    console.error('Error fetching weather data:', error.message);
     res.status(500).json({ error: 'Error fetching weather data' });
   }
 });
 
+// Route to get data by ZIP code
 app.get('/zip', async (req, res) => {
   console.log('Received request for zip data');
   const { zip } = req.query;
 
   try {
-    let zipData;
-
-    if (zip) {
-      const zipUrl = `https://api.openweathermap.org/geo/1.0/zip?zip=${zip}&appid=${apiKey}`;
-      const response = await axios.get(zipUrl);
-      zipData = response.data;
-      console.log(zipData);
+    if (!zip) {
+      return res.status(400).json({ error: 'ZIP code is required' });
     }
 
-    res.json(zipData);
+    const zipUrl = `https://api.openweathermap.org/geo/1.0/zip?zip=${zip}&appid=${apiKey}`;
+    const response = await axios.get(zipUrl);
+    console.log(response.data); // Debugging response data
+    res.json(response.data);
 
   } catch (error) {
-    console.error('Error fetching zip data:', error);
+    console.error('Error fetching zip data:', error.message);
     res.status(500).json({ error: 'Error fetching zip data' });
   }
 });
@@ -72,15 +76,16 @@ const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-// Detect for errors
+// Error handling for server start
 server.on('error', (error) => {
-  console.error(`Failed to start server on port ${PORT}:`, error);
+  console.error(`Failed to start server on port ${PORT}:`, error.message);
 });
 
-//Otherwise, confirm it successfully connected
+// Confirmation of server connection
 server.on('listening', () => {
   console.log(`Server successfully started on port ${PORT}`);
 });
+
 
 
 
