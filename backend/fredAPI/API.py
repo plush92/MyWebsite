@@ -31,16 +31,4 @@ def get_gdp_data():
     else:
         return {"error": "Unable to fetch data"}
 
-# Create a route to serve GDP data
-@app.route("/econ/gdp", methods=["GET"])
-def get_econ_data():
-    data = get_gdp_data()
-    return jsonify(data)
-
-for rule in app.url_map.iter_rules():
-    print(f"Endpoint: {rule.endpoint}, URL: {rule}")
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
-#run node mywebsite/src/components/EconDashboard/fredAPI/fred.py
+print(get_gdp_data())

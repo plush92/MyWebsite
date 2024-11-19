@@ -1,36 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+// http://127.0.0.1:5000/econ/gdp
 const GDP = () => {
-  const [gdpData, setGdpData] = useState(null);
+  const [gdpData, setGdpData] = useState([]);
 
-  useEffect(() => {
-    const fetchGDPData = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/econ/gdp'); // Adjust for backend URL
-        setGdpData(response.data);
-      } catch (error) {
-        console.error('Error fetching GDP data:', error);
-      }
-    };
+    useEffect(() => {
+        axios.get('http://127.0.0.1:5000/econ/gdp')
+            .then(response => {
+                setGdpData(response.data.observations);  // Assuming the API returns 'observations'
+            })
+            .catch(error => {
+                console.error("Error fetching GDP data:", error);
+            });
+    }, []);
 
-    fetchGDPData();
-  }, []);
-
-  return (
-    <div>
-      <h1>Economic Dashboard: GDP Data</h1>
-      {gdpData ? (
+    return (
         <div>
-          <p>Real GDP: {gdpData.real_gdp}</p>
-          <p>Nominal GDP: {gdpData.nominal_gdp}</p>
-          <p>Growth Rate: {gdpData.growth_rate}%</p>
+            <h3>GDP Data</h3>
+            <ul>
+                {gdpData.map((observation, index) => (
+                    <li key={index}>
+                        Date: {observation.date} - GDP Value: {observation.value}
+                    </li>
+                ))}
+            </ul>
         </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
+    );
 };
 
 export default GDP;
