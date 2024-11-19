@@ -28,7 +28,7 @@ def get_gdp_data():
         return {"error": "Unable to fetch data"}
 
 # Create a route to serve GDP data
-@app.route("/econ", methods=["GET"])
+@app.route("/econ/gdp", methods=["GET"])
 def get_econ_data():
     data = get_gdp_data()
     return jsonify(data)

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import GDP from "./GDP/GDP";
 
 
 function MacroIndicators() {
@@ -8,19 +8,20 @@ function MacroIndicators() {
             <h2>Macro Indicators</h2>
 
             <div>
-                {<h3>GDP</h3>}
+                <h3>GDP</h3>
+                <GDP />
 
-                {<p>Real GDP (Inflation-Adjusted)</p>}
+                {/* {<p>Real GDP (Inflation-Adjusted)</p>} */}
                 {/* {<div>(Values</div>} */}
             
-                {<p>Nominal GDP</p>}
+                {/* {<p>Nominal GDP</p>} */}
                 {/* {<div>(Values</div>} */}
 
-                {<p>GDP Growth Rate</p>}
+                {/* {<p>GDP Growth Rate</p>} */}
                 {/* {<div>(Values</div>} */}
             
-                {<p>GDP by Sector</p>}
-                {/* {<div>(Values</div>} */}
+                {/* {<p>GDP by Sector</p>}
+                {<div>(Values)</div>} */}
 
                 </div>
             
