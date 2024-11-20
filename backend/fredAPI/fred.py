@@ -15,12 +15,12 @@ FRED_API = os.getenv("FRED_API")
 print(f'API Key: {FRED_API}')
 
 # Function to get GDP data from FRED
-def get_gdp_data():
+def get_gdp_data(series_id, limit):
     url = "https://api.stlouisfed.org/fred/series/observations"
     params = {
-        'series_id': 'GDP',  # Real GDP
+        'series_id': series_id,  # Real GDP
         'file_type': 'json',
-        'limit': 5,
+        'limit': limit,
         'sort_order': 'desc',
         'api_key': FRED_API
     }
@@ -30,12 +30,30 @@ def get_gdp_data():
         return response.json()
     else:
         return {"error": "Unable to fetch data"}
+    
+def get_gdp():
+    return get_gdp_data('GDP', 5)
+
+def get_real_gdp():
+    return get_gdp_data('GDPC1', 5)
+
+def get_nominal_gdp():
+    return get_gdp_data('NGDPSAXDCUSQ', 5)
+
+
 
 # Create a route to serve GDP data
 @app.route("/econ/gdp", methods=["GET"])
 def get_econ_data():
-    data = get_gdp_data()
-    return jsonify(data)
+    gdp_data = get_gdp()
+    real_gdp_data = get_real_gdp()
+    nominal_gdp_data = get_nominal_gdp()
+    combined_data = {
+        "gdp": gdp_data,
+        "real_gdp": real_gdp_data,
+        "nominal_gdp": nominal_gdp_data
+    }
+    return jsonify(combined_data)
 
 for rule in app.url_map.iter_rules():
     print(f"Endpoint: {rule.endpoint}, URL: {rule}")
@@ -43,4 +61,3 @@ for rule in app.url_map.iter_rules():
 if __name__ == "__main__":
     app.run(debug=True)
 
-#run node mywebsite/src/components/EconDashboard/fredAPI/fred.py
