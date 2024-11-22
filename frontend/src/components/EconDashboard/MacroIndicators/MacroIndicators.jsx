@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import GDP from "./GDP/GDP";
+import gdp from "./gdp/gdp.jsx";
 
 
-function MacroIndicators() {
+function macroindicators() {
     return (
         <div>
             <h2>Macro Indicators</h2>
@@ -41,4 +41,4 @@ function MacroIndicators() {
     );
 }
 
-export default MacroIndicators;
+export default macroindicators;

@@ -1,4 +1,4 @@
-import MacroIndicators from './MacroIndicators/MacroIndicators';
+import MacroIndicators from './macroindicators/macroindicators';
 import ConsumerHealth from './ConsumerHealth/ConsumerHealth';
 import FinancialMarkets from './FinancialMarkets/FinancialMarkets';
 import CorporateMetrics from './CorporateMetrics/CorporateMetrics';
