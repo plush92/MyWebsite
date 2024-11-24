@@ -15,6 +15,8 @@ function Projects() {
         <Link to="/econ">Econ Dashboard</Link>
         <h2>Crypto Dashboard</h2>
         <Link to="/crypto">Crypto Dashboard</Link>
+        <h2>Legislation Dashboard</h2>
+        <Link to="/legislation">Legislation Dashboard</Link>
       </div>
     </div>
   );
