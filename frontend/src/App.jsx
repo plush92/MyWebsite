@@ -15,7 +15,7 @@ import Contact from "./pages/Contact";
 import Projects from "./pages/Projects";
 import EconDashboard from "./components/EconDashboard/EconDashboard";
 import CryptoDashboard from "./components/CryptoDashboard/CryptoDashboard";
-import legislationdashboard from "./components/legislationdashboard/legislationdashboard";
+import LegislationDashboard from "./components/legislationdashboard/LegislationDashboard";
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
               <Route path="/weather" element={<Weather />} />
               <Route path="/econ" element={<EconDashboard />} />
               <Route path="/crypto" element={<CryptoDashboard />} />
-              <Route path="/legislation" element={<legislationdashboard />} />
+              <Route path="/legislation" element={<LegislationDashboard />} />
             </Routes>
           </main>
           <Footer />
