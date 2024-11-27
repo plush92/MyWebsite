@@ -1,7 +1,7 @@
-import MacroIndicators from './macroindicators/macroindicators';
-import ConsumerHealth from './ConsumerHealth/ConsumerHealth';
-import FinancialMarkets from './FinancialMarkets/FinancialMarkets';
-import CorporateMetrics from './CorporateMetrics/CorporateMetrics';
+import MacroIndicators from './macroindicators/MacroIndicators';
+import ConsumerHealth from './consumerhealth/ConsumerHealth';
+import FinancialMarkets from './financialmarkets/FinancialMarkets';
+import CorporateMetrics from './corporatemetrics/CorporateMetrics';
 
 function EconDashboard() {
     return (

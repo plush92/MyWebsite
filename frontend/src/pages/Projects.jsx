@@ -2,21 +2,28 @@ import { Link } from 'react-router-dom';
 
 function Projects() {
   return (
-    <div>
-      <h1>Projects</h1>
-      <p>Here are the projects I&apos;m working on...</p>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white flex flex-col items-center py-10">
+      <h1 className="text-4xl font-bold mb-6">Projects</h1>
+      <p className="text-lg mb-10 max-w-lg text-center">
+        Here are the projects I&apos;m working on. Click on any to explore more!
+      </p>
       
-      <div>
-        <h2>Tic-Tac-Toe Game</h2>
-        <Link to="/tic-tac-toe">Play Tic Tac Toe</Link>
-        <h2>Weather</h2>
-        <Link to="/weather">Weather</Link>
-        <h2>Econ Dashboard</h2>
-        <Link to="/econ">Econ Dashboard</Link>
-        <h2>Crypto Dashboard</h2>
-        <Link to="/crypto">Crypto Dashboard</Link>
-        <h2>Legislation Dashboard</h2>
-        <Link to="/legislation">Legislation Dashboard</Link>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+        {[
+          { name: 'Tic-Tac-Toe Game', path: '/tic-tac-toe' },
+          { name: 'Weather', path: '/weather' },
+          { name: 'Econ Dashboard', path: '/econ' },
+          { name: 'Crypto Dashboard', path: '/crypto' },
+          { name: 'Legislation Dashboard', path: '/legislation' },
+        ].map((project, index) => (
+          <Link 
+            key={index} 
+            to={project.path}
+            className="bg-white text-black rounded-lg shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105 hover:rotate-1 p-6 flex flex-col items-center justify-center text-center"
+          >
+            <h2 className="text-2xl font-semibold">{project.name}</h2>
+          </Link>
+        ))}
       </div>
     </div>
   );

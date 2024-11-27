@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const gdp = () => {
+const GDP = () => {
   const [gdpData, setgdpData] = useState(null); // Initialize data state
   const [loading, setLoading] = useState(true); // Initialize loading state
   const [error, setError] = useState(null); // Initialize error state
@@ -69,4 +69,4 @@ const gdp = () => {
   );
 };
 
-export default gdp;
+export default GDP;

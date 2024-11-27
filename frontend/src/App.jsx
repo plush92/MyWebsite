@@ -6,9 +6,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // Import Components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Nav from "./components/nav";
+import Nav from "./components/Nav";
 import Board from './components/TicTacToe/Board';
-import Weather from "./components/Weather/Weather";
+import Weather from "./components/weather/Weather";
 
 // Import Pages
 import Contact from "./pages/Contact";
