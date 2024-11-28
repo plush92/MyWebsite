@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import GDP from "./gdp/GDP.jsx";
+import GDP from "./gdp/GDP.js";
 
 
 function macroindicators() {
