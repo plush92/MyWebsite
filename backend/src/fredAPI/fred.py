@@ -1,3 +1,7 @@
+#activate the virtual environment with the command source/venv/bin/activate
+#run the file with the command python3 fred.py
+#activate your frontend in a separate terminal with npm run dev
+
 from flask import Flask, jsonify
 from flask_cors import CORS
 import requests

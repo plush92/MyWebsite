@@ -3,7 +3,7 @@ import ConsumerHealth from './consumerhealth/ConsumerHealth';
 import FinancialMarkets from './financialmarkets/FinancialMarkets';
 import CorporateMetrics from './corporatemetrics/CorporateMetrics';
 
-function EconDashboard() {
+const EconDashboard: React.FC = () => {
     return (
         <div>
             <header>

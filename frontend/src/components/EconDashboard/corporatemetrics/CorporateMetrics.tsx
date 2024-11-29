@@ -1,4 +1,4 @@
-function CorporateMetrics() {
+const CorporateMetrics: React.FC = () => {
     return (
         <div>
             <h2>Corporate Metrics</h2>

@@ -1,6 +1,6 @@
 import "../styles/Nav.css";
 
-function NavBar() {
+const NavBar: React.FC = () => {
   return (
     <nav className="navbar">
       <ul className="navbar-list">

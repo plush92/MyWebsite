@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Nav from "./components/Nav";
-import Board from './components/TicTacToe/Board';
+import Board from './components/tictactoe/Board';
 import Weather from "./components/weather/Weather";
 
 // Import Pages
@@ -15,7 +15,7 @@ import Contact from "./pages/Contact";
 import Projects from "./pages/Projects";
 import EconDashboard from "./components/EconDashboard/EconDashboard";
 import CryptoDashboard from "./components/CryptoDashboard/CryptoDashboard";
-import LegislationDashboard from "./components/legislationdashboard/LegislationDashboard";
+import LegislationDashboard from "./components/LegislationDashboard/LegislationDashboard";
 
 function App() {
   return (

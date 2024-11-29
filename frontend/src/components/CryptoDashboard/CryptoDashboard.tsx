@@ -6,7 +6,7 @@
 // import VolatilityCorrelation from './VolatilityCorrelation'
 // import DefiNftMetrics from './DefiNftMetrics'
 
-function CryptoDashboard() {
+const CryptoDashboard: React.FC = () =>  {
     return (
         <div>
             <header>

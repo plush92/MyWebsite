@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import GDP from "./gdp/GDP.js";
+import GDP from "./GDP/GDP";
 
 
-function macroindicators() {
+const MacroIndicators: React.FC = () => { //the only typescript addition is to change it from 'function MacroIndicators' to a react functional component.
     return (
         <div>
             <h2>Macro Indicators</h2>
@@ -41,4 +41,4 @@ function macroindicators() {
     );
 }
 
-export default macroindicators;
+export default MacroIndicators;

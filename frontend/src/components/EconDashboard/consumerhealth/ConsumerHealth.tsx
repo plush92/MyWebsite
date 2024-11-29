@@ -1,4 +1,4 @@
-function ConsumerHealth() {
+const ConsumerHealth: React.FC = () =>  {
     return (
         <div>
             <h2>Consumer Health</h2>
