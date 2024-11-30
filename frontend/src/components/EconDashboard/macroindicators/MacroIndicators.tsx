@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import GDP from "./GDP/GDP";
+import GDP from "./gdp/GDP";
 
 
 const MacroIndicators: React.FC = () => { //the only typescript addition is to change it from 'function MacroIndicators' to a react functional component.
