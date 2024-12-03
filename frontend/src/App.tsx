@@ -7,7 +7,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Nav from "./components/Nav";
-import Board from './components/tictactoe/Board';
+import Sidebar from "./Sidebar";
+import Board from "./components/tictactoe/Board";
 import Weather from "./components/weather/Weather";
 
 // Import Pages
@@ -15,7 +16,7 @@ import Contact from "./pages/Contact";
 import Projects from "./pages/Projects";
 import EconDashboard from "./components/EconDashboard/EconDashboard";
 import CryptoDashboard from "./components/CryptoDashboard/CryptoDashboard";
-import LegislationDashboard from "./components/LegislationDashboard/LegislationDashboard";
+import LegislationDashboard from "./components/LegislationDashboard/legislationdashboard";
 
 function App() {
   return (
@@ -25,15 +26,41 @@ function App() {
           <Header />
           <Nav />
           <main className="content">
-            {/* React Router v6 Routes */}
             <Routes>
+              {/* Global Portfolio Pages */}
               <Route path="/contact" element={<Contact />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/tic-tac-toe" element={<Board />} />
               <Route path="/weather" element={<Weather />} />
-              <Route path="/econ" element={<EconDashboard />} />
-              <Route path="/crypto" element={<CryptoDashboard />} />
-              <Route path="/legislation" element={<LegislationDashboard />} />
+
+              {/* Project Pages with Sidebar */}
+              <Route
+                path="/econ"
+                element={
+                  <div className="dashboard-layout">
+                    <Sidebar />
+                    <EconDashboard />
+                  </div>
+                }
+              />
+              <Route
+                path="/crypto"
+                element={
+                  <div className="dashboard-layout">
+                    <Sidebar />
+                    <CryptoDashboard />
+                  </div>
+                }
+              />
+              <Route
+                path="/legislation"
+                element={
+                  <div className="dashboard-layout">
+                    <Sidebar />
+                    <LegislationDashboard />
+                  </div>
+                }
+              />
             </Routes>
           </main>
           <Footer />
