@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Nav from "./components/Nav";
-import Sidebar from "./Sidebar";
+import Sidebar from "./components/Sidebar";
 import Board from "./components/tictactoe/Board";
 import Weather from "./components/weather/Weather";
 
