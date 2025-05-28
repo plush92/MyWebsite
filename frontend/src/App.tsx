@@ -1,70 +1,73 @@
 import React from "react";
-
-// Import Router components
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Box } from "@mui/material";
 
-// Import Components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Nav from "./components/Nav";
 import Sidebar from "./components/Sidebar";
-import Board from "./components/tictactoe/Board";
-import Weather from "./components/weather/Weather";
+import Weather from "./components/OtherProjects/weather/Weather";
 
-// Import Pages
 import Contact from "./pages/Contact";
 import Projects from "./pages/Projects";
-import EconDashboard from "./components/EconDashboard/EconDashboard";
-import CryptoDashboard from "./components/CryptoDashboard/CryptoDashboard";
-import LegislationDashboard from "./components/LegislationDashboard/legislationdashboard";
+import EconDashboard from "./components/FinanceProjects/EconDashboard/EconDashboard";
+import CryptoDashboard from "./components/FinanceProjects/CryptoDashboard/CryptoDashboard";
+import LegislationDashboard from "./components/FinanceProjects/LegislationDashboard/legislationdashboard";
+
+const drawerWidth = 280;
 
 function App() {
   return (
     <React.StrictMode>
       <Router>
-        <div className="app-container">
+        <Box className="app-container" sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
           <Header />
           <Nav />
-          <main className="content">
+          <Box component="main" className="content" sx={{ flex: 1 }}>
             <Routes>
               {/* Global Portfolio Pages */}
               <Route path="/contact" element={<Contact />} />
               <Route path="/projects" element={<Projects />} />
-              <Route path="/tic-tac-toe" element={<Board />} />
               <Route path="/weather" element={<Weather />} />
 
               {/* Project Pages with Sidebar */}
               <Route
                 path="/econ"
                 element={
-                  <div className="dashboard-layout">
+                  <Box sx={{ display: "flex" }}>
                     <Sidebar />
-                    <EconDashboard />
-                  </div>
+                    <Box sx={{ flex: 1, ml: `${drawerWidth}px` }}>
+                      <EconDashboard />
+                    </Box>
+                  </Box>
                 }
               />
               <Route
                 path="/crypto"
                 element={
-                  <div className="dashboard-layout">
+                  <Box sx={{ display: "flex" }}>
                     <Sidebar />
-                    <CryptoDashboard />
-                  </div>
+                    <Box sx={{ flex: 1, ml: `${drawerWidth}px` }}>
+                      <CryptoDashboard />
+                    </Box>
+                  </Box>
                 }
               />
               <Route
                 path="/legislation"
                 element={
-                  <div className="dashboard-layout">
+                  <Box sx={{ display: "flex" }}>
                     <Sidebar />
-                    <LegislationDashboard />
-                  </div>
+                    <Box sx={{ flex: 1, ml: `${drawerWidth}px` }}>
+                      <LegislationDashboard />
+                    </Box>
+                  </Box>
                 }
               />
             </Routes>
-          </main>
+          </Box>
           <Footer />
-        </div>
+        </Box>
       </Router>
     </React.StrictMode>
   );

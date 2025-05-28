@@ -1,21 +1,24 @@
-import "../styles/Nav.css";
+import { AppBar, Toolbar, Button, Box } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 
 const NavBar: React.FC = () => {
   return (
-    <nav className="navbar">
-      <ul className="navbar-list">
-        <li className="navbar-item">
-          <a href="/" className="navbar-link">Home</a>
-        </li>
-        <li className="navbar-item">
-          <a href="/projects" className="navbar-link">Projects</a>
-        </li>
-        <li className="navbar-item">
-          <a href="/contact" className="navbar-link">Contact</a>
-        </li>
-      </ul>
-    </nav>
+    <AppBar position="static" color="primary">
+      <Toolbar>
+        <Box sx={{ flexGrow: 1 }}>
+          <Button color="inherit" component={RouterLink} to="/">
+            Home
+          </Button>
+          <Button color="inherit" component={RouterLink} to="/projects">
+            Projects
+          </Button>
+          <Button color="inherit" component={RouterLink} to="/contact">
+            Contact
+          </Button>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
-}
+};
 
 export default NavBar;
