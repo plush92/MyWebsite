@@ -7,9 +7,13 @@ import {
   Collapse,
   Typography,
   Box,
+  IconButton,
 } from '@mui/material';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+
+const drawerWidth = 280;
 
 const categories = [
   {
@@ -71,7 +75,12 @@ const categories = [
   },
 ];
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({open, onClose }) => {
   const [openCategory, setOpenCategory] = useState<string | null>(null);
 
   const toggleCategory = (categoryName: string) => {
@@ -80,18 +89,28 @@ const Sidebar: React.FC = () => {
 
   return (
     <Drawer
-      variant="permanent"
+      variant="persistent"
       anchor="left"
+      open={open}
       sx={{
-        width: 280,
+        width: drawerWidth,
         flexShrink: 0,
-        [`& .MuiDrawer-paper`]: { width: 280, boxSizing: 'border-box', p: 2 },
+        [`& .MuiDrawer-paper`]: {
+          width: drawerWidth,
+          boxSizing: 'border-box',
+          p: 2,
+        },
       }}
     >
       <Box sx={{ p: 2 }}>
-        <Typography variant="h6" fontWeight="bold" gutterBottom>
-          Econ Dashboard
-        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+          <Typography variant="h6" fontWeight="bold" flexGrow={1}>
+            Econ Dashboard
+          </Typography>
+          <IconButton onClick={onClose} size="small">
+            <ChevronLeftIcon />
+          </IconButton>
+        </Box>
         <List>
           {categories.map((category, index) => (
             <Box key={index}>

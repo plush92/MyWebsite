@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Nav from "./components/Nav";
 import Sidebar from "./components/Sidebar";
+import DashboardLayout from "./components/DashboardLayout";
 import Weather from "./components/OtherProjects/weather/Weather";
 
 import Contact from "./pages/Contact";
@@ -30,38 +31,29 @@ function App() {
               <Route path="/projects" element={<Projects />} />
               <Route path="/weather" element={<Weather />} />
 
-              {/* Project Pages with Sidebar */}
-              <Route
+             {/* Project Pages with Sidebar */}
+             <Route
                 path="/econ"
                 element={
-                  <Box sx={{ display: "flex" }}>
-                    <Sidebar />
-                    <Box sx={{ flex: 1, ml: `${drawerWidth}px` }}>
-                      <EconDashboard />
-                    </Box>
-                  </Box>
+                  <DashboardLayout>
+                    <EconDashboard />
+                  </DashboardLayout>
                 }
               />
               <Route
                 path="/crypto"
                 element={
-                  <Box sx={{ display: "flex" }}>
-                    <Sidebar />
-                    <Box sx={{ flex: 1, ml: `${drawerWidth}px` }}>
-                      <CryptoDashboard />
-                    </Box>
-                  </Box>
+                  <DashboardLayout>
+                    <CryptoDashboard />
+                  </DashboardLayout>
                 }
               />
               <Route
                 path="/legislation"
                 element={
-                  <Box sx={{ display: "flex" }}>
-                    <Sidebar />
-                    <Box sx={{ flex: 1, ml: `${drawerWidth}px` }}>
-                      <LegislationDashboard />
-                    </Box>
-                  </Box>
+                  <DashboardLayout>
+                    <LegislationDashboard />
+                  </DashboardLayout>
                 }
               />
             </Routes>
