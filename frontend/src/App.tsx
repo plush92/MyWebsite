@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
+import { Navigate } from "react-router-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Box, ThemeProvider, CssBaseline } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Nav from "./components/Nav";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/materialui/Sidebar";
 import DashboardLayout from "./components/DashboardLayout";
 import Weather from "./components/OtherProjects/weather/Weather";
 
 import Contact from "./pages/Contact";
 import Projects from "./pages/Projects";
+import Home from "./pages/Home";
 import EconDashboard from "./components/FinanceProjects/EconDashboard/EconDashboard";
 import CryptoDashboard from "./components/FinanceProjects/CryptoDashboard/CryptoDashboard";
 import LegislationDashboard from "./components/FinanceProjects/LegislationDashboard/legislationdashboard";
@@ -18,21 +21,29 @@ import LegislationDashboard from "./components/FinanceProjects/LegislationDashbo
 const drawerWidth = 280;
 
 function App() {
+  // 1. Theme state and toggle
+  const [mode, setMode] = useState<"light" | "dark">("light");
+  const toggleMode = () => setMode((prev) => (prev === "light" ? "dark" : "light"));
+  const theme = useMemo(() => createTheme({ palette: { mode } }), [mode]);
+
   return (
-    <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Router>
         <Box className="app-container" sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-          <Header />
+          <Header mode={mode} toggleMode={toggleMode} />
           <Nav />
           <Box component="main" className="content" sx={{ flex: 1 }}>
             <Routes>
               {/* Global Portfolio Pages */}
+              <Route path="/" element={<Navigate to="/home" replace />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/weather" element={<Weather />} />
 
-             {/* Project Pages with Sidebar */}
-             <Route
+              {/* Project Pages with Sidebar */}
+              <Route
                 path="/econ"
                 element={
                   <DashboardLayout>
@@ -61,7 +72,7 @@ function App() {
           <Footer />
         </Box>
       </Router>
-    </React.StrictMode>
+    </ThemeProvider>
   );
 }
 

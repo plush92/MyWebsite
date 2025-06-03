@@ -1,6 +1,12 @@
 import { AppBar, Toolbar, Typography, Box } from '@mui/material';
+import ThemeToggle from './ThemeToggle';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  mode: "light" | "dark";
+  toggleMode: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ mode, toggleMode }) => {
   return (
     <AppBar
       position="static"
@@ -10,13 +16,11 @@ const Header: React.FC = () => {
     >
       <Toolbar>
         <Box sx={{ flexGrow: 1 }}>
-          <Typography variant="h4" component="div" fontWeight="bold" color="white">
+          <Typography variant="h4" component="div" fontWeight="bold">
             Hey :-)
           </Typography>
-          <Typography variant="subtitle1" component="div" color="white">
-            {/* You can add a subtitle here if you want */}
-          </Typography>
         </Box>
+        <ThemeToggle mode={mode} toggleMode={toggleMode} />
       </Toolbar>
     </AppBar>
   );
