@@ -12,13 +12,10 @@ const Header: React.FC<HeaderProps> = ({ mode, toggleMode }) => {
       position="static"
       color="inherit"
       elevation={2}
-      sx={{ backgroundColor: '#1b3a1b' }} // dark hunter green
+      sx={{ backgroundColor: '#102542' }} // dark hunter green
     >
       <Toolbar>
         <Box sx={{ flexGrow: 1 }}>
-          <Typography variant="h4" component="div" fontWeight="bold">
-            Hey :-)
-          </Typography>
         </Box>
         <ThemeToggle mode={mode} toggleMode={toggleMode} />
       </Toolbar>
