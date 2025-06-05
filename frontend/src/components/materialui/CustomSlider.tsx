@@ -15,4 +15,6 @@ const CustomSlider: React.FC<CustomSliderProps> = ({ value, onChange, ...props }
   />
 );
 
+//value, onChange, min, max, sx
+
 export default CustomSlider;

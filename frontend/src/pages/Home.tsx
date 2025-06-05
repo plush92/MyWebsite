@@ -13,9 +13,6 @@ const Home: React.FC = () => {
             <Typography variant="h5" fontWeight="bold" mb={6}>
        About
             </Typography>
-            <Typography variant="h5" fontWeight="bold" mb={6}>
-        Contact: [🔗 LinkedIn] [📧 Email] [💬 Contact Form]
-      </Typography>
 
       </CustomContainer>
     );

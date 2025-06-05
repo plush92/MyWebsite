@@ -1,11 +1,8 @@
-import { Box, TextField, FormHelperText, Typography } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 
 const ContactForm: React.FC = () => {
   return (
       <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <Typography variant="h3" >
-              Contact Me!
-          </Typography>
       <TextField
         id="email"
         type="email"
