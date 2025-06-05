@@ -8,7 +8,7 @@ import CustomMultilineTextField from "./materialui/CustomMultilineTextField";
 import CustomButton from "./materialui/CustomButton";
 import { Box } from "@mui/material";
 
-const SuggestionBox: React.FC = () => {
+const CommentBox: React.FC = () => {
   const [comment, setComment] = useState("");
 
   const handleSubmit = () => {
@@ -30,4 +30,4 @@ const SuggestionBox: React.FC = () => {
   );
 };
 
-export default SuggestionBox;
+export default CommentBox;
