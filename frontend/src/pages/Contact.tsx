@@ -29,6 +29,15 @@ const Contact: React.FC = () => {
             >
               📧 Email
           </Link>
+          <Typography variant="body1" sx={{ mx: 1 }}>|</Typography>
+          <Link
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            underline="hover"
+          >
+            📄 Resume
+          </Link>
           </CustomBox>
         <ContactForm></ContactForm>
       </CustomBox>
