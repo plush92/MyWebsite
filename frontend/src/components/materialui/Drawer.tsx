@@ -1,20 +1,20 @@
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 
 const CustomDrawer = ({ open, onClose }: { open: boolean; onClose: () => void }) => (
   <Drawer anchor="left" open={open} onClose={onClose}>
     <List>
-      <ListItem button>
+      <ListItemButton>
         <ListItemText primary="Home" />
-      </ListItem>
-      <ListItem button>
+      </ListItemButton>
+      <ListItemButton>
         <ListItemText primary="Projects" />
-      </ListItem>
-      <ListItem button>
+      </ListItemButton>
+      <ListItemButton>
         <ListItemText primary="Contact" />
-      </ListItem>
+      </ListItemButton>
     </List>
   </Drawer>
 );

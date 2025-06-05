@@ -12,7 +12,7 @@ const SuggestionBox: React.FC = () => {
   const [comment, setComment] = useState("");
 
   const handleSubmit = () => {
-    alert("Thank you. Unfortunately your opinion will not be considered at this time.");
+    alert("Thank you. Unfortunately your opinion will not be considered at this time :)");
     setComment("");
   };
 

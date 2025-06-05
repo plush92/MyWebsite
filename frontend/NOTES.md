@@ -1,4 +1,5 @@
 # Portfolio Enhancements Employers Might Love
+
 `Interactive Elements` – Make your portfolio engaging with interactive animations, hover effects, or smooth transitions using Framer Motion.
 
 `Dark/Light Mode Toggle` – Show off your front-end skills by implementing a theme switcher.
