@@ -1,5 +1,4 @@
 import { useState } from "react";
-import CommentBox from "../components/SuggestionBox";
 import CustomContainer from "../components/materialui/CustomContainer";
 import CustomBox from "../components/materialui/CustomBox";
 import ContactForm from "../components/ContactForm";
@@ -48,7 +47,6 @@ const Contact: React.FC = () => {
           </Link>
         </CustomBox>
         <ContactForm />
-        <CommentBox />
       </CustomBox>
     </CustomContainer>
   );
