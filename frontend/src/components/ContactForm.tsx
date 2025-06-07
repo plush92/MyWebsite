@@ -1,3 +1,5 @@
+//to run, cd into the backend file and run node src/contactform/contactform.js
+
 import React, { useState } from "react";
 import { Box, TextField } from "@mui/material";
 import CustomButton from "./materialui/CustomButton";
@@ -8,33 +10,33 @@ const UnifiedContactForm: React.FC = () => {
   const [comment, setComment] = useState("");
 
   const handleSubmit = async () => {
-  //   try {
-  //     await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:3001"}/contact`, {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ email, phone, comment }),
-  //     });
-  //     alert("Thank you. Unfortunately your opinion will not be considered at this time :)");
-  //     setEmail("");
-  //     setPhone("");
-  //     setComment("");
-  //   } catch (err) {
-  //     alert("Failed to send.");
-  //   }
-    // };
-    
     try {
-      await fetch("http://localhost:3001/contact", {
+      // @ts-ignore
+            await fetch(`${(import.meta as any).env.REACT_APP_API_URL || "http://localhost:3001"}/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ comment }),
+        body: JSON.stringify({ email, phone, comment }),
       });
-      alert("Thank you. Unfortunately your opinion will not be considered at this time :)");
+      setEmail("");
+      setPhone("");
       setComment("");
     } catch (err) {
       alert("Failed to send.");
     }
-  };
+    };
+    
+  //   try {
+  //     await fetch("http://localhost:3001/contact", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ comment }),
+  //     });
+  //     alert("Thank you. Unfortunately your opinion will not be considered at this time :)");
+  //     setComment("");
+  //   } catch (err) {
+  //     alert("Failed to send.");
+  //   }
+  // };
 
   return (
     <Box component="form" sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
