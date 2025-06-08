@@ -6,7 +6,6 @@ import contactLinks from "../components/ContactLinks";
 import { Link, Typography } from "@mui/material";
 
 const Contact: React.FC = () => {
-  const [sliderValue, setSliderValue] = useState(100);
 
   return (
     <CustomContainer>

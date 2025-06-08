@@ -5,6 +5,7 @@ import { Box, TextField } from "@mui/material";
 import CustomButton from "./materialui/CustomButton";
 
 const UnifiedContactForm: React.FC = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [comment, setComment] = useState("");
@@ -15,8 +16,9 @@ const UnifiedContactForm: React.FC = () => {
             await fetch(`${(import.meta as any).env.REACT_APP_API_URL || "http://localhost:3001"}/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, phone, comment }),
-      });
+        body: JSON.stringify({ name, email, phone, comment }),
+            });
+      setName("");
       setEmail("");
       setPhone("");
       setComment("");
@@ -40,6 +42,13 @@ const UnifiedContactForm: React.FC = () => {
 
   return (
     <Box component="form" sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+      <TextField 
+        id="name"
+        type="name"
+        label="Name"
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
       <TextField
         id="email"
         type="email"

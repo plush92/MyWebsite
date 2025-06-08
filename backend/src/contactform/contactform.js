@@ -1,3 +1,5 @@
+//to run, cd into the backend file and run node src/contactform/contactform.js
+
 import express from 'express';
 import nodemailer from 'nodemailer';
 import cors from 'cors';
@@ -32,14 +34,18 @@ const allowedOrigins = [
  * Sends an email with the form data.
  */
 app.post('/contact', (req, res) => {
-    const { email, phone, comment } = req.body;
+  const { name, email, phone, comment } = req.body;
+
+  if (!name || !email) {
+    return res.status(400).json({ error: "Name and Email required." });
+  }
   
     // Compose the email
     const mailOptions = {
       from: email || process.env.EMAIL_USER,
       to: process.env.EMAIL_TO,
       subject: 'Contact Form',
-      text: `Email: ${email}\nPhone: ${phone}\nMessage: ${comment}`
+      text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${comment}`
     };
   
     // Send the email
