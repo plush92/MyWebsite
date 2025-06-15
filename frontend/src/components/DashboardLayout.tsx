@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Sidebar from "./materialui/Sidebar";
+import Sidebar from "./Sidebar";
 
 const drawerWidth = 280;
 

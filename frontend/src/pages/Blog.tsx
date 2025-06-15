@@ -15,18 +15,13 @@ import CustomBox from "../components/materialui/CustomBox";
 import ContactForm from "../components/ContactForm";
 import contactLinks from "../components/ContactLinks";
 import { Link, Typography } from "@mui/material";
+import BlogForm from "../components/blog/BlogForm";
 
 const Blog: React.FC = () => {
 
     return (
       <CustomContainer>
-        <CustomBox sx={{ display: "flex", flexDirection: "column", gap: 3, mt: 4 }}>
-          <Typography variant="h3">Blog</Typography>
-          <CustomBox sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            {contactLinks}
-          </CustomBox>
-          <ContactForm />
-        </CustomBox>
+        <BlogForm></BlogForm>
       </CustomContainer>
     );
   };

@@ -8,7 +8,7 @@ import { createTheme } from "@mui/material/styles";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Nav from "./components/Nav";
-import Sidebar from "./components/materialui/Sidebar";
+import Sidebar from "./components/Sidebar";
 import DashboardLayout from "./components/DashboardLayout";
 
 //Projects
