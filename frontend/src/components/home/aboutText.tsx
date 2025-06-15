@@ -9,7 +9,10 @@ const aboutText = (
       </p>
       <p>
         I believe that technology should work for people, not the other way around. Whether designing interfaces, building automation tools, or developing interactive experiences, my goal is to create seamless, user-centric solutions that transform the way people work and interact.
-      </p>
+        </p>
+        <p>
+        Outside of coding, I enjoy playing tennis and practicing combat sambo, both of which challenge me physically and mentally. I've also been playing the drums since I was four years old, bringing rhythm and creativity into everything I do—whether in music or programming.
+        </p>
     </>
   );
   

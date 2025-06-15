@@ -9,11 +9,17 @@ const NavBar: React.FC = () => {
           <Button color="inherit" component={RouterLink} to="/">
             Home
           </Button>
+
           <Button color="inherit" component={RouterLink} to="/projects">
             Projects
           </Button>
+
           <Button color="inherit" component={RouterLink} to="/contact">
             Contact
+          </Button>
+
+          <Button color="inherit" component={RouterLink} to="/blog">
+            Blog
           </Button>
         </Box>
       </Toolbar>

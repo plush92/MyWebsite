@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Box, Typography, Grid, Card, CardActionArea, CardContent } from '@mui/material';
 
-// Define a type for the project objects
 interface Project {
   name: string;
   path: string;
