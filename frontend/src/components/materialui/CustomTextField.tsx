@@ -19,7 +19,7 @@ import { TextField, TextFieldProps } from '@mui/material';
 import { SxProps, Theme } from '@mui/material/styles';
 import React from 'react';
 
-const sizingProps = { width: 300, minWidth: 200 };
+const sizingProps = { width: "100%", minWidth: 200 };
 const borderProps = { borderRadius: 2 };
 const shadowProps = { boxShadow: 1 };
 const paddingProps = { p: 1 };

@@ -8,6 +8,20 @@
 //create page, navigation links
 //create basic blog frontend (you can ignore the github stuff for now, the more complicated, just keep it simple)
 //create backend to handle data storage
+//display historical list of blog entries
+//Show date, title/summary, and a "read more" or expand option
+//Allow markdown support, and render to HTML for display
+//Show success/error feedback when submitted. show error when submission fails.
+//Loading State - spinner/loading indicator
+//Date field (default to today but allow change)
+//Edit/delete previous entries
+//Pagination/scroll
+//Tags/categories
+//Search/filter
+//Github Activity integration - show github contribution calendar or recent commits as a sidebar or selection
+//Ensure it looks good on mobile
+//Save Drafts
+//Comment/guestbook - allow other users to comment on blogs.
 
 import { useState } from "react";
 import CustomContainer from "../components/materialui/CustomContainer";
