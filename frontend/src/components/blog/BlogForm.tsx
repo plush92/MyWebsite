@@ -10,10 +10,13 @@ import CustomDatePicker, { DatePickerBorder, DatePickerPadding, DatePickerShadow
 import { LocalizationProvider } from '@mui/x-date-pickers'; 
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
+import CustomRating, { RatingSizing, RatingColor } from "../materialui/CustomRating";
+
 const BlogForm: React.FC = () => {
     //State management
     const [date, setDate] = useState<Date | null>(new Date());
     const [comment, setComment] = useState("");
+    const [rating, setRating] = useState<number | null>(null);
     
     const CustomContainerProps = [
         ...ContainerBorder,
@@ -43,6 +46,11 @@ const BlogForm: React.FC = () => {
         ...DatePickerSizing
     ]
     
+    const CustomRatingProps = [
+      ...RatingSizing,
+      ...RatingColor,
+      ]
+  
     const handleSubmit = async () => {
         try {
             await fetch(`${(import.meta as any).env.REACT_APP_API_URL || "http://localhost:3001"}/blog`, {
@@ -82,10 +90,18 @@ const BlogForm: React.FC = () => {
               rows={8}
               sx={{ mb: 0 }}
             />
-          </CustomBox>
-          <CustomButton onClick={handleSubmit}>
+        </CustomBox>
+        
+        <CustomButton onClick={handleSubmit}>
             Submit
-          </CustomButton>
+        </CustomButton>
+
+        <CustomRating
+          value={3}
+          onChange={(_, newValue) => setRating(newValue)}
+          styleArray={[...RatingSizing, ...RatingColor]}
+          sx={{ mt: 2 }}
+        />
         </CustomContainer>
       )
 };
