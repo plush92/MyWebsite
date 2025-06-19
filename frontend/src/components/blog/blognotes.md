@@ -25,3 +25,19 @@ Github Activity integration - show github contribution calendar or recent commit
 Ensure it looks good on mobile
 Save Drafts
 Comment/guestbook - allow other users to comment on blogs.
+
+# 🌟 High-Impact Additions
+1. `Reactions or Like System` Let readers give quick feedback without leaving a comment. Could just be 👍 / ❤️ / 😲, tied to each post.
+2. `Highlight Popular Posts` Either by views (if you’re tracking them) or likes/comments. Display in a sidebar or “Top Posts” section.
+3. `Draft Autosave + Recovery Add` localStorage fallback if the user navigates away mid-post. Think resilience for accidental refreshes.
+4. `Slug-Based Routing` Clean URLs like /blog/building-a-contact-form instead of post IDs. Makes it shareable and more SEO friendly.
+5. `Dark Mode Toggle` Quick win with MUI’s createTheme, and it makes the site feel instantly more modern.
+6. `RSS Feed Generation `For your developer audience or followers using Feedly-type tools. Could be auto-built from blog entries.
+7. `Author Info / Bio` per Post Even if it’s just you for now, makes posts feel more personal and gives room to grow if you invite guest posters later.
+8. `Fallback 404 Page` Custom “Post Not Found” page if someone mistypes a URL. You could even make it humorous or stylized.
+
+# 🚀 Stretch Features (for later or optional depth)
+`Image Uploads:` Drag-and-drop support for blogs with visual flair (could use Firebase, Cloudinary, etc.)
+`Post Analytics:` Views per post with a dashboard to view trends.
+`Post Scheduling:` Write now, publish later—like your own mini CMS.
+`Custom Domain Support:` Especially if you’re thinking of launching your own personal brand.
