@@ -1,8 +1,8 @@
-import CustomContainer from "../components/materialui/CustomContainer";
+import CustomContainer from "../../components/materialui/CustomContainer";
 import { Typography, Box, Divider } from "@mui/material";
-import introText from "../components/home/introText";
-import aboutText from "../components/home/aboutText";
-import featuredWorkText from "../components/home/featuredWorkText";
+import introText from "./components/introText";
+import aboutText from "./components/aboutText";
+import featuredWorkText from "./components/featuredWorkText";
 
 const Home: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import CustomDrawer, {DrawerSizing} from "../materialui/CustomDrawer";
-import CustomButton from "../materialui/CustomButton";
+import CustomDrawer, {DrawerSizing} from "../../../components/materialui/CustomDrawer";
+import CustomButton from "../../../components/materialui/CustomButton";
 
 const BlogNav: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -10,18 +10,21 @@ const BlogNav: React.FC = () => {
     { label: "Comments", onClick: () => alert("Comments clicked") },
     { label: "Stats", onClick: () => alert("Stats clicked") },
   ];
+    
+  const drawerWidth = 240;
 
   return (
     <>
       <CustomButton onClick={() => setOpen(true)}>
         Expand
       </CustomButton>
-      <CustomDrawer
+          <CustomDrawer
               open={open}
               onClose={() => setOpen(false)}
               anchor="left"
               items={drawerItems}
               styleArray={DrawerSizing}
+              
               variant="persistent"
               slotProps={{
                   paper: {

@@ -2,17 +2,17 @@
 import { useState } from "react";
 
 import BlogNav from "./BlogNav";
-import CustomBox, { BoxSizing, BoxBorder, BoxShadow } from "../materialui/CustomBox";
-import CustomButton from "../materialui/CustomButton";
-import CustomContainer, {ContainerBorder, ContainerMargin, ContainerPadding, ContainerSizing} from "../materialui/CustomContainer";
-import CustomTextField, { TextFieldSizing, TextFieldBorder, TextFieldShadow } from "../materialui/CustomTextField";
+import CustomBox, { BoxSizing, BoxBorder, BoxShadow } from "../../../components/materialui/CustomBox";
+import CustomButton from "../../../components/materialui/CustomButton";
+import CustomContainer, {ContainerBorder, ContainerMargin, ContainerPadding, ContainerSizing} from "../../../components/materialui/CustomContainer";
+import CustomTextField, { TextFieldSizing, TextFieldBorder, TextFieldShadow } from "../../../components/materialui/CustomTextField";
 
 //Imports needed for DatePicker
-import CustomDatePicker, { DatePickerBorder, DatePickerPadding, DatePickerShadow, DatePickerSizing } from "../materialui/CustomDatePicker";
+import CustomDatePicker, { DatePickerBorder, DatePickerPadding, DatePickerShadow, DatePickerSizing } from "../../../components/materialui/CustomDatePicker";
 import { LocalizationProvider } from '@mui/x-date-pickers'; 
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-import CustomRating, { RatingSizing, RatingColor } from "../materialui/CustomRating";
+import CustomRating, { RatingSizing, RatingColor } from "../../../components/materialui/CustomRating";
 
 const BlogForm: React.FC = () => {
     //State management

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import CustomContainer from "../components/materialui/CustomContainer";
-import CustomBox from "../components/materialui/CustomBox";
-import ContactForm from "../components/ContactForm";
-import contactLinks from "../components/ContactLinks";
+import CustomContainer from "../../components/materialui/CustomContainer";
+import CustomBox from "../../components/materialui/CustomBox";
+import ContactForm from "./components/ContactForm";
+import contactLinks from "./components/ContactLinks";
 import { Link, Typography } from "@mui/material";
 
 const Contact: React.FC = () => {

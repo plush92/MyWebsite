@@ -18,10 +18,10 @@ import CryptoDashboard from "./components/FinanceProjects/CryptoDashboard/Crypto
 import LegislationDashboard from "./components/FinanceProjects/LegislationDashboard/legislationdashboard";
 
 //Pages
-import Contact from "./pages/Contact";
-import Projects from "./pages/Projects";
-import Home from "./pages/Home";
-import Blog from "./pages/Blog";
+import Contact from "./pages/Contact/Contact";
+import Projects from "./pages/Projects/Projects";
+import Home from "./pages/Home/Home";
+import Blog from "./pages/Blog/Blog";
 
 const drawerWidth = 280;
 
