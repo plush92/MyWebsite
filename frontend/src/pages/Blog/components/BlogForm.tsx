@@ -1,7 +1,6 @@
 //to run, cd into the backend file and run node src/blogform/blogform.js
 import { useState } from "react";
 
-import BlogNav from "./BlogNav";
 import CustomBox, { BoxSizing, BoxBorder, BoxShadow } from "../../../components/materialui/CustomBox";
 import CustomButton from "../../../components/materialui/CustomButton";
 import CustomContainer, {ContainerBorder, ContainerMargin, ContainerPadding, ContainerSizing} from "../../../components/materialui/CustomContainer";
@@ -71,9 +70,6 @@ const BlogForm: React.FC = () => {
     };
 
   return (
-    <>
-      <BlogNav />
-    
         <CustomContainer styleArray={CustomContainerProps} sx={{ m: 5 }}>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
           <CustomDatePicker
@@ -108,7 +104,6 @@ const BlogForm: React.FC = () => {
           sx={{ mt: 2 }}
         />
     </CustomContainer>
-    </>
       );
 };
 

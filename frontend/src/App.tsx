@@ -5,7 +5,6 @@ import { Box, ThemeProvider, CssBaseline } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 
 //Misc components
-import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Nav from "./components/Nav";
 import Sidebar from "./components/Sidebar";
@@ -26,7 +25,7 @@ import Blog from "./pages/Blog/Blog";
 const drawerWidth = 280;
 
 function App() {
-  // 1. Theme state and toggle
+
   const [mode, setMode] = useState<"light" | "dark">("light");
   const toggleMode = () => setMode((prev) => (prev === "light" ? "dark" : "light"));
   const theme = useMemo(() => createTheme({ palette: { mode } }), [mode]);
@@ -36,8 +35,6 @@ function App() {
       <CssBaseline />
       <Router>
         <Box className="app-container" sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-          <Header mode={mode} toggleMode={toggleMode} />
-          <Nav />
           <Box component="main" className="content" sx={{ flex: 1 }}>
             <Routes>
               {/* Global Portfolio Pages */}
@@ -45,7 +42,7 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/projects" element={<Projects />} />
-              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog" element={<Blog mode={mode} toggleMode={toggleMode} />} />
               <Route path="/weather" element={<Weather />} />
 
               {/* Project Pages with Sidebar */}
