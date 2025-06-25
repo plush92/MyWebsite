@@ -1,12 +1,18 @@
 import { Link } from 'react-router-dom';
 import { Box, Typography, Grid, Card, CardActionArea, CardContent } from '@mui/material';
+import PageLayout from "../../components/PageLayout";
 
 interface Project {
   name: string;
   path: string;
 }
 
-const Projects: React.FC = () => {
+type ProjectProps = {
+  mode: "light" | "dark";
+  toggleMode: () => void;
+};
+
+const Projects: React.FC<ProjectProps> = ({mode, toggleMode}) => {
   const projects: Project[] = [
     { name: 'Weather', path: '/weather' },
     { name: 'Econ Dashboard', path: '/econ' },
@@ -15,6 +21,7 @@ const Projects: React.FC = () => {
   ];
 
   return (
+    <PageLayout mode={mode} toggleMode={toggleMode}>
     <Box minHeight="100vh" display="flex" flexDirection="column" alignItems="center" py={10}>
       <Typography variant="h3" fontWeight="bold" mb={6}>
         Projects
@@ -37,7 +44,8 @@ const Projects: React.FC = () => {
           </Grid>
         ))}
       </Grid>
-    </Box>
+      </Box>
+      </PageLayout>
   );
 };
 

@@ -1,11 +1,18 @@
 import CustomContainer from "../../components/materialui/CustomContainer";
 import { Typography, Box, Divider } from "@mui/material";
+import PageLayout from "../../components/PageLayout";
 import introText from "./components/introText";
 import aboutText from "./components/aboutText";
 import featuredWorkText from "./components/featuredWorkText";
 
-const Home: React.FC = () => {
+type HomeProps = {
+  mode: "light" | "dark";
+  toggleMode: () => void;
+};
+
+const Home: React.FC<HomeProps> = ({mode, toggleMode}) => {
   return (
+    <PageLayout mode={mode} toggleMode={toggleMode}>
     <CustomContainer >
       <Box mb={6} mt={6}>
         <Typography variant="h4" fontWeight="bold" gutterBottom>
@@ -27,7 +34,8 @@ const Home: React.FC = () => {
         </Typography>
         {aboutText}
       </Box>
-    </CustomContainer>
+      </CustomContainer>
+      </PageLayout>
   );
 };
 

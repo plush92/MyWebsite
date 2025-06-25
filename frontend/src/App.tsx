@@ -39,9 +39,9 @@ function App() {
             <Routes>
               {/* Global Portfolio Pages */}
               <Route path="/" element={<Navigate to="/home" replace />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/projects" element={<Projects />} />
+              <Route path="/home" element={<Home mode={mode} toggleMode={toggleMode}/>} />
+              <Route path="/contact" element={<Contact mode={mode} toggleMode={toggleMode}/>} />
+              <Route path="/projects" element={<Projects mode={mode} toggleMode={toggleMode}/>} />
               <Route path="/blog" element={<Blog mode={mode} toggleMode={toggleMode} />} />
               <Route path="/weather" element={<Weather />} />
 
