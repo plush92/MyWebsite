@@ -1,6 +1,8 @@
-import { AppBar, Toolbar, Button, Box } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
-import ThemeToggle from "./ThemeToggle"; 
+import CustomAppBar from "./materialui/AppBar";
+import CustomBox from "./materialui/CustomBox";
+import CustomButton from "./materialui/CustomButton";
+import ThemeToggle from "./ThemeToggle";
+import { Link as RouterLink } from "react-router-dom";
 
 type NavBarProps = {
   drawerOpen?: boolean;
@@ -16,12 +18,10 @@ const NavBar: React.FC<NavBarProps> = ({
   toggleMode,
 }) => {
   return (
-    <AppBar
-      position="static"
-      color="primary"
+    <CustomAppBar
       sx={{
         transition: (theme) =>
-          theme.transitions.create(['margin', 'width'], {
+          theme.transitions.create(["margin", "width"], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
           }),
@@ -29,39 +29,31 @@ const NavBar: React.FC<NavBarProps> = ({
           width: `calc(100% - ${drawerWidth}px)`,
           marginLeft: `${drawerWidth}px`,
           transition: (theme) =>
-            theme.transitions.create(['margin', 'width'], {
+            theme.transitions.create(["margin", "width"], {
               easing: theme.transitions.easing.easeOut,
               duration: theme.transitions.duration.enteringScreen,
             }),
         }),
       }}
     >
-
-      <Toolbar>
-
-        <Box sx={{ flexGrow: 1 }}>
-          <Button color="inherit" component={RouterLink} to="/">
+      <CustomBox styleArray={[{ display: "flex", alignItems: "center", width: "100%" }]}>
+        <CustomBox styleArray={[{ flexGrow: 1 }]}>
+          <CustomButton component={RouterLink} to="/" color="inherit">
             Home
-          </Button>
-
-          <Button color="inherit" component={RouterLink} to="/projects">
+          </CustomButton>
+          <CustomButton component={RouterLink} to="/projects" color="inherit">
             Projects
-          </Button>
-
-          <Button color="inherit" component={RouterLink} to="/contact">
+          </CustomButton>
+          <CustomButton component={RouterLink} to="/contact" color="inherit">
             Contact
-          </Button>
-
-          <Button color="inherit" component={RouterLink} to="/blog">
+          </CustomButton>
+          <CustomButton component={RouterLink} to="/blog" color="inherit">
             Blog
-          </Button>
-        </Box>
-        <Box sx={{ flexGrow: 1 }}>
-          {/* ...your nav buttons */}
-        </Box>
+          </CustomButton>
+        </CustomBox>
         <ThemeToggle mode={mode} toggleMode={toggleMode} />
-      </Toolbar>
-    </AppBar>
+      </CustomBox>
+    </CustomAppBar>
   );
 };
 

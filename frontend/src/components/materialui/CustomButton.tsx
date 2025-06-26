@@ -71,6 +71,7 @@
 import Button, { ButtonProps } from '@mui/material/Button';
 import { SxProps, Theme } from '@mui/material/styles';
 import React from 'react';
+import { LinkProps } from 'react-router-dom';
 
 const sizingProps = { minWidth: 120, minHeight: 40 };
 const colorProps = { backgroundColor: "#1976d2", color: "#fff" };
@@ -80,7 +81,7 @@ export const ButtonSizing = [sizingProps];
 export const ButtonColor = [colorProps];
 export const ButtonSpacing = [spacingProps];
 
-type CustomButtonProps = ButtonProps & {
+type CustomButtonProps = ButtonProps & Partial<LinkProps> & {
   sx?: SxProps<Theme>;
   styleArray?: SxProps<Theme>[];
   children?: React.ReactNode;

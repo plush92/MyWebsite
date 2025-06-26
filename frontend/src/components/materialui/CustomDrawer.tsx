@@ -47,49 +47,53 @@
 // .MuiDrawer-anchorTop                // anchor="top"
 // .MuiDrawer-anchorBottom             // anchor="bottom"
 
-import Drawer, { DrawerProps } from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import { SxProps, Theme } from '@mui/material/styles';
-import React from 'react';
+import Drawer, { DrawerProps } from '@mui/material/Drawer'; // Import MUI Drawer and its props type
+import List from '@mui/material/List'; // Import MUI List for menu items
+import ListItemButton from '@mui/material/ListItemButton'; // Import clickable list item
+import ListItemText from '@mui/material/ListItemText'; // Import text for list item
+import { SxProps, Theme } from '@mui/material/styles'; // Import style types from MUI
+import React from 'react'; // Import React
 
-const sizingProps = { width: 150 };
-const paddingProps = { p: 2 };
+const sizingProps = { width: 150 }; // Default sizing for Drawer (can be overridden)
+const paddingProps = { p: 2 }; // Default padding for Drawer content
 
-export const DrawerSizing = [sizingProps];
-export const DrawerPadding = [paddingProps];
+export const DrawerSizing = [sizingProps]; // Export sizing for reuse
+export const DrawerPadding = [paddingProps]; // Export padding for reuse
 
+// Define the props for CustomDrawer, extending MUI DrawerProps
 type CustomDrawerProps = DrawerProps & {
-  sx?: SxProps<Theme>;
-  styleArray?: SxProps<Theme>[];
-  items?: { label: string; onClick?: () => void }[];
-  children?: React.ReactNode;
+  sx?: SxProps<Theme>; // Optional custom styles
+  styleArray?: SxProps<Theme>[]; // Optional array of custom styles
+  items?: { label: string; onClick?: () => void }[]; // Optional array of menu items
+  children?: React.ReactNode; // Optional children (additional content)
 };
 
+// Functional component for CustomDrawer
 const CustomDrawer: React.FC<CustomDrawerProps> = ({
-  sx = [],
-  styleArray = [],
-  items,
-  children,
-  ...props
+  sx = [], // Custom styles, default to empty array
+  styleArray = [], // Style array, default to empty array
+  items, // Menu items
+  children, // Additional content
+  ...props // All other Drawer props
 }) => (
   <Drawer
-    {...props}
+    {...props} // Spread all Drawer props (open, onClose, anchor, etc.)
     sx={[
-      ...styleArray,
-      ...(Array.isArray(sx) ? sx : [sx]),
+      ...styleArray, // Apply styleArray first
+      ...(Array.isArray(sx) ? sx : [sx]), // Then apply sx (ensure it's always an array)
+      // Note: You may want to add { '& .MuiDrawer-paper': { width: ... } } here for width control
     ]}
   >
     <List>
+      {/* Map over items and render a ListItemButton for each */}
       {items?.map((item, idx) => (
         <ListItemButton key={item.label + idx} onClick={item.onClick}>
           <ListItemText primary={item.label} />
         </ListItemButton>
       ))}
     </List>
-    {children}
+    {children /* Render any additional children passed to the Drawer */}
   </Drawer>
 );
 
-export default CustomDrawer;
+export default CustomDrawer; // Export the CustomDrawer component
