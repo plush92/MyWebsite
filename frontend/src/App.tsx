@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Box } from "@mui/material";
 import AppThemeProvider from "./ThemeProvider";
+import ThemeToggle from "./components/ThemeToggle";
 
 //Misc components
 import Footer from "./components/Footer";
@@ -23,14 +24,18 @@ import Blog from "./pages/Blog/Blog";
 const drawerWidth = 280;
 
 function App() {
-
   const [mode, setMode] = useState<"light" | "dark">("light");
-  const toggleMode = () => setMode((prev) => (prev === "light" ? "dark" : "light"));
+  const toggleMode = () => setMode(prev => (prev === 'light' ? 'dark' : 'light'));
 
   return (
-    <AppThemeProvider>
+    <AppThemeProvider mode={mode}>
       <Router>
-        <Box className="app-container" sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+        <Box className="app-container"
+          sx={{
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+          }}>
           <Box component="main" className="content" sx={{ flex: 1 }}>
             <Routes>
               {/* Global Portfolio Pages */}
