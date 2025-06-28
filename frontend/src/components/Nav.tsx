@@ -38,16 +38,16 @@ const NavBar: React.FC<NavBarProps> = ({
     >
       <CustomBox styleArray={[{ display: "flex", alignItems: "center", width: "100%" }]}>
         <CustomBox styleArray={[{ flexGrow: 1 }]}>
-          <CustomButton component={RouterLink} to="/" color="inherit">
+          <CustomButton sx={{ color: '#000' }} component={RouterLink} to="/" color="inherit">
             Home
           </CustomButton>
-          <CustomButton component={RouterLink} to="/projects" color="inherit">
+          <CustomButton sx={{ color: '#000' }} component={RouterLink} to="/projects" color="inherit">
             Projects
           </CustomButton>
-          <CustomButton component={RouterLink} to="/contact" color="inherit">
+          <CustomButton sx={{ color: '#000' }} component={RouterLink} to="/contact" color="inherit">
             Contact
           </CustomButton>
-          <CustomButton component={RouterLink} to="/blog" color="inherit">
+          <CustomButton sx={{ color: '#000' }} component={RouterLink} to="/blog" color="inherit">
             Blog
           </CustomButton>
         </CustomBox>

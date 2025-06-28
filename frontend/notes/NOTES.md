@@ -4,11 +4,11 @@
 
 `Dark/Light Mode Toggle` – Show off your front-end skills by implementing a theme switcher.
 
-`Live Code Previews `– If you’re showcasing development projects, add embedded live previews with tools like CodeSandbox or StackBlitz.
+`Live Code Previews`– If you’re showcasing development projects, add embedded live previews with tools like CodeSandbox or StackBlitz.
 
 `Project Case Studies` – Don’t just list projects—detail your thought process, challenges faced, and solutions implemented.
 
-`Blog or Dev Journal `– Share technical write-ups or insights about your coding journey.
+`Blog or Dev Journal`– Share technical write-ups or insights about your coding journey.
 
 `Gamified Experience` – Make navigating your portfolio fun, maybe with achievements or hidden Easter eggs.
 
@@ -23,4 +23,13 @@
 If you want your site to be a project in itself, how about making it dynamic—maybe an `interactive resume` or a `dashboard that updates in real-time with your latest GitHub activity?`
 
 `Suggestion Box`
+
 - allow users to enter comments that saves on the backend.
+
+# 6/27 tasks
+
+1. Fix font coloring on light mode buttons
+2. Overall, update stylings for components and consolidate styling into themeprovider.tsx.
+2. Update spacing, placement of blog components
+3. Create backend for blog
+4. make a plan for how you should code all of this stuff.

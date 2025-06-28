@@ -1,23 +1,35 @@
-import '../styles/Footer.css'; // Import the CSS file
-
-// Since there are no props being passed to this component, we don't need to define a props type.
-// The component is a functional component that doesn't require any additional typing.
+import { Typography } from '@mui/material';
+import CustomBox, { BoxSizing, BoxBorder, BoxShadow } from './materialui/CustomBox';
 
 const currentDate = new Date();
-const year: number = currentDate.getFullYear(); // Explicitly type the year as a number
-const name: string = "Brendan Duffy"; // Explicitly type the name as a string
+const year: number = currentDate.getFullYear();
+const name: string = "Brendan Duffy";
 
-// Define the Footer component as a functional component in TypeScript
-const Footer: React.FC = () => {
-  return (
-    <footer className="footer">
-      <div className="footer-content">
-        <p className="footer-text">Created by {name}</p>
-        <p className="footer-text">Copyright {year}</p>
-      </div>
-    </footer>
-  );
-};
+const Footer: React.FC = () => (
+  <CustomBox
+    styleArray={[
+      ...BoxSizing,
+      ...BoxBorder,
+      ...BoxShadow,
+      {
+        backgroundColor: theme => theme.palette.primary.main,
+        color: theme => theme.palette.primary.contrastText,
+        width: "100%",
+        py: 2,
+        textAlign: 'center',
+        mt: 'auto',
+      },
+    ]}
+    component="footer"
+  >
+    <Typography variant="body2">
+      Created by {name}
+    </Typography>
+    <Typography variant="body2">
+      Copyright {year}
+    </Typography>
+  </CustomBox>
+);
 
 export default Footer;
 

@@ -1,13 +1,11 @@
 import React, { useState, useMemo } from "react";
 import { Navigate } from "react-router-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Box, ThemeProvider, CssBaseline } from "@mui/material";
-import { createTheme } from "@mui/material/styles";
+import { Box } from "@mui/material";
+import AppThemeProvider from "./ThemeProvider";
 
 //Misc components
 import Footer from "./components/Footer";
-import Nav from "./components/Nav";
-import Sidebar from "./components/Sidebar";
 import DashboardLayout from "./components/DashboardLayout";
 
 //Projects
@@ -28,11 +26,9 @@ function App() {
 
   const [mode, setMode] = useState<"light" | "dark">("light");
   const toggleMode = () => setMode((prev) => (prev === "light" ? "dark" : "light"));
-  const theme = useMemo(() => createTheme({ palette: { mode } }), [mode]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <AppThemeProvider>
       <Router>
         <Box className="app-container" sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
           <Box component="main" className="content" sx={{ flex: 1 }}>
@@ -75,7 +71,7 @@ function App() {
           <Footer />
         </Box>
       </Router>
-    </ThemeProvider>
+    </AppThemeProvider>
   );
 }
 
