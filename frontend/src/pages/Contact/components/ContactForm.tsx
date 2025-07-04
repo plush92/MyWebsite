@@ -1,7 +1,8 @@
 //to run, cd into the backend file and run node src/contactform/contactform.js
 
 import React, { useState } from "react";
-import { Box, TextField } from "@mui/material";
+import CustomTextField from "../../../components/materialui/CustomTextField";
+import CustomBox from "../../../components/materialui/CustomBox";
 import CustomButton from "../../../components/materialui/CustomButton";
 
 const UnifiedContactForm: React.FC = () => {
@@ -41,15 +42,27 @@ const UnifiedContactForm: React.FC = () => {
   // };
 
   return (
-    <Box component="form" sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-      <TextField 
+    <CustomBox
+      component="form"
+      styleArray={[
+        {
+          p: 3,
+          bgcolor: 'background.paper',
+          borderRadius: 2,
+          boxShadow: 3,
+          maxWidth: 500,
+          mx: 'auto',
+          mt: 4,
+        },
+      ]}>
+      <CustomTextField 
         id="name"
         type="name"
         label="Name"
         value={name}
         onChange={e => setName(e.target.value)}
       />
-      <TextField
+      <CustomTextField
         id="email"
         type="email"
         label="Email"
@@ -57,7 +70,7 @@ const UnifiedContactForm: React.FC = () => {
         onChange={e => setEmail(e.target.value)}
         helperText="I'll never share your email"
       />
-      <TextField
+      <CustomTextField
         id="phone"
         type="tel"
         label="Phone"
@@ -65,7 +78,7 @@ const UnifiedContactForm: React.FC = () => {
         onChange={e => setPhone(e.target.value)}
         helperText="or your phone number..."
       />
-      <TextField
+      <CustomTextField
         id="comment"
         label="Leave a comment"
         multiline
@@ -74,7 +87,7 @@ const UnifiedContactForm: React.FC = () => {
         onChange={e => setComment(e.target.value)}
       />
       <CustomButton onClick={handleSubmit}>Submit</CustomButton>
-    </Box>
+    </CustomBox>
   );
 };
 
