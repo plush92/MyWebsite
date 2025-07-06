@@ -15,8 +15,14 @@ import React, { useState, useEffect, useRef } from "react";
 import CustomTextField from "../../materialui/CustomTextField";
 import CustomBox from "../../materialui/CustomBox";
 import CustomButton from "../../materialui/CustomButton";
+import PageLayout from "../../PageLayout";
 
-const InputTracker: React.FC = () => {
+type LayoutProps = {
+    mode: "light" | "dark";
+    toggleMode: () => void;
+  };
+
+const InputTracker: React.FC<LayoutProps> = ({mode, toggleMode}) => {
     const [inputValue, setInputValue] = useState(0);
 
     // Update the ref every time inputValue changes
@@ -36,11 +42,14 @@ const InputTracker: React.FC = () => {
     useEffect(() => {
         lastRenderTime.current = Date.now();
     });
-    
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(Number(e.target.value));
     };
+
+    useEffect(() => {
+        console.log("inputValue changed:", inputValue);
+    }, [inputValue]);
 
     const handleStaleClick = () => {
         setInputValue(inputValue + 1);
@@ -52,11 +61,8 @@ const InputTracker: React.FC = () => {
         setInputValue(prev => prev + 1); // uses latest value
     };
 
-    useEffect(() => {
-        console.log("inputValue changed:", inputValue);
-    }, [inputValue]);
-
     return (
+        <PageLayout mode={mode} toggleMode={toggleMode}>
         <CustomBox
             component="form"
             styleArray={[
@@ -81,9 +87,18 @@ const InputTracker: React.FC = () => {
             <p>Last Render: {new Date(lastRenderTime.current).toLocaleTimeString()}</p>
             <p>Render Count: {renderCount.current}</p>
             <p>Previous value: {prevInputRef.current}</p>
-            <CustomButton onClick={handleStaleClick}>Stale +1</CustomButton>
-            <CustomButton color="primary" onClick={handleFunctionalClick}>Functional +2</CustomButton>
-        </CustomBox>
+
+            <CustomButton
+                onClick={handleStaleClick}
+            >Stale +1
+            </CustomButton>
+
+            <CustomButton
+                onClick={handleFunctionalClick}
+            >Functional +2
+            </CustomButton>
+            </CustomBox>
+            </PageLayout>
     );
 };
 

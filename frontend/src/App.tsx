@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from "react";
 import { Navigate } from "react-router-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Box, Input } from "@mui/material";
+import { Input } from "@mui/material";
+import CustomBox from "./components/materialui/CustomBox";
 import AppThemeProvider from "./ThemeProvider";
 
 //Misc components
@@ -30,13 +31,13 @@ function App() {
   return (
     <AppThemeProvider mode={mode}>
       <Router>
-        <Box className="app-container"
+        <CustomBox className="app-container"
           sx={{
             minHeight: "100vh",
             display: "flex",
             flexDirection: "column",
           }}>
-          <Box component="main" className="content" sx={{ flex: 1 }}>
+          <CustomBox component="main" className="content" sx={{ flex: 1 }}>
             <Routes>
               {/* Global Portfolio Pages */}
               <Route path="/" element={<Navigate to="/home" replace />} />
@@ -45,7 +46,7 @@ function App() {
               <Route path="/projects" element={<Projects mode={mode} toggleMode={toggleMode}/>} />
               <Route path="/blog" element={<Blog mode={mode} toggleMode={toggleMode} />} />
               <Route path="/weather" element={<Weather />} />
-              <Route path="/inputtracker" element={<InputTracker />} />
+              <Route path="/inputtracker" element={<InputTracker  mode={mode} toggleMode={toggleMode} />} />
 
               <Route
                 path="/econ"
@@ -75,14 +76,14 @@ function App() {
                 path="/inputtracker"
                 element={
                   <DashboardLayout>
-                    <InputTracker />
+                    <InputTracker mode={mode} toggleMode={toggleMode}/>
                   </DashboardLayout>
                 }
               />
             </Routes>
-          </Box>
+          </CustomBox>
           <Footer />
-        </Box>
+        </CustomBox>
       </Router>
     </AppThemeProvider>
   );
