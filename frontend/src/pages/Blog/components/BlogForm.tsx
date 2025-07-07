@@ -14,11 +14,12 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import CustomRating, { RatingSizing, RatingColor } from "../../../components/materialui/CustomRating";
 
 const BlogForm: React.FC = () => {
-    //State management
+    //States
     const [date, setDate] = useState<Date | null>(new Date());
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState<number | null>(null);
     
+    //Styling Props
     const CustomContainerProps = [
         ...ContainerBorder,
         ...ContainerMargin,
