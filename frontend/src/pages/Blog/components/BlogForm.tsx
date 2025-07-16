@@ -5,19 +5,24 @@ import CustomBox, { BoxSizing, BoxBorder, BoxShadow } from "../../../components/
 import CustomButton from "../../../components/materialui/CustomButton";
 import CustomContainer, {ContainerBorder, ContainerMargin, ContainerPadding, ContainerSizing} from "../../../components/materialui/CustomContainer";
 import CustomTextField, { TextFieldSizing, TextFieldBorder, TextFieldShadow } from "../../../components/materialui/CustomTextField";
+import CustomRating, { RatingSizing, RatingColor } from "../../../components/materialui/CustomRating";
 
 //Imports needed for DatePicker
 import CustomDatePicker, { DatePickerBorder, DatePickerPadding, DatePickerShadow, DatePickerSizing } from "../../../components/materialui/CustomDatePicker";
 import { LocalizationProvider } from '@mui/x-date-pickers'; 
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-import CustomRating, { RatingSizing, RatingColor } from "../../../components/materialui/CustomRating";
+//SQL Imports
+import { createBlogPost, fetchBlogPostById, fetchBlogPosts, deleteBlogPost, updateBlogPost } from "../api/blogApi";
 
 const BlogForm: React.FC = () => {
     //States
     const [date, setDate] = useState<Date | null>(new Date());
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState<number | null>(null);
+    const [posts, setPosts] = useState([]);
+    const [selectedId, setSelectedId] = useState<number | string>("");
+  
     
     //Styling Props
     const CustomContainerProps = [
@@ -38,7 +43,6 @@ const BlogForm: React.FC = () => {
         ...TextFieldSizing,
         ...TextFieldBorder,
         ...TextFieldShadow,
-        // { backgroundColor: "#FFF000" },
       ];
 
     const CustomDatePickerProps = [
@@ -53,29 +57,34 @@ const BlogForm: React.FC = () => {
       ...RatingColor,
       ]
   
-    const handleSubmit = async () => {
-        try {
-            await fetch(`${(import.meta as any).env.REACT_APP_API_URL || "http://localhost:3001"}/blog`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ 
-                    date: date ? date.toString() : null,
-                    comment 
-                }),
-            });
-            setDate(new Date());
-            setComment("");
-        } catch (err) {
-            alert("Failed to send.");
-        }
+    //Event Handlers
+    const handleCreate = async () => {
+      await createBlogPost({ date: new Date().toISOString(), comment: "New post!" });
+      alert("Post created!");
+    };
+
+    const handleFetch = async () => {
+      const data = await fetchBlogPosts();
+      setPosts(data);
+      alert("Post fetched!");
+    };
+
+    const handleUpdate = async () => {
+      await updateBlogPost(selectedId, { comment: "Updated comment!" });
+      alert("Post updated!");
+    };
+
+    const handleDelete = async () => {
+      await deleteBlogPost(selectedId);
+      alert("Post deleted!");
     };
 
   return (
-        <CustomContainer styleArray={CustomContainerProps} sx={{ m: 5 }}>
+        <CustomContainer styleArray={CustomContainerProps} sx={{ m: 1 }}>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
           <CustomDatePicker
             styleArray={CustomDatePickerProps}
-            sx={{ m: 2 }}
+            sx={{ m: 5 }}
             value={date}
             onChange={setDate}
                 />
@@ -94,12 +103,26 @@ const BlogForm: React.FC = () => {
             />
         </CustomBox>
         
-        <CustomButton onClick={handleSubmit}>
-            Submit
+      <CustomBox>
+        <CustomButton onClick={handleCreate}>
+            Create
         </CustomButton>
 
+                <CustomButton onClick={handleFetch}>
+            Get
+        </CustomButton>
+
+                <CustomButton onClick={handleUpdate}>
+            Update
+        </CustomButton>
+
+                <CustomButton onClick={handleDelete}>
+            Delete
+        </CustomButton>
+        </CustomBox>
+
         <CustomRating
-          value={3}
+          value={0}
           onChange={(_, newValue) => setRating(newValue)}
           styleArray={[...RatingSizing, ...RatingColor]}
           sx={{ mt: 2 }}

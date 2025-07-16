@@ -6,7 +6,7 @@ import React from 'react';
 const sizingProps = { maxWidth: "md", width: "100%" };
 const paddingProps = { p: 3 };
 const marginProps = { m: "auto" };
-const borderProps = { borderRadius: 2 };
+const borderProps = { borderRadius: 3 };
 
 export const ContainerSizing = [sizingProps];
 export const ContainerPadding = [paddingProps];
