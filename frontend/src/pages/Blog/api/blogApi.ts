@@ -1,3 +1,4 @@
+// blogApi.ts
 const API_URL = (import.meta as any).env.REACT_APP_API_URL || "http://localhost:3001";
 
 export async function createBlogPost({ date, comment }: { date: string | null, comment: string }) {

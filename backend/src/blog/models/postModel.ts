@@ -25,3 +25,15 @@ export async function getPostById(id: number) {
 export async function deletePost(id: number) {
   await pool.query('DELETE FROM posts WHERE id = $1', [id]);
 }
+
+// Update a post by ID
+export async function updatePost(
+  id: number,
+  data: { title: string; content: string; author: string }
+) {
+  const result = await pool.query(
+    'UPDATE posts SET title = $1, content = $2, author = $3 WHERE id = $4 RETURNING *',
+    [data.title, data.content, data.author, id]
+  );
+  return result.rows[0];
+}

@@ -22,7 +22,7 @@ export async function getPosts(req: Request, res: Response) {
   }
 }
 
-// (Optional) Get a single post by ID
+// Get a single post by ID
 export async function getPostById(req: Request, res: Response) {
   try {
     const { id } = req.params;
@@ -37,7 +37,7 @@ export async function getPostById(req: Request, res: Response) {
   }
 }
 
-// (Optional) Delete a post by ID
+// Delete a post by ID
 export async function deletePost(req: Request, res: Response) {
   try {
     const { id } = req.params;
@@ -45,5 +45,21 @@ export async function deletePost(req: Request, res: Response) {
     res.status(204).send();
   } catch (error) {
     res.status(500).json({ error: 'Failed to delete post' });
+  }
+}
+
+// Update a post by ID
+export async function updatePost(req: Request, res: Response) {
+  try {
+    const { id } = req.params;
+    const { title, content, author } = req.body;
+    const updatedPost = await postModel.updatePost(Number(id), { title, content, author });
+    if (updatedPost) {
+      res.json(updatedPost);
+    } else {
+      res.status(404).json({ error: 'Post not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update post' });
   }
 }
