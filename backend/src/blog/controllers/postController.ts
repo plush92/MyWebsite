@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import * as postModel from '../models/postModel';
+import * as postModel from '../models/postModel.js';
 
 // Create a new post
 export async function createPost(req: Request, res: Response) {
   try {
-    const { title, content, author } = req.body;
-    const newPost = await postModel.insertPost(title, content, author);
+    const { title, content, author, slug } = req.body;
+    const newPost = await postModel.insertPost(title, content, author, slug);
     res.status(201).json(newPost);
   } catch (error) {
     res.status(500).json({ error: 'Failed to create post' });
@@ -13,7 +13,7 @@ export async function createPost(req: Request, res: Response) {
 }
 
 // Get all posts
-export async function getPosts(req: Request, res: Response) {
+export async function getPosts(_req: Request, res: Response) {
   try {
     const posts = await postModel.getAllPosts();
     res.json(posts);

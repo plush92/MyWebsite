@@ -13,7 +13,7 @@ export async function createUser(req: Request, res: Response) {
 }
 
 // Get all users
-export async function getUsers(req: Request, res: Response) {
+export async function getUsers(_req: Request, res: Response) {
   try {
     const users = await userModel.getAllUsers();
     res.json(users);

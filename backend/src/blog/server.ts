@@ -1,7 +1,9 @@
 // filepath: /Users/brendanduffy/Documents/MyWebsite/backend/blog/src/server.ts
+// to run server: cd '/Users/brendanduffy/Documents/MyWebsite/backend'
+// then run 'node dist/blog/server.js'
 import express from 'express';
 import dotenv from 'dotenv';
-import postRouter from './routes/postRoutes'
+import postRouter from './routes/postRoutes.js'
 import cors from 'cors';
 
 dotenv.config();

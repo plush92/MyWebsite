@@ -16,9 +16,12 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { createBlogPost, fetchBlogPostById, fetchBlogPosts, deleteBlogPost, updateBlogPost } from "../api/blogApi";
 
 const BlogForm: React.FC = () => {
-    //States
+  //States
+      const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
+    const [author, setAuthor] = useState("");
+    const [slug, setSlug] = useState("");
     const [date, setDate] = useState<Date | null>(new Date());
-    const [comment, setComment] = useState("");
     const [rating, setRating] = useState<number | null>(null);
     const [posts, setPosts] = useState([]);
     const [selectedId, setSelectedId] = useState<number | string>("");
@@ -59,9 +62,18 @@ const BlogForm: React.FC = () => {
   
     //Event Handlers
     const handleCreate = async () => {
-      await createBlogPost({ date: new Date().toISOString(), comment: "New post!" });
-      alert("Post created!");
-    };
+  const postData = {
+    title,
+    content,
+    author,
+    slug,
+    date: date ? date.toISOString() : undefined,
+  };
+  console.log("Creating post with data:", postData);
+  alert(`Creating post with data:\n${JSON.stringify(postData, null, 2)}`);
+  await createBlogPost(postData);
+  alert("Post created!");
+};
 
     const handleFetch = async () => {
       const data = await fetchBlogPosts();
@@ -86,23 +98,49 @@ const BlogForm: React.FC = () => {
             styleArray={CustomDatePickerProps}
             sx={{ m: 5 }}
             value={date}
-            onChange={setDate}
+          onChange={setDate}
                 />
-                </LocalizationProvider>
+      </LocalizationProvider>
           <CustomBox styleArray={CustomBoxProps} sx={{ m: 5 }}>
             <CustomTextField
-              id="comment"
-              type="comment"
-              label="Comment"
-              value={comment}
-              onChange={e => setComment(e.target.value)}
-              styleArray={CustomTextFieldProps}
-              multiline
-              rows={8}
-              sx={{ mb: 0 }}
-            />
+  id="title"
+  type="text"
+  label="Title"
+  value={title ?? ""}
+  onChange={e => setTitle(e.target.value)}
+  styleArray={CustomTextFieldProps}
+  sx={{ mb: 2 }}
+/>
+<CustomTextField
+  id="author"
+  type="text"
+  label="Author"
+  value={author ?? ""}
+  onChange={e => setAuthor(e.target.value)}
+  styleArray={CustomTextFieldProps}
+  sx={{ mb: 2 }}
+/>
+<CustomTextField
+  id="slug"
+  type="text"
+  label="Slug"
+  value={slug ?? ""}
+  onChange={e => setSlug(e.target.value)}
+  styleArray={CustomTextFieldProps}
+  sx={{ mb: 2 }}
+        />
+  <CustomTextField
+    id="content"
+    type="text"
+    label="Content"
+    value={content ?? ""}
+    onChange={e => setContent(e.target.value)}
+    styleArray={CustomTextFieldProps}
+    multiline
+    rows={8}
+    sx={{ mb: 0 }}
+  />
         </CustomBox>
-        
       <CustomBox>
         <CustomButton onClick={handleCreate}>
             Create
