@@ -6,6 +6,7 @@ import React, { useState } from "react"; // Import React and useState hook
 import CustomBox from "./materialui/CustomBox"; // Import your custom Box component
 import CustomButton from "./materialui/CustomButton"; // Import your custom Button component
 import CustomDrawer from "./materialui/CustomDrawer"; // Import your custom Drawer component
+import CustomMiniDrawer from "./materialui/CustomMiniDrawer";
 import NavBar from "./Nav"; // Import your custom NavBar (AppBar) component
 
 type PageLayoutProps = {
@@ -38,25 +39,19 @@ const PageLayout: React.FC<PageLayoutProps> = ({
       <CustomBox styleArray={[{ display: "flex", flex: 1 }]}>
         {/* Conditionally render the Drawer if showDrawer is true */}
         {showDrawer && (
-          <CustomDrawer
+          <CustomMiniDrawer
             open={drawerOpen} // Control open/close state
+            onOpen={() => setDrawerOpen(true)}
             onClose={() => setDrawerOpen(false)} // Close Drawer handler
-            anchor="left" // Drawer slides in from the left
             items={drawerItems} // Drawer menu items
-            styleArray={[{ width: drawerWidth }]} // Set Drawer width
-            variant="persistent" // Drawer stays open until closed
-            ModalProps={{ disablePortal: true }}
+            // styleArray={[{ width: drawerWidth }]} // Set Drawer width
+            // variant="persistent" // Drawer stays open until closed
+            // ModalProps={{ disablePortal: true }}
             sx={{ zIndex: 1100 }} // Set Drawer z-index
           />
         )}
         {/* Main content area, grows to fill space, with padding */}
         <CustomBox component="main" styleArray={[{ flexGrow: 1, p: 3 }]}>
-          {/* Optional button to open/close the Drawer */}
-          {showDrawer && (
-            <CustomButton onClick={() => setDrawerOpen((o) => !o)}>
-              {drawerOpen ? "Close" : "Open"} Drawer
-            </CustomButton>
-          )}
           {children}
         </CustomBox>
       </CustomBox>

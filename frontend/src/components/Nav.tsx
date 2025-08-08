@@ -1,4 +1,4 @@
-import CustomAppBar from "./materialui/AppBar";
+import CustomAppBar from "./materialui/CustomAppBar";
 import CustomBox from "./materialui/CustomBox";
 import CustomButton from "./materialui/CustomButton";
 import ThemeToggle from "./ThemeToggle";

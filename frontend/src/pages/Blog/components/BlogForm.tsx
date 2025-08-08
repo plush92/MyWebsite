@@ -6,6 +6,7 @@ import CustomButton from "../../../components/materialui/CustomButton";
 import CustomContainer, {ContainerBorder, ContainerMargin, ContainerPadding, ContainerSizing} from "../../../components/materialui/CustomContainer";
 import CustomTextField, { TextFieldSizing, TextFieldBorder, TextFieldShadow } from "../../../components/materialui/CustomTextField";
 import CustomRating, { RatingSizing, RatingColor } from "../../../components/materialui/CustomRating";
+import CustomSearchBar from "../../../components/materialui/CustomSearchBar";
 
 //Imports needed for DatePicker
 import CustomDatePicker, { DatePickerBorder, DatePickerPadding, DatePickerShadow, DatePickerSizing } from "../../../components/materialui/CustomDatePicker";
@@ -93,15 +94,20 @@ const BlogForm: React.FC = () => {
 
   return (
         <CustomContainer styleArray={CustomContainerProps} sx={{ m: 1 }}>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <CustomBox sx={{ m: 6 }}>
+          <CustomSearchBar></CustomSearchBar>
+        </CustomBox>
+        <CustomBox>
           <CustomDatePicker
             styleArray={CustomDatePickerProps}
             sx={{ m: 5 }}
             value={date}
           onChange={setDate}
-                />
+          />
+          </CustomBox>
       </LocalizationProvider>
-          <CustomBox styleArray={CustomBoxProps} sx={{ m: 5 }}>
+          <CustomBox styleArray={CustomBoxProps} sx={{ m: 2 }}>
             <CustomTextField
   id="title"
   type="text"
