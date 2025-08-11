@@ -15,6 +15,7 @@ import EconDashboard from "./components/FinanceProjects/EconDashboard/EconDashbo
 import CryptoDashboard from "./components/FinanceProjects/CryptoDashboard/CryptoDashboard";
 import LegislationDashboard from "./components/FinanceProjects/LegislationDashboard/legislationdashboard";
 import InputTracker from "./components/OtherProjects/inputtracker/InputTracker";
+import MoodTracker from "./components/OtherProjects/moodtracker/MoodTracker";
 
 //Pages
 import Contact from "./pages/Contact/Contact";
@@ -46,7 +47,8 @@ function App() {
               <Route path="/projects" element={<Projects mode={mode} toggleMode={toggleMode}/>} />
               <Route path="/blog" element={<Blog mode={mode} toggleMode={toggleMode} />} />
               <Route path="/weather" element={<Weather />} />
-              <Route path="/inputtracker" element={<InputTracker  mode={mode} toggleMode={toggleMode} />} />
+              <Route path="/inputtracker" element={<InputTracker mode={mode} toggleMode={toggleMode} />} />
+              <Route path="/moodtracker" element={<MoodTracker  mode={mode} toggleMode={toggleMode} />} />
 
               <Route
                 path="/econ"
@@ -77,6 +79,14 @@ function App() {
                 element={
                   <DashboardLayout>
                     <InputTracker mode={mode} toggleMode={toggleMode}/>
+                  </DashboardLayout>
+                }
+              />
+                              <Route
+                path="/moodtracker"
+                element={
+                  <DashboardLayout>
+                    <MoodTracker mode={mode} toggleMode={toggleMode}/>
                   </DashboardLayout>
                 }
               />
