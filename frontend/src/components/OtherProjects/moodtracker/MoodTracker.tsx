@@ -2,7 +2,7 @@
 
 import CustomBox from "../../materialui/CustomBox";
 import CustomContainer from "../../materialui/CustomContainer";
-import { Grid, Paper, Box, Container } from "@mui/material";
+import { Grid, Paper, Box, Container, Rating, TextField } from "@mui/material";
 import PageLayout from "../../PageLayout";
 
 type LayoutProps = {
@@ -20,14 +20,20 @@ const MoodTracker: React.FC<LayoutProps> = ({mode, toggleMode}) => {
         <PageLayout mode={mode} toggleMode={toggleMode}>
             <Grid>
         <Paper>
-            {Paper_item}
-        </Paper>
-        <Box>
+                    <Rating>
+                    </Rating>
+                </Paper>
+                <Paper>
+                    <TextField multiline>
+                        
+</TextField>
+                </Paper>
+        <CustomBox>
             {Box_item}
-        </Box>
-        <Container>
+        </CustomBox>
+        <CustomContainer>
             {Container_item}
-        </Container>
+        </CustomContainer>
             </Grid>
             </PageLayout>
     );
