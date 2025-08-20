@@ -14,10 +14,9 @@ type ProjectProps = {
 
 const Projects: React.FC<ProjectProps> = ({mode, toggleMode}) => {
   const projects: Project[] = [
+    { name: 'Pygame RPG', path: '/rpg' },
+    { name: 'Options Trading Platform', path: '/options'},
     { name: 'Weather', path: '/weather' },
-    { name: 'Econ Dashboard', path: '/econ' },
-    { name: 'Crypto Dashboard', path: '/crypto' },
-    { name: 'Legislation Dashboard', path: '/legislation' },
     { name: 'InputTracker', path: '/inputtracker' },
     { name: 'MoodTracker', path: '/moodtracker'},
   ];

@@ -36,47 +36,11 @@ function App() {
             <Route path="/projects" element={<Projects mode={mode} toggleMode={toggleMode} />} />
             <Route path="/blog" element={<Blog mode={mode} toggleMode={toggleMode} />} />
             <Route path="/weather" element={<Weather />} />
-            <Route
-              path="/econ"
-              element={
-                <DashboardLayout>
-                  <EconDashboard />
-                </DashboardLayout>
-              }
-            />
-            <Route
-              path="/crypto"
-              element={
-                <DashboardLayout>
-                  <CryptoDashboard />
-                </DashboardLayout>
-              }
-            />
-            <Route
-              path="/legislation"
-              element={
-                <DashboardLayout>
-                  <LegislationDashboard />
-                </DashboardLayout>
-              }
-            />
-            {/* Keep ONLY ONE version of these; using layout variant here */}
-            <Route
-              path="/inputtracker"
-              element={
-                <DashboardLayout>
-                  <InputTracker mode={mode} toggleMode={toggleMode} />
-                </DashboardLayout>
-              }
-            />
-            <Route
-              path="/moodtracker"
-              element={
-                <DashboardLayout>
-                  <MoodTracker mode={mode} toggleMode={toggleMode} />
-                </DashboardLayout>
-              }
-            />
+            <Route path="/moodtracker" element={<MoodTracker mode={mode} toggleMode={toggleMode} />} />
+            <Route path="/inputtracker" element={ <InputTracker mode={mode} toggleMode={toggleMode} />} />
+            <Route path="/moodtracker" element={<MoodTracker mode={mode} toggleMode={toggleMode} />} />
+            <Route path="/rpg" element={<PygameRPG mode={mode} toggleMode={toggleMode} />} />
+            <Route path="/options" element={<OptionsPlatform mode={mode} toggleMode={toggleMode} />} />
             <Route path="*" element={<div>Not Found</div>} />
           </Routes>
         </CustomBox>
