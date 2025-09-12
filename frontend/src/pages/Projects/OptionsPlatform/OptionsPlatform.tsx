@@ -11,9 +11,9 @@ import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
 import Button from "@mui/material/Button";
 
-import marketsentiment from "../../../assets/OptionsPlatform/profile.png"
-import plcalc from "../../../assets/OptionsPlatform/profile.png"
-import portfolioanalysis from "../../../assets/OptionsPlatform/profile.png"
+import marketsentiment from "../../../assets/OptionsPlatform/marketsentiment.png"
+import plcalc from "../../../assets/OptionsPlatform/plcalc.png"
+import portfolioanalysis from "../../../assets/OptionsPlatform/portfolioanalysis.png"
 import profile from "../../../assets/OptionsPlatform/profile.png"
 
 type ProjectProps = {
@@ -22,7 +22,7 @@ type ProjectProps = {
 };
 
 const OptionsPlatform: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
-  return (
+    return (
     <PageLayout mode={mode} toggleMode={toggleMode}>
       <Container maxWidth="lg" sx={{ py: 4 }}>
         <Typography variant="h3" sx={{ fontWeight: 700, mb: 1 }}>
@@ -38,7 +38,7 @@ const OptionsPlatform: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
             component="img"
             image={marketsentiment}
             alt="Market Sentiment"
-            sx={{ maxHeight: 420, objectFit: "cover" }}
+            sx={{ maxHeight: 420, objectFit: "scale-down" }}
           />
           <CardContent>
             <Typography variant="body1" sx={{ mb: 2 }}>
@@ -65,7 +65,7 @@ const OptionsPlatform: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
                 component="img"
                 image={plcalc}
                 alt="Options chains page"
-                sx={{ height: 280, objectFit: "cover" }}
+                sx={{ height: 420, objectFit: "scale-down" }}
               />
               <CardContent>
                 <Typography variant="h6" sx={{ mb: 1 }}>
@@ -85,7 +85,7 @@ const OptionsPlatform: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
                 component="img"
                 image={portfolioanalysis}
                 alt="Risk analytics"
-                sx={{ height: 280, objectFit: "cover" }}
+                sx={{ height: 420, objectFit: "scale-down" }}
               />
               <CardContent>
                 <Typography variant="h6" sx={{ mb: 1 }}>
@@ -101,7 +101,7 @@ const OptionsPlatform: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
         </Grid>
       </Container>
     </PageLayout>
-  );
+    );
 };
 
 export default OptionsPlatform;
