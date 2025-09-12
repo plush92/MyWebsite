@@ -8,7 +8,7 @@ type Props = {
 
 const AppThemeProvider: React.FC<Props> = ({ children, mode }) => (
   <ThemeProvider theme={theme(mode)}>
-    <CssBaseline /> {/* Optional: resets and normalizes CSS */}
+    <CssBaseline />
     {children}
   </ThemeProvider>
 );

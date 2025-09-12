@@ -4,14 +4,11 @@ import CustomBox from "./components/materialui/CustomBox";
 import AppThemeProvider from "./ThemeProvider";
 
 import Footer from "./components/Footer";
-import DashboardLayout from "./components/DashboardLayout";
 
 import Weather from "./components/OtherProjects/weather/Weather";
-import EconDashboard from "./components/FinanceProjects/EconDashboard/EconDashboard";
-import CryptoDashboard from "./components/FinanceProjects/CryptoDashboard/CryptoDashboard";
-import LegislationDashboard from "./components/FinanceProjects/LegislationDashboard/legislationdashboard";
 import InputTracker from "./components/OtherProjects/inputtracker/InputTracker";
 import MoodTracker from "./components/OtherProjects/moodtracker/MoodTracker";
+import PygameRPG from "./pages/Projects/PygameRPG/PygameRPG";
 
 import Contact from "./pages/Contact/Contact";
 import Projects from "./pages/Projects/Projects";
@@ -40,7 +37,7 @@ function App() {
             <Route path="/inputtracker" element={ <InputTracker mode={mode} toggleMode={toggleMode} />} />
             <Route path="/moodtracker" element={<MoodTracker mode={mode} toggleMode={toggleMode} />} />
             <Route path="/rpg" element={<PygameRPG mode={mode} toggleMode={toggleMode} />} />
-            <Route path="/options" element={<OptionsPlatform mode={mode} toggleMode={toggleMode} />} />
+            {/* <Route path="/options" element={<OptionsPlatform mode={mode} toggleMode={toggleMode} />} /> */}
             <Route path="*" element={<div>Not Found</div>} />
           </Routes>
         </CustomBox>

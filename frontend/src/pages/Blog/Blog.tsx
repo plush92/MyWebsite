@@ -1,7 +1,6 @@
 import CustomContainer from "../../components/materialui/CustomContainer";
 import BlogForm from "./components/BlogForm";
 import PageLayout from "../../components/PageLayout";
-import { blogDrawerItems } from "./components/BlogDrawerItems";
 
 type BlogProps = {
   mode: "light" | "dark";
@@ -11,7 +10,7 @@ type BlogProps = {
 const Blog: React.FC<BlogProps> = ({ mode, toggleMode }) => {
 
   return (
-    <PageLayout showDrawer drawerItems={blogDrawerItems} mode={mode} toggleMode={toggleMode}>
+    <PageLayout mode={mode} toggleMode={toggleMode}>
       <CustomContainer>
         <BlogForm></BlogForm>
       </CustomContainer>
