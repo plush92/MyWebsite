@@ -10,6 +10,7 @@ import InputTracker from "./components/OtherProjects/inputtracker/InputTracker";
 import MoodTracker from "./components/OtherProjects/moodtracker/MoodTracker";
 import PygameRPG from "./pages/Projects/PygameRPG/PygameRPG";
 import OptionsPlatform from "./pages/Projects/OptionsPlatform/OptionsPlatform";
+import CensusExplorer from "./pages/Projects/CensusExplorer/CensusExplorer";
 
 import Contact from "./pages/Contact/Contact";
 import Projects from "./pages/Projects/Projects";
@@ -39,6 +40,7 @@ function App() {
             <Route path="/moodtracker" element={<MoodTracker mode={mode} toggleMode={toggleMode} />} />
             <Route path="/rpg" element={<PygameRPG mode={mode} toggleMode={toggleMode} />} />
             <Route path="/options" element={<OptionsPlatform mode={mode} toggleMode={toggleMode} />} />
+            <Route path="/censusexplorer" element={<CensusExplorer mode={mode} toggleMode={toggleMode} />} />
             <Route path="*" element={<div>Not Found</div>} />
           </Routes>
         </CustomBox>

@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "predeploy": "npm run clean && vite build",
     "postbuild": "cp dist/index.html dist/404.html",
-  "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -30,7 +30,8 @@
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.27.0"
+    "react-router-dom": "^6.27.0",
+    "recharts": "^3.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
