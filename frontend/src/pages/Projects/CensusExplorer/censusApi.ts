@@ -11,8 +11,8 @@ export async function fetchCountiesByState(stateFips: string) {
   const json: any[] = await res.json();
   // json[0] is header
   return json.slice(1).map((row) => ({
-    label: row[0] as string,                 // NAME
-    countyFips: row[2] as string,            // county
+    label: row[0] as string,                 
+    countyFips: row[2] as string,            
   }));
 }
 
