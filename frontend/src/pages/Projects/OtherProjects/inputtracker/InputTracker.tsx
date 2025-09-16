@@ -12,10 +12,10 @@
 // no unnecessary re-renders
 
 import React, { useState, useEffect, useRef } from "react";
-import CustomTextField from "../../materialui/CustomTextField";
-import CustomBox from "../../materialui/CustomBox";
-import CustomButton from "../../materialui/CustomButton";
-import PageLayout from "../../PageLayout";
+import CustomTextField from "../../../../components/materialui/CustomTextField";
+import CustomBox from "../../../../components/materialui/CustomBox";
+import CustomButton from "../../../../components/materialui/CustomButton";
+import PageLayout from "../../../../components/PageLayout";
 
 type LayoutProps = {
     mode: "light" | "dark";

@@ -1,9 +1,9 @@
 // box, container from tailwind.
 
-import CustomBox from "../../materialui/CustomBox";
-import CustomContainer from "../../materialui/CustomContainer";
+import CustomBox from "../../../../components/materialui/CustomBox";
+import CustomContainer from "../../../../components/materialui/CustomContainer";
 import { Grid, Paper, Box, Container, Rating, TextField } from "@mui/material";
-import PageLayout from "../../PageLayout";
+import PageLayout from "../../../../components/PageLayout";
 
 type LayoutProps = {
     mode: "light" | "dark";
