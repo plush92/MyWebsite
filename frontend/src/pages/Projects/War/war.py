@@ -14,7 +14,7 @@ class Player:
     def add_cards(self, cards):
         if isinstance(cards, list):  
             # If 'cards' is a list (multiple cards), add all of them to the deck
-            self.deck.extend(cards)  
+            self.deck.extend(cards)
         else:  
             # Otherwise, treat 'cards' as a single card and add it to the deck
             self.deck.append(cards)
@@ -51,6 +51,22 @@ class Card:
         "2": ("2", 2),
     }
 
+    display_rank = {
+        2: ("2"),
+        3: ("3"),
+        4: ("4"),
+        5: ("5"),
+        6: ("6"),
+        7: ("7"),
+        8: ("8"),
+        9: ("9"),
+        10: ("10"),
+        11: ("J"),
+        12: ("Q"),
+        13: ("K"),
+        14: ("A"),
+    }
+
     def __init__(self, value):
         self.value = value #1-52
         self.rank = (value - 1) % 13 + 2  #2-14 (2-10, J, Q, K, A (ace is highest)).
@@ -64,8 +80,8 @@ class Card:
         return self.rank == other.rank
 
     def __str__(self):  # for printing
-        rank_name = self.ranks.get(self.rank, str(self.rank))
-        return f"{rank_name} of {self.suit}"
+        rank_name = self.display_rank.get(self.rank, str(self.rank))
+        return f"{rank_name} of {self.suit[1]}"
 
 class Game:
     def __init__(self, player1, player2, deck):
@@ -73,6 +89,23 @@ class Game:
         self.player2 = player2
         self.deck = deck
         self.deal_cards()
+        self.rounds_played = 0 #total rounds attempted
+        self.rounds_won = {self.player1.name: 0, self.player2.name: 0}
+        self.last_winner = None #who won the most recent round
+        self.wars_count = 0 #number of wars that have occurred
+        self.current_war_chain = 0
+        self.longest_war_chain = 0
+    
+    def update_score(self, winner):
+        self.rounds_played += 1
+        if winner == self.player1:
+            self.rounds_won[winner.name] += 1 #update player 1 score
+            self.last_winner = winner.name #update last winner to be player 1
+        elif winner == self.player2:
+            self.rounds_won[winner.name] += 1
+            self.last_winner = winner.name
+        else:
+            self.last_winner = None
     
     def deal_cards(self):
         while self.deck: #if a deck exists:
@@ -107,10 +140,12 @@ class Game:
 
             if faceup1 > faceup2:
                 self.player1.add_cards(war_pile)
+                self.update_score(self.player1)
                 print(f"{self.player1.name} wins the war")
                 war = False
             elif faceup2 > faceup1:
                 self.player2.add_cards(war_pile)
+                self.update_score(self.player2)
                 print(f"{self.player2.name} wins the war")
                 war = False
 
@@ -125,22 +160,27 @@ class Game:
 
         if card1 > card2: #if player 1's card > player 2's card:
             self.player1.add_cards([card1, card2]) #player1 collects both cards
+            self.update_score(self.player1)
             print(f"{self.player1.name} wins the round") #print player 1 wins
         elif card2 > card1: 
             self.player2.add_cards([card1, card2])
+            self.update_score(self.player2)
             print(f"{self.player2.name} wins the round")
         else:
             war_pile = [card1, card2]
             self.resolve_war(war_pile)
-            
-                
+
+        print(f"{self.player1.name} has {self.rounds_won['Alice']} rounds won, {self.player2.name} has {self.rounds_won['Bob']} rounds won")
+ 
         return True
     
 
 deck = [Card(value) for value in range(1, 53)]
-alice = Player("Alice")
-bob = Player("Bob")
+random.shuffle(deck)
+player1 = Player("Alice")
+player2 = Player("Bob")
 
-game = Game(alice, bob, deck)
-game.play_round()
+game = Game(player1, player2, deck)
+while len(player1.deck) >0  or len(player2.deck) > 0:
+    game.play_round()
 
