@@ -1,3 +1,4 @@
+//imports
 import React from "react";
 import PageLayout from "../../../components/PageLayout";
 import {
@@ -10,6 +11,7 @@ import {
 import { STATES } from "./States"
 import { fetchCountiesByState, fetchMetricsForState, fetchMetricsForCounty } from "./censusApi";
 
+//types/props
 type ProjectProps = {
   mode: "light" | "dark";
   toggleMode: () => void;
@@ -27,7 +29,9 @@ type Metrics = {
 
 const AGE_COLORS = ["#7cb1ff", "#9ccc65", "#ffb74d"];
 
+//Main Function
 const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
+  //hooks
   const [stateChoice, setStateChoice] = React.useState<{ label: string; fips: string } | null>(null);
   const [counties, setCounties] = React.useState<Array<{ label: string; countyFips: string }>>([]);
   const [countyChoice, setCountyChoice] = React.useState<{ label: string; countyFips: string } | null>(null);

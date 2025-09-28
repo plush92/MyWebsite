@@ -170,7 +170,7 @@ class Game:
             war_pile = [card1, card2]
             self.resolve_war(war_pile)
 
-        print(f"{self.player1.name} has {self.rounds_won['Alice']} rounds won, {self.player2.name} has {self.rounds_won['Bob']} rounds won")
+        print(f"{self.player1.name} has {self.rounds_won[self.player1.name]} rounds won, {self.player2.name} has {self.rounds_won[self.player2.name]} rounds won")
  
         return True
     
@@ -181,6 +181,9 @@ player1 = Player("Alice")
 player2 = Player("Bob")
 
 game = Game(player1, player2, deck)
-while len(player1.deck) >0  or len(player2.deck) > 0:
+while len(player1.deck) > 0  and len(player2.deck) > 0:
     game.play_round()
+
+
+
 
