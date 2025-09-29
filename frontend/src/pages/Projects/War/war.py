@@ -1,3 +1,7 @@
+# activate virtual env:
+#cd /Users/brendanduffy/Documents/MyWebsite
+#source venv/bin/activate
+
 from typing import NamedTuple, Dict
 import random
 
@@ -175,14 +179,16 @@ class Game:
         return True
     
 
-deck = [Card(value) for value in range(1, 53)]
-random.shuffle(deck)
-player1 = Player("Alice")
-player2 = Player("Bob")
+# Only run the game if this file is executed directly (not imported)
+if __name__ == "__main__":
+    deck = [Card(value) for value in range(1, 53)]
+    random.shuffle(deck)
+    player1 = Player("Alice")
+    player2 = Player("Bob")
 
-game = Game(player1, player2, deck)
-while len(player1.deck) > 0  and len(player2.deck) > 0:
-    game.play_round()
+    game = Game(player1, player2, deck)
+    while len(player1.deck) > 0  and len(player2.deck) > 0:
+        game.play_round()
 
 
 

@@ -25,8 +25,7 @@ type ProjectProps = {
   toggleMode: () => void;
 };
 
-//GameSetup - inputs for player names, 'deal' button
-const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
+const GameSetup: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
   const [player1name, setPlayer1name] = useState("");
   const [player2name, setPlayer2name] = useState("");
 
@@ -37,6 +36,22 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
   const handleplayer2NameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPlayer2name(e.target.value);
   };
+};
+
+const MainGame: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
+  <Container>
+    <Box></Box>
+  </Container>;
+};
+
+const GameOver: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
+  return;
+};
+
+//GameSetup - inputs for player names, 'deal' button
+const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
+  const [currentphase, setCurrentphase] = useState();
+  return;
 };
 
 export default WarGameWrapper;
