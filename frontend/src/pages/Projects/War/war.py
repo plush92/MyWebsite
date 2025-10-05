@@ -22,7 +22,7 @@ class Player:
         else:  
             # Otherwise, treat 'cards' as a single card and add it to the deck
             self.deck.append(cards)
-            # this is uncommon for war, but good that we have a method to handle it at least.
+            # This is uncommon for war, but good that we have a method to handle it at least.
 
     def give_cards(self, war_pile):
         if len(self.deck) < 4:
@@ -30,6 +30,21 @@ class Player:
         for _ in range(3):
             war_pile.append(self.deck.pop(0))
         return self.deck.pop(0)
+    
+    def name_to_json(self):
+        return {"name": self.name}
+    
+    def deck_to_json(self):
+        return {"deck": [card.card_to_json() for card in self.deck]}
+    
+    def to_json(self):
+        return {
+            "name": self.name,
+            "deck length": len(self.deck),
+            "top card": self.deck[0].card_to_json() if self.deck else None
+        }
+
+    
     
 class Card:
     suits = [
@@ -86,6 +101,12 @@ class Card:
     def __str__(self):  # for printing
         rank_name = self.display_rank.get(self.rank, str(self.rank))
         return f"{rank_name} of {self.suit[1]}"
+    
+    def card_to_json(self):
+        return {
+            "rank": self.display_rank[self.rank],
+            "suit": self.suit[1]                    
+            }
 
 class Game:
     def __init__(self, player1, player2, deck):
@@ -100,16 +121,51 @@ class Game:
         self.current_war_chain = 0
         self.longest_war_chain = 0
     
+    def to_json(self):
+        return {
+            # Get each player's JSON representation
+            "players": {
+                "player 1": self.player1.to_json(),
+                "player 2": self.player2.to_json(),
+            },
+
+            # Return the scores dictionary you’re already tracking
+            "scores": self.rounds_won,
+
+            # Most recent round winner (could be None if no rounds yet)
+            "last_winner": self.last_winner,
+
+            # Total rounds that have been played
+            "rounds_played": self.rounds_played,
+
+            # Number of wars that have occurred
+            "wars_count": self.wars_count,
+
+            # How many consecutive wars are happening currently
+            "current_war_chain": self.current_war_chain,
+
+            # Longest chain of wars recorded in the game
+            "longest_war_chain": self.longest_war_chain,
+        }
+    
+    def score_to_json(self):
+        return {"name": self.rounds_won}
+    
+    def rounds_played_to_json(self):
+        return {"rounds played": self.rounds_played}
+    
+    def last_winner_to_json(self):
+        return {"last winner": self.last_winner}
+    
     def update_score(self, winner):
         self.rounds_played += 1
-        if winner == self.player1:
-            self.rounds_won[winner.name] += 1 #update player 1 score
-            self.last_winner = winner.name #update last winner to be player 1
-        elif winner == self.player2:
+        if isinstance(winner, Player):
             self.rounds_won[winner.name] += 1
             self.last_winner = winner.name
         else:
             self.last_winner = None
+
+
     
     def deal_cards(self):
         while self.deck: #if a deck exists:

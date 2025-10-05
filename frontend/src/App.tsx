@@ -10,7 +10,7 @@ import InputTracker from "./pages/Projects/OtherProjects/inputtracker/InputTrack
 import MoodTracker from "./pages/Projects/OtherProjects/moodtracker/MoodTracker";
 import PygameRPG from "./pages/Projects/PygameRPG/PygameRPG";
 import OptionsPlatform from "./pages/Projects/OptionsPlatform/OptionsPlatform";
-import CensusExplorer from "./pages/Projects/CensusExplorer/CensusExplorer";
+import WarGameWrapper from "./pages/Projects/War/WarGameWrapper";
 
 import Contact from "./pages/Contact/Contact";
 import Projects from "./pages/Projects/Projects";
@@ -19,7 +19,7 @@ import Blog from "./pages/Blog/Blog";
 
 function App() {
   const [mode, setMode] = useState<"light" | "dark">("light");
-  const toggleMode = () => setMode(p => (p === "light" ? "dark" : "light"));
+  const toggleMode = () => setMode((p) => (p === "light" ? "dark" : "light"));
 
   return (
     <AppThemeProvider mode={mode}>
@@ -30,17 +30,47 @@ function App() {
         <CustomBox component="main" className="content" sx={{ flex: 1 }}>
           <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
-            <Route path="/home" element={<Home mode={mode} toggleMode={toggleMode} />} />
-            <Route path="/contact" element={<Contact mode={mode} toggleMode={toggleMode} />} />
-            <Route path="/projects" element={<Projects mode={mode} toggleMode={toggleMode} />} />
-            <Route path="/blog" element={<Blog mode={mode} toggleMode={toggleMode} />} />
+            <Route
+              path="/home"
+              element={<Home mode={mode} toggleMode={toggleMode} />}
+            />
+            <Route
+              path="/contact"
+              element={<Contact mode={mode} toggleMode={toggleMode} />}
+            />
+            <Route
+              path="/projects"
+              element={<Projects mode={mode} toggleMode={toggleMode} />}
+            />
+            <Route
+              path="/blog"
+              element={<Blog mode={mode} toggleMode={toggleMode} />}
+            />
             <Route path="/weather" element={<Weather />} />
-            <Route path="/moodtracker" element={<MoodTracker mode={mode} toggleMode={toggleMode} />} />
-            <Route path="/inputtracker" element={ <InputTracker mode={mode} toggleMode={toggleMode} />} />
-            <Route path="/moodtracker" element={<MoodTracker mode={mode} toggleMode={toggleMode} />} />
-            <Route path="/rpg" element={<PygameRPG mode={mode} toggleMode={toggleMode} />} />
-            <Route path="/options" element={<OptionsPlatform mode={mode} toggleMode={toggleMode} />} />
-            <Route path="/censusexplorer" element={<CensusExplorer mode={mode} toggleMode={toggleMode} />} />
+            <Route
+              path="/moodtracker"
+              element={<MoodTracker mode={mode} toggleMode={toggleMode} />}
+            />
+            <Route
+              path="/inputtracker"
+              element={<InputTracker mode={mode} toggleMode={toggleMode} />}
+            />
+            <Route
+              path="/moodtracker"
+              element={<MoodTracker mode={mode} toggleMode={toggleMode} />}
+            />
+            <Route
+              path="/rpg"
+              element={<PygameRPG mode={mode} toggleMode={toggleMode} />}
+            />
+            <Route
+              path="/options"
+              element={<OptionsPlatform mode={mode} toggleMode={toggleMode} />}
+            />
+            <Route
+              path="/war"
+              element={<WarGameWrapper mode={mode} toggleMode={toggleMode} />}
+            />
             <Route path="*" element={<div>Not Found</div>} />
           </Routes>
         </CustomBox>
