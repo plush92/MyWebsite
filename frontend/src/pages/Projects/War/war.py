@@ -45,7 +45,6 @@ class Player:
         }
 
     
-    
 class Card:
     suits = [
         ("S", "Spades"),
@@ -165,8 +164,6 @@ class Game:
         else:
             self.last_winner = None
 
-
-    
     def deal_cards(self):
         while self.deck: #if a deck exists:
             self.player1.deck.append(self.deck.pop()) #player 1 is dealt a card
@@ -233,18 +230,12 @@ class Game:
         print(f"{self.player1.name} has {self.rounds_won[self.player1.name]} rounds won, {self.player2.name} has {self.rounds_won[self.player2.name]} rounds won")
  
         return True
-    
 
-# Only run the game if this file is executed directly (not imported)
-if __name__ == "__main__":
+def create_deck():
     deck = [Card(value) for value in range(1, 53)]
     random.shuffle(deck)
-    player1 = Player("Alice")
-    player2 = Player("Bob")
+    return deck
 
-    game = Game(player1, player2, deck)
-    while len(player1.deck) > 0  and len(player2.deck) > 0:
-        game.play_round()
 
 
 
