@@ -20,6 +20,7 @@ import {
 import Grid from "@mui/material/Grid";
 import { Input } from "@mui/icons-material";
 import { startGame, playRound, resetGame, getGameState } from "./apiClient";
+import PageLayout from "../../../components/PageLayout";
 
 //Project Props
 type ProjectProps = {
@@ -154,6 +155,7 @@ const GameOver: React.FC<GameOverProps> = ({
 };
 
 const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
+  //State Management
   const [gamePhase, setGamePhase] = useState<"setup" | "main" | "end">("setup");
   const [player1name, setPlayer1name] = useState("Player 1");
   const [player2name, setPlayer2name] = useState("Player 2");
@@ -163,12 +165,16 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
   const [player2deck, setPlayer2deck] = useState<Card[]>([]);
   const [deck, setDeck] = useState<Card[]>([]);
 
+  //Functions
   function updateStateFromResponse(data: any) {
-    setPlayer1deck(data.players["player 1"].deck);
-    setPlayer2deck(data.players["player 2"].deck);
-    setDeck([]); // or data.deck if you have a shared deck
-    setPlayer1score(data.scores["Player 1"]);
-    setPlayer2score(data.scores["Player 2"]);
+    // Handle both direct response and nested state
+    const gameData = data.state || data;
+
+    setPlayer1deck(gameData.players["player 1"].deck || []);
+    setPlayer2deck(gameData.players["player 2"].deck || []);
+    setDeck([]); // or gameData.deck if you have a shared deck
+    setPlayer1score(gameData.scores[player1name] || 0);
+    setPlayer2score(gameData.scores[player2name] || 0);
   }
 
   const handleplayer1NameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -186,6 +192,7 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
     });
     console.log(data);
     updateStateFromResponse(data);
+    setGamePhase("main");
   };
 
   const handlePlayRound = async () => {
@@ -219,7 +226,7 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
     setGamePhase("setup");
   }
   return (
-    <>
+    <PageLayout mode={mode} toggleMode={toggleMode}>
       {gamePhase === "setup" && (
         <GameSetup
           player1name={player1name}
@@ -254,7 +261,7 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
           handleRestart={handleRestart}
         />
       )}
-    </>
+    </PageLayout>
   );
 };
 
