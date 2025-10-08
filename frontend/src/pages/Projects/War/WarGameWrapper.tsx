@@ -49,7 +49,7 @@ type MainGameProps = {
   player2score: number;
   player1name: string;
   player2name: string;
-  player1deck: Card[]; //each deck will now be an instance of the Card object
+  player1deck: Card[]; //each deck will now be an instance of the Card object (python dictionary)
   player2deck: Card[];
   deck: Card[];
   handleEndGame: () => void;
@@ -62,6 +62,7 @@ type GameOverProps = {
   player1name: string;
   player2name: string;
   handleRestart: () => void;
+  getWinner: () => string | null;
 };
 
 const GameSetup: React.FC<GameSetupProps> = ({
@@ -116,31 +117,97 @@ const MainGame: React.FC<MainGameProps> = ({
   handleEndGame,
 }) => {
   return (
-    <Grid container spacing={2}>
-      <Grid size={4}>
-        <Typography variant="h5">{player1name} Deck</Typography>
-        {player1deck.map((card, i) => (
-          <Typography key={i}>
-            {card.rank} of {card.suit}
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "80vh",
+        backgroundColor: "background.paper",
+        borderRadius: 3,
+        p: 4,
+        boxShadow: 4,
+      }}
+    >
+      <Grid container spacing={2} justifyContent={"center"}>
+        <Grid size={4}>
+          <Typography variant="h5">{player1name}</Typography>
+          {player1deck.length > 0 ? (
+            <Card
+              sx={{
+                width: 120,
+                height: 160,
+                backgroundColor: "#fff",
+                border: "1px solid #ccc",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 2,
+                boxShadow: 3,
+              }}
+            >
+              <Typography variant="h6">{player1deck[0].rank}</Typography>
+              <Typography variant="body2">{player1deck[0].suit}</Typography>
+            </Card>
+          ) : (
+            <Typography>No cards left.</Typography>
+          )}
+          <Typography variant="caption" color="text.secondary">
+            Deck: {player1deck.length} cards
           </Typography>
-        ))}
-      </Grid>
+        </Grid>
 
-      <Grid size={4}>
-        <Typography variant="h5">{player2name} Deck</Typography>
-        {player2deck.map((card, i) => (
-          <Typography key={i}>
-            {card.rank} of {card.suit}
+        <Grid size={4}>
+          <Typography variant="h5">{player2name}</Typography>
+          {player2deck.length > 0 ? (
+            <Card
+              sx={{
+                width: 120,
+                height: 160,
+                backgroundColor: "#fff",
+                border: "1px solid #ccc",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 2,
+                boxShadow: 3,
+              }}
+            >
+              <Typography variant="h6">{player2deck[0].rank}</Typography>
+              <Typography variant="body2">{player2deck[0].suit}</Typography>
+            </Card>
+          ) : (
+            <Typography>No cards left.</Typography>
+          )}
+          <Typography variant="caption" color="text.secondary">
+            Deck: {player2deck.length} cards
           </Typography>
-        ))}
-      </Grid>
+        </Grid>
 
-      <Grid size={4}>
-        <Typography variant="h2">
-          {player1score} - {player2score}
-        </Typography>
+        <Grid size={12} sx={{ textAlign: "center", mt: 4 }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handlePlayRound}
+            sx={{ mx: 1 }}
+          >
+            Play Round
+          </Button>
+
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={handleEndGame}
+            sx={{ mx: 1 }}
+          >
+            End Game
+          </Button>
+        </Grid>
       </Grid>
-    </Grid>
+    </Box>
   );
 };
 
@@ -150,8 +217,18 @@ const GameOver: React.FC<GameOverProps> = ({
   player1score,
   player2score,
   handleRestart,
+  getWinner,
 }) => {
-  return <Box>Temporary Box</Box>;
+  return (
+    <Box>
+      <Typography variant="h4">Game Over</Typography>
+      <Typography>Winner: {getWinner() || "Tie"}</Typography>
+
+      <Button variant="contained" onClick={handleRestart}>
+        Restart Game
+      </Button>
+    </Box>
+  );
 };
 
 const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
@@ -167,12 +244,10 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
 
   //Functions
   function updateStateFromResponse(data: any) {
-    // Handle both direct response and nested state
     const gameData = data.state || data;
-
     setPlayer1deck(gameData.players["player 1"].deck || []);
     setPlayer2deck(gameData.players["player 2"].deck || []);
-    setDeck([]); // or gameData.deck if you have a shared deck
+    setDeck([]);
     setPlayer1score(gameData.scores[player1name] || 0);
     setPlayer2score(gameData.scores[player2name] || 0);
   }
@@ -225,6 +300,13 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
     setDeck([]);
     setGamePhase("setup");
   }
+
+  function getWinner(): string | null {
+    if (player1deck.length === 0 && player2deck.length === 0) return null;
+    if (player1deck.length === 0) return player2name;
+    if (player2deck.length === 0) return player1name;
+    return null;
+  }
   return (
     <PageLayout mode={mode} toggleMode={toggleMode}>
       {gamePhase === "setup" && (
@@ -259,6 +341,7 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
           player1score={player1score}
           player2score={player2score}
           handleRestart={handleRestart}
+          getWinner={getWinner}
         />
       )}
     </PageLayout>

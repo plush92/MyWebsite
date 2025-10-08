@@ -22,7 +22,7 @@ function App() {
   const toggleMode = () => setMode((p) => (p === "light" ? "dark" : "light"));
 
   return (
-    <AppThemeProvider mode={mode}>
+    <AppThemeProvider>
       <CustomBox
         className="app-container"
         sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
