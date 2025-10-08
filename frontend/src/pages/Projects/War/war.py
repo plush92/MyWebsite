@@ -40,6 +40,7 @@ class Player:
     def to_json(self):
         return {
             "name": self.name,
+            "deck": [card.card_to_json() for card in self.deck],
             "deck length": len(self.deck),
             "top card": self.deck[0].card_to_json() if self.deck else None
         }
