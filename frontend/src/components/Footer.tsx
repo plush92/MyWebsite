@@ -1,5 +1,9 @@
-import { Typography } from '@mui/material';
-import CustomBox, { BoxSizing, BoxBorder, BoxShadow } from './materialui/CustomBox';
+import { Typography } from "@mui/material";
+import CustomBox, {
+  BoxSizing,
+  BoxBorder,
+  BoxShadow,
+} from "./materialui/CustomBox";
 
 const currentDate = new Date();
 const year: number = currentDate.getFullYear();
@@ -12,24 +16,19 @@ const Footer: React.FC = () => (
       ...BoxBorder,
       ...BoxShadow,
       {
-        backgroundColor: theme => theme.palette.primary.main,
-        color: theme => theme.palette.primary.contrastText,
+        backgroundColor: (theme) => theme.palette.primary.main,
+        color: (theme) => theme.palette.primary.contrastText,
         width: "100%",
         py: 2,
-        textAlign: 'center',
-        mt: 'auto',
+        textAlign: "center",
+        mt: "auto",
       },
     ]}
     component="footer"
   >
-    <Typography variant="body2">
-      Created by {name}
-    </Typography>
-    <Typography variant="body2">
-      Copyright {year}
-    </Typography>
+    <Typography variant="body2">Created by {name}</Typography>
+    <Typography variant="body2">{year}</Typography>
   </CustomBox>
 );
 
 export default Footer;
-

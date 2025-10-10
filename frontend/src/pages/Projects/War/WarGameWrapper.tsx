@@ -25,6 +25,7 @@ import PageLayout from "../../../components/PageLayout";
 import GameSetup from "./GameSetup";
 import MainGame from "./MainGame";
 import GameOver from "./GameOver";
+import Info from "./Info";
 
 //Project Props
 type ProjectProps = {
@@ -151,6 +152,8 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
           getWinner={getWinner}
         />
       )}
+
+      <Info></Info>
     </PageLayout>
   );
 };
