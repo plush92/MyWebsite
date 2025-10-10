@@ -5,9 +5,7 @@
 # to deactivate virtual environment: deactivate
 
 from fastapi import FastAPI, HTTPException, status, Path
-from frontend.src.pages.Projects.War.war import Game, Player, Card, create_deck
-import random
-from typing import Optional
+from frontend.src.pages.Projects.War.war import Game, Player, create_deck
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
