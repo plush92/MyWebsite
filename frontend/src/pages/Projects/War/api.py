@@ -17,10 +17,7 @@ class GameRequest(BaseModel):
     player1: str
     player2: str
 
-deck = create_deck()
-player1 = Player("Alice")
-player2 = Player("Bob")
-game = Game(player1, player2, deck)
+game = None
 
 @app.get("/")
 async def root():
@@ -28,6 +25,8 @@ async def root():
 
 @app.get("/game")
 def get_game_state():
+    if game is None:
+        raise HTTPException(status_code=404, detail="No game in progress")
     return game.to_json()
 
 @app.post("/game")
@@ -42,6 +41,8 @@ def start_game(req: GameRequest):
 @app.post("/play_round")
 async def play_round():
     global game
+    if game is None:
+        raise HTTPException(status_code=404, detail="No game in progress")
     result = game.play_round()
     if result is None:
         return {"message": "Game over — one player has no cards left.", "state": game.to_json()}
@@ -49,8 +50,8 @@ async def play_round():
 
 @app.post("/reset")
 async def reset_game(
-    player1_name: Optional[str] = "Alice",
-    player2_name: Optional[str] = "Bob"
+    player1_name: str,
+    player2_name: str
 ):
     global game
     deck = create_deck()
