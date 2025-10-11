@@ -113,6 +113,8 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
     if (player1deck.length === 0 && player2deck.length === 0) return null;
     if (player1deck.length === 0) return player2name;
     if (player2deck.length === 0) return player1name;
+    if (player1deck.length > player2deck.length) return player1name;
+    if (player2deck.length > player1deck.length) return player2name;
     return null;
   }
   return (
