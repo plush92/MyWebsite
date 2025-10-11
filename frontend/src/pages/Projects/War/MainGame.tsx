@@ -76,8 +76,10 @@ const MainGame: React.FC<MainGameProps> = ({
               sx={{
                 width: 120,
                 height: 160,
-                backgroundColor: "#fff",
+                backgroundColor: "background.paper",
+                color: "text.primary",
                 border: "1px solid #ccc",
+                borderColor: "divider",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -104,8 +106,10 @@ const MainGame: React.FC<MainGameProps> = ({
               sx={{
                 width: 120,
                 height: 160,
-                backgroundColor: "#fff",
+                backgroundColor: "background.paper",
+                color: "text.primary",
                 border: "1px solid #ccc",
+                borderColor: "divider",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",

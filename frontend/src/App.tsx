@@ -56,10 +56,6 @@ function App() {
               element={<InputTracker mode={mode} toggleMode={toggleMode} />}
             />
             <Route
-              path="/moodtracker"
-              element={<MoodTracker mode={mode} toggleMode={toggleMode} />}
-            />
-            <Route
               path="/rpg"
               element={<PygameRPG mode={mode} toggleMode={toggleMode} />}
             />
