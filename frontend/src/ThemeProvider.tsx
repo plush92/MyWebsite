@@ -15,13 +15,17 @@ export const useAppTheme = () => {
   return ctx;
 };
 
-const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  const [mode, setMode] = useState<"light" | "dark">("light");
-  const toggleMode = () =>
-    setMode((prev) => (prev === "light" ? "dark" : "light"));
+interface AppThemeProviderProps {
+  children: React.ReactNode;
+  mode: "light" | "dark";
+  toggleMode: () => void;
+}
 
+const AppThemeProvider: React.FC<AppThemeProviderProps> = ({
+  children,
+  mode,
+  toggleMode,
+}) => {
   return (
     <ThemeContext.Provider value={{ mode, toggleMode }}>
       <ThemeProvider theme={theme(mode)}>

@@ -61,7 +61,7 @@ const MainGame: React.FC<MainGameProps> = ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        minHeight: "80vh",
+        minHeight: "40vh",
         backgroundColor: "background.paper",
         borderRadius: 3,
         p: 4,
