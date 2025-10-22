@@ -11,6 +11,7 @@ import MoodTracker from "./pages/Projects/OtherProjects/moodtracker/MoodTracker"
 import PygameRPG from "./pages/Projects/PygameRPG/PygameRPG";
 import OptionsPlatform from "./pages/Projects/OptionsPlatform/OptionsPlatform";
 import WarGameWrapper from "./pages/Projects/War/WarGameWrapper";
+import CryptoDashboard from "./pages/Projects/OtherProjects/Crypto/CryptoTrader";
 
 import Contact from "./pages/Contact/Contact";
 import Projects from "./pages/Projects/Projects";
@@ -46,7 +47,10 @@ function App() {
               path="/blog"
               element={<Blog mode={mode} toggleMode={toggleMode} />}
             />
-            <Route path="/weather" element={<Weather />} />
+            <Route
+              path="/weather"
+              element={<Weather mode={mode} toggleMode={toggleMode} />}
+            />
             <Route
               path="/moodtracker"
               element={<MoodTracker mode={mode} toggleMode={toggleMode} />}
@@ -66,6 +70,10 @@ function App() {
             <Route
               path="/war"
               element={<WarGameWrapper mode={mode} toggleMode={toggleMode} />}
+            />
+            <Route
+              path="/crypto"
+              element={<CryptoDashboard mode={mode} toggleMode={toggleMode} />}
             />
             <Route path="*" element={<div>Not Found</div>} />
           </Routes>

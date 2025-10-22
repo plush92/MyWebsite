@@ -27,6 +27,7 @@ const Projects: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
     { name: "InputTracker", path: "/inputtracker" },
     { name: "MoodTracker", path: "/moodtracker" },
     { name: "War", path: "/war" },
+    { name: "Crypto Trader", path: "/crypto" },
   ];
 
   return (
