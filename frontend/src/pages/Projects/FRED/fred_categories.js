@@ -1,0 +1,527 @@
+// FRED Categories - Generated on 2025-10-27 19:30:34
+export const FRED_CATEGORIES = [
+  {
+    "id": 1,
+    "name": "Production & Business Activity",
+    "parent_id": 0
+  },
+  {
+    "id": 2,
+    "name": "Productivity & Costs",
+    "parent_id": 10
+  },
+  {
+    "id": 3,
+    "name": "Industrial Production & Capacity Utilization",
+    "parent_id": 1
+  },
+  {
+    "id": 4,
+    "name": "Employment Cost Index",
+    "parent_id": 32455
+  },
+  {
+    "id": 5,
+    "name": "Federal Government Debt",
+    "parent_id": 32992
+  },
+  {
+    "id": 6,
+    "name": "Retail Trade",
+    "parent_id": 1
+  },
+  {
+    "id": 9,
+    "name": "Consumer Price Indexes (CPI and PCE)",
+    "parent_id": 32455
+  },
+  {
+    "id": 10,
+    "name": "Population, Employment, & Labor Markets",
+    "parent_id": 0
+  },
+  {
+    "id": 11,
+    "name": "Current Employment Statistics (Establishment Survey)",
+    "parent_id": 10,
+    "notes": "The establishment survey provides data on employment, hours, and earnings by industry.\r\nNumerous conceptual and methodological differences between the current population (household) and establishment surveys result in important distinctions in the employment estimates derived from the surveys. Among these are: \r\nThe household survey includes agricultural workers, the self- employed, unpaid family workers, and private household workers among the employed. These groups are excluded from the establishment survey. \r\nThe household survey includes people on unpaid leave among the employed. The establishment survey does not. \r\nThe household survey is limited to workers 16 years of age and older. The establishment survey is not limited by age. \r\nThe household survey has no duplication of individuals, because individuals are counted only once, even if they hold more than one job. In the establishment survey, employees working at more than one job and thus appearing on more than one payroll are counted separately for each appearance. \r\nFor more information, visit http://www.bls.gov/news.release/empsit.tn.htm."
+  },
+  {
+    "id": 12,
+    "name": "Current Population Survey (Household Survey)",
+    "parent_id": 10,
+    "notes": "The Current Population Survey (Household Survey) is a monthly survey of households conducted by the Bureau of Labor Statistics. It provides a comprehensive body of data on the labor force, employment, unemployment, persons not in the labor force, hours of work, earnings, and other demographic and labor force characteristics. \r\nNumerous conceptual and methodological differences between the current population (household) and establishment surveys result in important distinctions in the employment estimates derived from the surveys. Among these are: \r\nThe household survey includes agricultural workers, the self- employed, unpaid family workers, and private household workers among the employed. These groups are excluded from the establishment survey. \r\nThe household survey includes people on unpaid leave among the employed. The establishment survey does not. \r\nThe household survey is limited to workers 16 years of age and older. The establishment survey is not limited by age. \r\nThe household survey has no duplication of individuals, because individuals are counted only once, even if they hold more than one job. In the establishment survey, employees working at more than one job and thus appearing on more than one payroll are counted separately for each appearance. \r\n\r\nFor more information, visit http://www.bls.gov/news.release/empsit.tn.htm."
+  },
+  {
+    "id": 13,
+    "name": "U.S. Trade & International Transactions",
+    "parent_id": 32992
+  },
+  {
+    "id": 15,
+    "name": "Exchange Rates",
+    "parent_id": 32991
+  },
+  {
+    "id": 16,
+    "name": "Exports",
+    "parent_id": 13
+  },
+  {
+    "id": 17,
+    "name": "Imports",
+    "parent_id": 13
+  },
+  {
+    "id": 18,
+    "name": "National Income & Product Accounts",
+    "parent_id": 32992
+  },
+  {
+    "id": 21,
+    "name": "Price Indexes & Deflators",
+    "parent_id": 18
+  },
+  {
+    "id": 22,
+    "name": "Interest Rates",
+    "parent_id": 32991
+  },
+  {
+    "id": 23,
+    "name": "Banking",
+    "parent_id": 32991
+  },
+  {
+    "id": 24,
+    "name": "Monetary Data",
+    "parent_id": 32991
+  },
+  {
+    "id": 25,
+    "name": "M1 and Components",
+    "parent_id": 24
+  },
+  {
+    "id": 26,
+    "name": "Memorandum Items",
+    "parent_id": 24
+  },
+  {
+    "id": 28,
+    "name": "M3 and Components",
+    "parent_id": 24
+  },
+  {
+    "id": 29,
+    "name": "M2 and Components",
+    "parent_id": 24
+  },
+  {
+    "id": 30,
+    "name": "MZM",
+    "parent_id": 24
+  },
+  {
+    "id": 31,
+    "name": "Producer Price Indexes (PPI)",
+    "parent_id": 32455
+  },
+  {
+    "id": 46,
+    "name": "Financial Indicators",
+    "parent_id": 32991
+  },
+  {
+    "id": 51,
+    "name": "Bankers Acceptance Rate",
+    "parent_id": 22
+  },
+  {
+    "id": 64,
+    "name": "8th District Banking Performance",
+    "parent_id": 23
+  },
+  {
+    "id": 65,
+    "name": "Arkansas",
+    "parent_id": 64
+  },
+  {
+    "id": 66,
+    "name": "Illinois",
+    "parent_id": 64
+  },
+  {
+    "id": 67,
+    "name": "Indiana",
+    "parent_id": 64
+  },
+  {
+    "id": 68,
+    "name": "Kentucky",
+    "parent_id": 64
+  },
+  {
+    "id": 69,
+    "name": "Mississippi",
+    "parent_id": 64
+  },
+  {
+    "id": 70,
+    "name": "Missouri",
+    "parent_id": 64
+  },
+  {
+    "id": 71,
+    "name": "Tennessee",
+    "parent_id": 64
+  },
+  {
+    "id": 72,
+    "name": "8th District",
+    "parent_id": 64
+  },
+  {
+    "id": 73,
+    "name": "United States",
+    "parent_id": 64
+  },
+  {
+    "id": 82,
+    "name": "Treasury Inflation-Indexed Securities",
+    "parent_id": 22
+  },
+  {
+    "id": 83,
+    "name": "Condition of Banks",
+    "parent_id": 23,
+    "notes": "For census division definitions, see http://research.stlouisfed.org/fred2/censusdivisions."
+  },
+  {
+    "id": 84,
+    "name": "New England Census Division",
+    "parent_id": 83,
+    "notes": "For census division definitions, see http://research.stlouisfed.org/fred2/censusdivisions."
+  },
+  {
+    "id": 85,
+    "name": "Middle Atlantic Census Division",
+    "parent_id": 83,
+    "notes": "For census division definitions, see http://research.stlouisfed.org/fred2/censusdivisions."
+  },
+  {
+    "id": 86,
+    "name": "East North Central Census Division",
+    "parent_id": 83,
+    "notes": "For census division definitions, see http://research.stlouisfed.org/fred2/censusdivisions."
+  },
+  {
+    "id": 87,
+    "name": "West North Central Census Division",
+    "parent_id": 83,
+    "notes": "For census division definitions, see http://research.stlouisfed.org/fred2/censusdivisions."
+  },
+  {
+    "id": 88,
+    "name": "South Atlantic Census Division",
+    "parent_id": 83,
+    "notes": "For census division definitions, see http://research.stlouisfed.org/fred2/censusdivisions."
+  },
+  {
+    "id": 89,
+    "name": "East South Central Census Division",
+    "parent_id": 83,
+    "notes": "For census division definitions, see http://research.stlouisfed.org/fred2/censusdivisions."
+  },
+  {
+    "id": 90,
+    "name": "West South Central Census Division",
+    "parent_id": 83,
+    "notes": "For census division definitions, see http://research.stlouisfed.org/fred2/censusdivisions."
+  },
+  {
+    "id": 91,
+    "name": "Mountain Census Division",
+    "parent_id": 83,
+    "notes": "For census division definitions, see http://research.stlouisfed.org/fred2/censusdivisions."
+  },
+  {
+    "id": 92,
+    "name": "Pacific Census Division",
+    "parent_id": 83,
+    "notes": "For census division definitions, see http://research.stlouisfed.org/fred2/censusdivisions."
+  },
+  {
+    "id": 93,
+    "name": "United States",
+    "parent_id": 83
+  },
+  {
+    "id": 94,
+    "name": "Daily Rates",
+    "parent_id": 15,
+    "notes": "Effective January 1, 2009, the Federal Reserve Board discontinued publication of the H.10 Daily Update, which provided U.S. dollar exchange rates against other currencies certified for customs purposes by the Federal Reserve Bank of New York and summary measures of the foreign exchange value of the dollar.   \r\n The Federal Reserve Board still makes the certified exchange rates available.  Effective January 5, 2009, the Board publishes the daily exchange rate data in a weekly version of the H.10 release.\r\n As a result, the daily exchange rates in the FRED database will be updated once each week to capture the daily data from the previous week."
+  },
+  {
+    "id": 95,
+    "name": "Monthly Rates",
+    "parent_id": 15
+  },
+  {
+    "id": 96,
+    "name": "M2 Minus Small Time Deposits",
+    "parent_id": 24
+  },
+  {
+    "id": 97,
+    "name": "Housing",
+    "parent_id": 1
+  },
+  {
+    "id": 99,
+    "name": "Securities & Investments",
+    "parent_id": 23
+  },
+  {
+    "id": 100,
+    "name": "Commercial Banking",
+    "parent_id": 23
+  },
+  {
+    "id": 101,
+    "name": "Consumer Credit",
+    "parent_id": 23
+  },
+  {
+    "id": 104,
+    "name": "Population",
+    "parent_id": 10
+  },
+  {
+    "id": 105,
+    "name": "Trade-Weighted Indexes",
+    "parent_id": 15
+  },
+  {
+    "id": 106,
+    "name": "GDP/GNP",
+    "parent_id": 18
+  },
+  {
+    "id": 107,
+    "name": "Gov't Receipts, Expenditures & Investment",
+    "parent_id": 18
+  },
+  {
+    "id": 108,
+    "name": "Foreign Transactions",
+    "parent_id": 18
+  },
+  {
+    "id": 109,
+    "name": "Private Enterprise Income",
+    "parent_id": 18
+  },
+  {
+    "id": 110,
+    "name": "Personal Income & Outlays",
+    "parent_id": 18
+  },
+  {
+    "id": 112,
+    "name": "Domestic Capital Account (Saving & Investment)",
+    "parent_id": 18
+  },
+  {
+    "id": 114,
+    "name": "Mortgage Rates",
+    "parent_id": 22
+  },
+  {
+    "id": 115,
+    "name": "Treasury Constant Maturity",
+    "parent_id": 22
+  },
+  {
+    "id": 116,
+    "name": "Treasury Bills",
+    "parent_id": 22
+  },
+  {
+    "id": 117,
+    "name": "Prime Bank Loan Rate",
+    "parent_id": 22
+  },
+  {
+    "id": 118,
+    "name": "FRB Rates - discount, fed funds, primary credit",
+    "parent_id": 22
+  },
+  {
+    "id": 120,
+    "name": "Commercial Paper",
+    "parent_id": 22
+  },
+  {
+    "id": 149,
+    "name": "Arkansas",
+    "parent_id": 27281
+  },
+  {
+    "id": 150,
+    "name": "Illinois",
+    "parent_id": 27281
+  },
+  {
+    "id": 151,
+    "name": "Indiana",
+    "parent_id": 27281
+  },
+  {
+    "id": 152,
+    "name": "Kentucky",
+    "parent_id": 27281
+  },
+  {
+    "id": 153,
+    "name": "Mississippi",
+    "parent_id": 27281
+  },
+  {
+    "id": 154,
+    "name": "Missouri",
+    "parent_id": 27281
+  },
+  {
+    "id": 158,
+    "name": "By Country",
+    "parent_id": 15
+  },
+  {
+    "id": 191,
+    "name": "United Kingdom",
+    "parent_id": 158
+  },
+  {
+    "id": 192,
+    "name": "Venezuela",
+    "parent_id": 158
+  },
+  {
+    "id": 193,
+    "name": "Tennessee",
+    "parent_id": 27281
+  },
+  {
+    "id": 204,
+    "name": "Benton County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 205,
+    "name": "Carroll County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 206,
+    "name": "Chester County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 207,
+    "name": "Crockett County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 208,
+    "name": "Decatur County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 209,
+    "name": "Dyer County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 210,
+    "name": "Fayette County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 211,
+    "name": "Gibson County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 212,
+    "name": "Hardin County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 213,
+    "name": "Hardeman County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 214,
+    "name": "Haywood County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 215,
+    "name": "Henderson County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 216,
+    "name": "Henry County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 217,
+    "name": "Lake County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 218,
+    "name": "Lauderdale County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 219,
+    "name": "Madison County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 220,
+    "name": "McNairy County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 221,
+    "name": "Obion County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 222,
+    "name": "Shelby County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 223,
+    "name": "Tipton County, TN",
+    "parent_id": 29802
+  },
+  {
+    "id": 224,
+    "name": "Weakley County, TN",
+    "parent_id": 29802
+  }
+];
+
+export const CATEGORY_MAP = {
+  1: "Production & Business Activity",  2: "Productivity & Costs",  3: "Industrial Production & Capacity Utilization",  4: "Employment Cost Index",  5: "Federal Government Debt",  6: "Retail Trade",  9: "Consumer Price Indexes (CPI and PCE)",  10: "Population, Employment, & Labor Markets",  11: "Current Employment Statistics (Establishment Survey)",  12: "Current Population Survey (Household Survey)",  13: "U.S. Trade & International Transactions",  15: "Exchange Rates",  16: "Exports",  17: "Imports",  18: "National Income & Product Accounts",  21: "Price Indexes & Deflators",  22: "Interest Rates",  23: "Banking",  24: "Monetary Data",  25: "M1 and Components",  26: "Memorandum Items",  28: "M3 and Components",  29: "M2 and Components",  30: "MZM",  31: "Producer Price Indexes (PPI)",  46: "Financial Indicators",  51: "Bankers Acceptance Rate",  64: "8th District Banking Performance",  65: "Arkansas",  66: "Illinois",  67: "Indiana",  68: "Kentucky",  69: "Mississippi",  70: "Missouri",  71: "Tennessee",  72: "8th District",  73: "United States",  82: "Treasury Inflation-Indexed Securities",  83: "Condition of Banks",  84: "New England Census Division",  85: "Middle Atlantic Census Division",  86: "East North Central Census Division",  87: "West North Central Census Division",  88: "South Atlantic Census Division",  89: "East South Central Census Division",  90: "West South Central Census Division",  91: "Mountain Census Division",  92: "Pacific Census Division",  93: "United States",  94: "Daily Rates",  95: "Monthly Rates",  96: "M2 Minus Small Time Deposits",  97: "Housing",  99: "Securities & Investments",  100: "Commercial Banking",  101: "Consumer Credit",  104: "Population",  105: "Trade-Weighted Indexes",  106: "GDP/GNP",  107: "Gov't Receipts, Expenditures & Investment",  108: "Foreign Transactions",  109: "Private Enterprise Income",  110: "Personal Income & Outlays",  112: "Domestic Capital Account (Saving & Investment)",  114: "Mortgage Rates",  115: "Treasury Constant Maturity",  116: "Treasury Bills",  117: "Prime Bank Loan Rate",  118: "FRB Rates - discount, fed funds, primary credit",  120: "Commercial Paper",  149: "Arkansas",  150: "Illinois",  151: "Indiana",  152: "Kentucky",  153: "Mississippi",  154: "Missouri",  158: "By Country",  191: "United Kingdom",  192: "Venezuela",  193: "Tennessee",  204: "Benton County, TN",  205: "Carroll County, TN",  206: "Chester County, TN",  207: "Crockett County, TN",  208: "Decatur County, TN",  209: "Dyer County, TN",  210: "Fayette County, TN",  211: "Gibson County, TN",  212: "Hardin County, TN",  213: "Hardeman County, TN",  214: "Haywood County, TN",  215: "Henderson County, TN",  216: "Henry County, TN",  217: "Lake County, TN",  218: "Lauderdale County, TN",  219: "Madison County, TN",  220: "McNairy County, TN",  221: "Obion County, TN",  222: "Shelby County, TN",  223: "Tipton County, TN",  224: "Weakley County, TN"
+};
+
+export default FRED_CATEGORIES;

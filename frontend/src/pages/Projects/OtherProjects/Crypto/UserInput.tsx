@@ -84,7 +84,7 @@ const UserInput: React.FC<InputProps> = ({
               value={endDate}
               onChange={(newValue) => setEndDate(newValue)}
               slotProps={{ textField: { size: "small" } }}
-              minDate={startDate} // Ensure end date is after start date
+              minDate={startDate}
             />
           </Stack>
         </Box>
