@@ -2,14 +2,38 @@
 import React from "react";
 import PageLayout from "../../../components/PageLayout";
 import {
-  Container, Box, Grid, Typography, Autocomplete, TextField,
-  Button, Card, CardContent, Chip, Stack, Divider
+  Container,
+  Box,
+  Grid,
+  Typography,
+  Autocomplete,
+  TextField,
+  Button,
+  Card,
+  CardContent,
+  Chip,
+  Stack,
+  Divider,
 } from "@mui/material";
 import {
-  ResponsiveContainer, PieChart, Pie, Cell, Tooltip as RTooltip, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip as RTooltip,
+  Legend,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
 } from "recharts";
-import { STATES } from "./States"
-import { fetchCountiesByState, fetchMetricsForState, fetchMetricsForCounty } from "./censusApi";
+import { STATES } from "./States";
+import {
+  fetchCountiesByState,
+  fetchMetricsForState,
+  fetchMetricsForCounty,
+} from "./censusApi";
 
 //types/props
 type ProjectProps = {
@@ -17,13 +41,15 @@ type ProjectProps = {
   toggleMode: () => void;
 };
 
-type GeoKey = { kind: "state"; stateFips: string } | { kind: "county"; stateFips: string; countyFips: string };
+type GeoKey =
+  | { kind: "state"; stateFips: string }
+  | { kind: "county"; stateFips: string; countyFips: string };
 type GeoChoice = { label: string; key: GeoKey };
 
 type Metrics = {
   name: string;
   population: number;
-  medianIncome: number;     // B19013_001E
+  medianIncome: number; // B19013_001E
   age: { children: number; adults: number; seniors: number }; // derived from B01001
 };
 
@@ -32,9 +58,17 @@ const AGE_COLORS = ["#7cb1ff", "#9ccc65", "#ffb74d"];
 //Main Function
 const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
   //hooks
-  const [stateChoice, setStateChoice] = React.useState<{ label: string; fips: string } | null>(null);
-  const [counties, setCounties] = React.useState<Array<{ label: string; countyFips: string }>>([]);
-  const [countyChoice, setCountyChoice] = React.useState<{ label: string; countyFips: string } | null>(null);
+  const [stateChoice, setStateChoice] = React.useState<{
+    label: string;
+    fips: string;
+  } | null>(null);
+  const [counties, setCounties] = React.useState<
+    Array<{ label: string; countyFips: string }>
+  >([]);
+  const [countyChoice, setCountyChoice] = React.useState<{
+    label: string;
+    countyFips: string;
+  } | null>(null);
 
   const [selected, setSelected] = React.useState<GeoChoice[]>([]);
   const [data, setData] = React.useState<Record<string, Metrics>>({});
@@ -58,18 +92,19 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
 
   const addSelection = async (key: GeoKey, label: string) => {
     const id = JSON.stringify(key);
-    if (selected.some(s => JSON.stringify(s.key) === id)) return; // already added
-    setSelected(prev => [...prev, { key, label }]);
+    if (selected.some((s) => JSON.stringify(s.key) === id)) return; // already added
+    setSelected((prev) => [...prev, { key, label }]);
 
     setLoadingKey(id);
     setError(null);
     try {
-      const metrics = key.kind === "state"
-        ? await fetchMetricsForState(key.stateFips)
-        : await fetchMetricsForCounty(key.stateFips, key.countyFips);
+      const metrics =
+        key.kind === "state"
+          ? await fetchMetricsForState(key.stateFips)
+          : await fetchMetricsForCounty(key.stateFips, key.countyFips);
 
-      setData(prev => ({ ...prev, [id]: metrics }));
-    } catch (e: any) {
+      setData((prev) => ({ ...prev, [id]: metrics }));
+    } catch (e: unknown) {
       console.error(e);
       setError("Failed to load Census data. Try again.");
     } finally {
@@ -78,8 +113,8 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
   };
 
   const removeSelection = (id: string) => {
-    setSelected(prev => prev.filter(s => JSON.stringify(s.key) !== id));
-    setData(prev => {
+    setSelected((prev) => prev.filter((s) => JSON.stringify(s.key) !== id));
+    setData((prev) => {
       const copy = { ...prev };
       delete copy[id];
       return copy;
@@ -87,7 +122,7 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
   };
 
   const incomeCompare = selected
-    .map(s => {
+    .map((s) => {
       const id = JSON.stringify(s.key);
       const m = data[id];
       return m ? { name: m.name, MedianIncome: m.medianIncome } : null;
@@ -101,8 +136,8 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
           U.S. Demographics Explorer
         </Typography>
         <Typography variant="subtitle1" sx={{ color: "text.secondary", mb: 3 }}>
-          Select a state or county to view population, median income, and age distribution (ACS 5‑Year).
-          Compare multiple locations side‑by‑side.
+          Select a state or county to view population, median income, and age
+          distribution (ACS 5‑Year). Compare multiple locations side‑by‑side.
         </Typography>
 
         <Card sx={{ mb: 3 }}>
@@ -110,10 +145,12 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
             <Grid container spacing={2} alignItems="center">
               <Grid item xs={12} md={4}>
                 <Autocomplete
-                  options={STATES.map(s => ({ label: s.name, fips: s.fips }))}
+                  options={STATES.map((s) => ({ label: s.name, fips: s.fips }))}
                   value={stateChoice}
                   onChange={(_, v) => setStateChoice(v)}
-                  renderInput={(params) => <TextField {...params} label="State" />}
+                  renderInput={(params) => (
+                    <TextField {...params} label="State" />
+                  )}
                 />
               </Grid>
               <Grid item xs={12} md={4}>
@@ -121,7 +158,9 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
                   options={counties}
                   value={countyChoice}
                   onChange={(_, v) => setCountyChoice(v)}
-                  renderInput={(params) => <TextField {...params} label="County (optional)" />}
+                  renderInput={(params) => (
+                    <TextField {...params} label="County (optional)" />
+                  )}
                   disabled={!stateChoice}
                 />
               </Grid>
@@ -134,7 +173,11 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
                       if (!stateChoice) return;
                       if (countyChoice) {
                         addSelection(
-                          { kind: "county", stateFips: stateChoice.fips, countyFips: countyChoice.countyFips },
+                          {
+                            kind: "county",
+                            stateFips: stateChoice.fips,
+                            countyFips: countyChoice.countyFips,
+                          },
                           `${countyChoice.label}, ${stateChoice.label}`
                         );
                       } else {
@@ -162,13 +205,11 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
           </CardContent>
         </Card>
 
-        {error && (
-          <Box sx={{ color: "error.main", mb: 2 }}>{error}</Box>
-        )}
+        {error && <Box sx={{ color: "error.main", mb: 2 }}>{error}</Box>}
 
         {/* Selected chips */}
         <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", mb: 2 }}>
-          {selected.map(s => {
+          {selected.map((s) => {
             const id = JSON.stringify(s.key);
             return (
               <Chip
@@ -183,7 +224,7 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
 
         {/* Detail cards for each selection */}
         <Grid container spacing={3}>
-          {selected.map(s => {
+          {selected.map((s) => {
             const id = JSON.stringify(s.key);
             const m = data[id];
             return (
@@ -197,24 +238,43 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
                       <>
                         <Stack direction="row" spacing={4} sx={{ mb: 2 }}>
                           <Box>
-                            <Typography variant="overline" display="block">Population</Typography>
-                            <Typography variant="h5">{m.population.toLocaleString()}</Typography>
+                            <Typography variant="overline" display="block">
+                              Population
+                            </Typography>
+                            <Typography variant="h5">
+                              {m.population.toLocaleString()}
+                            </Typography>
                           </Box>
                           <Box>
-                            <Typography variant="overline" display="block">Median Income</Typography>
-                            <Typography variant="h5">${m.medianIncome.toLocaleString()}</Typography>
+                            <Typography variant="overline" display="block">
+                              Median Income
+                            </Typography>
+                            <Typography variant="h5">
+                              ${m.medianIncome.toLocaleString()}
+                            </Typography>
                           </Box>
                         </Stack>
                         <Divider sx={{ my: 1 }} />
-                        <Typography variant="subtitle2" sx={{ mb: 1 }}>Age Distribution</Typography>
+                        <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                          Age Distribution
+                        </Typography>
                         <Box sx={{ height: 240 }}>
                           <ResponsiveContainer>
                             <PieChart>
                               <Pie
                                 data={[
-                                  { name: "Children (0–17)", value: m.age.children },
-                                  { name: "Adults (18–64)", value: m.age.adults },
-                                  { name: "Seniors (65+)", value: m.age.seniors },
+                                  {
+                                    name: "Children (0–17)",
+                                    value: m.age.children,
+                                  },
+                                  {
+                                    name: "Adults (18–64)",
+                                    value: m.age.adults,
+                                  },
+                                  {
+                                    name: "Seniors (65+)",
+                                    value: m.age.seniors,
+                                  },
                                 ]}
                                 dataKey="value"
                                 nameKey="name"
@@ -222,7 +282,9 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
                                 outerRadius={80}
                                 label
                               >
-                                {AGE_COLORS.map((c, i) => <Cell key={i} fill={c} />)}
+                                {AGE_COLORS.map((c, i) => (
+                                  <Cell key={i} fill={c} />
+                                ))}
                               </Pie>
                               <Legend />
                               <RTooltip />
@@ -243,7 +305,9 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
         {/* Comparison chart */}
         {incomeCompare.length > 0 && (
           <Box sx={{ mt: 4 }}>
-            <Typography variant="h6" sx={{ mb: 1 }}>Median Household Income (compare)</Typography>
+            <Typography variant="h6" sx={{ mb: 1 }}>
+              Median Household Income (compare)
+            </Typography>
             <Box sx={{ height: 320 }}>
               <ResponsiveContainer>
                 <BarChart data={incomeCompare}>

@@ -3,6 +3,7 @@
 
 import React from "react";
 import { useState } from "react";
+import { GameApiResponse, GameState, Card } from "../../../types/warGame";
 import {
   Container,
   Box,
@@ -51,8 +52,8 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
   const [deck, setDeck] = useState<Card[]>([]);
 
   //Functions
-  function updateStateFromResponse(data: any) {
-    const gameData = data.state || data;
+  function updateStateFromResponse(data: GameApiResponse | GameState) {
+    const gameData = "state" in data ? data.state : data;
     setPlayer1deck(gameData.players["player 1"].deck || []);
     setPlayer2deck(gameData.players["player 2"].deck || []);
     setDeck([]);

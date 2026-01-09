@@ -1,5 +1,6 @@
 // blogApi.ts
-const API_URL = (import.meta as any).env.REACT_APP_API_URL || "http://localhost:3001/api/posts";
+const API_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:3001/api/posts";
 
 export async function createBlogPost({
   title,
@@ -32,7 +33,10 @@ export async function fetchBlogPostById(id: number | string) {
   return res.json();
 }
 
-export async function updateBlogPost(id: number | string, data: { date?: string | null; comment?: string }) {
+export async function updateBlogPost(
+  id: number | string,
+  data: { date?: string | null; comment?: string }
+) {
   return fetch(`${API_URL}/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -45,4 +49,3 @@ export async function deleteBlogPost(id: number | string) {
     method: "DELETE",
   });
 }
-

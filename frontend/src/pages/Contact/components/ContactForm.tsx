@@ -13,12 +13,14 @@ const UnifiedContactForm: React.FC = () => {
 
   const handleSubmit = async () => {
     try {
-      // @ts-ignore
-            await fetch(`${(import.meta as any).env.REACT_APP_API_URL || "http://localhost:3001"}/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, comment }),
-            });
+      await fetch(
+        `${import.meta.env.VITE_API_URL || "http://localhost:3001"}/contact`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, phone, comment }),
+        }
+      );
       setName("");
       setEmail("");
       setPhone("");
@@ -26,8 +28,8 @@ const UnifiedContactForm: React.FC = () => {
     } catch (err) {
       alert("Failed to send.");
     }
-    };
-    
+  };
+
   //   try {
   //     await fetch("http://localhost:3001/contact", {
   //       method: "POST",
@@ -47,27 +49,28 @@ const UnifiedContactForm: React.FC = () => {
       styleArray={[
         {
           p: 3,
-          bgcolor: 'background.paper',
+          bgcolor: "background.paper",
           borderRadius: 2,
           boxShadow: 3,
           maxWidth: 500,
-          mx: 'auto',
+          mx: "auto",
           mt: 4,
         },
-      ]}>
-      <CustomTextField 
+      ]}
+    >
+      <CustomTextField
         id="name"
         type="name"
         label="Name"
         value={name}
-        onChange={e => setName(e.target.value)}
+        onChange={(e) => setName(e.target.value)}
       />
       <CustomTextField
         id="email"
         type="email"
         label="Email"
         value={email}
-        onChange={e => setEmail(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
         helperText="I'll never share your email"
       />
       <CustomTextField
@@ -75,7 +78,7 @@ const UnifiedContactForm: React.FC = () => {
         type="tel"
         label="Phone"
         value={phone}
-        onChange={e => setPhone(e.target.value)}
+        onChange={(e) => setPhone(e.target.value)}
         helperText="or your phone number..."
       />
       <CustomTextField
@@ -84,7 +87,7 @@ const UnifiedContactForm: React.FC = () => {
         multiline
         rows={6}
         value={comment}
-        onChange={e => setComment(e.target.value)}
+        onChange={(e) => setComment(e.target.value)}
       />
       <CustomButton onClick={handleSubmit}>Submit</CustomButton>
     </CustomBox>
