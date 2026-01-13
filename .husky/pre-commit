@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Format code automatically
+echo "🎨 Formatting code with Prettier..."
+npm run format
+
+# Run tests to make sure nothing is broken
+echo "🧪 Running tests..."
+npm run test
+
+echo "✅ Pre-commit checks passed!"
