@@ -1,0 +1,16 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "testMatch": [
+    "**/__tests__/**/*.{test,spec}.{js,ts}",
+    "**/?(*.)+{test,spec}.{js,ts}"
+  ],
+  "collectCoverageFrom": [
+    "src/**/*.{ts,js}",
+    "!src/**/*.d.ts",
+    "!src/test/**/*",
+    "!src/**/__mocks__/**/*"
+  ],
+  "coverageDirectory": "coverage",
+  "coverageReporters": ["text", "lcov", "html"]
+}
