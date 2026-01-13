@@ -4,6 +4,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import postRouter from './routes/postRoutes.js';
+import aiRouter from '../routes/aiRoutes.js';
 import cors from 'cors';
 
 dotenv.config();
@@ -25,6 +26,7 @@ app.use(
 
 app.use(express.json());
 app.use('/api/posts', postRouter);
+app.use('/api/ai', aiRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

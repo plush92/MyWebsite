@@ -9,6 +9,11 @@ interface ImportMetaEnv {
 
   // External API Keys
   readonly VITE_OPENAI_API_KEY?: string;
+  readonly VITE_ANTHROPIC_API_KEY?: string;
+
+  // AI Configuration
+  readonly VITE_AI_MODEL?: string;
+  readonly VITE_ENABLE_CLAUDE_SONNET_4_5?: string;
 
   // Environment
   readonly VITE_NODE_ENV: string;

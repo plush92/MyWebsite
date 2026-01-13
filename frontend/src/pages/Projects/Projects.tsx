@@ -21,6 +21,7 @@ type ProjectProps = {
 
 const Projects: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
   const projects: Project[] = [
+    { name: 'AI Assistant (Claude Sonnet 4.5)', path: '/ai-test' },
     { name: 'Pygame RPG', path: '/rpg' },
     { name: 'Options Trading Platform', path: '/options' },
     { name: 'Weather', path: '/weather' },

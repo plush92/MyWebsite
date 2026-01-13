@@ -20,6 +20,7 @@ import PygameRPG from './pages/Projects/PygameRPG/PygameRPG';
 import OptionsPlatform from './pages/Projects/OptionsPlatform/OptionsPlatform';
 import WarGameWrapper from './pages/Projects/War/WarGameWrapper';
 import CryptoDashboard from './pages/Projects/OtherProjects/Crypto/CryptoTrader';
+import AITestComponent from './components/AITestComponent';
 
 import Contact from './pages/Contact/Contact';
 import Projects from './pages/Projects/Projects';
@@ -170,6 +171,14 @@ const AppContent: React.FC<{
             element={
               <ErrorBoundary>
                 <CryptoDashboard mode={mode} toggleMode={toggleMode} />
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/ai-test"
+            element={
+              <ErrorBoundary>
+                <AITestComponent />
               </ErrorBoundary>
             }
           />
