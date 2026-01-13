@@ -162,9 +162,9 @@ psql -d your_database_name -f src/blog/db/schema.sql
 ### Example Test Structure
 
 ```typescript
-describe("Post Controller", () => {
-  test("should create new post", async () => {
-    const mockPost = { title: "Test", content: "Content" };
+describe('Post Controller', () => {
+  test('should create new post', async () => {
+    const mockPost = { title: 'Test', content: 'Content' };
     const result = await postController.createPost(mockReq, mockRes);
     expect(result.status).toBe(201);
   });

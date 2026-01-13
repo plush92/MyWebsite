@@ -53,7 +53,11 @@ export async function updatePost(req: Request, res: Response) {
   try {
     const { id } = req.params;
     const { title, content, author } = req.body;
-    const updatedPost = await postModel.updatePost(Number(id), { title, content, author });
+    const updatedPost = await postModel.updatePost(Number(id), {
+      title,
+      content,
+      author,
+    });
     if (updatedPost) {
       res.json(updatedPost);
     } else {

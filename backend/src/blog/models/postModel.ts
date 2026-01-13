@@ -1,7 +1,12 @@
 import pool from '../db/db.js';
 
 // Insert a new post
-export async function insertPost(title: string, content: string, author: string, slug: string) {
+export async function insertPost(
+  title: string,
+  content: string,
+  author: string,
+  slug: string
+) {
   const result = await pool.query(
     'INSERT INTO blog_posts (title, content, author, slug) VALUES ($1, $2, $3, $4) RETURNING *',
     [title, content, author, slug]
@@ -11,13 +16,17 @@ export async function insertPost(title: string, content: string, author: string,
 
 // Get all posts
 export async function getAllPosts() {
-  const result = await pool.query('SELECT * FROM blog_posts ORDER BY created_at DESC');
+  const result = await pool.query(
+    'SELECT * FROM blog_posts ORDER BY created_at DESC'
+  );
   return result.rows;
 }
 
 // (Optional) Get a single post by ID
 export async function getPostById(id: number) {
-  const result = await pool.query('SELECT * FROM blog_posts WHERE id = $1', [id]);
+  const result = await pool.query('SELECT * FROM blog_posts WHERE id = $1', [
+    id,
+  ]);
   return result.rows[0];
 }
 

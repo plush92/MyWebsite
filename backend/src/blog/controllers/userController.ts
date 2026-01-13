@@ -39,11 +39,11 @@ export async function getUserById(req: Request, res: Response) {
 
 // (Optional) Delete a user by ID
 export async function deleteUser(req: Request, res: Response) {
-    try {
-      const { id } = req.params;
-      await userModel.deleteUser(Number(id));
-      res.status(204).send();
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to delete user' });
-    }
+  try {
+    const { id } = req.params;
+    await userModel.deleteUser(Number(id));
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete user' });
   }
+}

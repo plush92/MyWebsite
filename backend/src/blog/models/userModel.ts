@@ -23,5 +23,5 @@ export async function getUserById(id: number) {
 
 // (Optional) Delete a user by ID
 export async function deleteUser(id: number) {
-    await pool.query('DELETE FROM users WHERE id = $1', [id]);
-  }
+  await pool.query('DELETE FROM users WHERE id = $1', [id]);
+}

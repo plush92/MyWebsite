@@ -14,10 +14,12 @@ series_id=GDPC1
 ## Series
 
 ### Series_ID
+
 Series IDs can be found on the page that displays the data you want.
 Ex. - Gross Domestic Product (GDP)
--   The series id is `GDP`
-Link: https://fred.stlouisfed.org/series/GDP
+
+- The series id is `GDP`
+  Link: https://fred.stlouisfed.org/series/GDP
 
 ## Observations
 

@@ -100,14 +100,9 @@
 //   console.log(`Server successfully started on port ${PORT}`);
 // });
 
-
-
-
 // //cd into the main folder (mywebsite)
 // //in one terminal, run node '/Users/brendanduffy/Documents/MyWebsite/mywebsite/src/components/Weather/server.js'
 // //then run "npm run dev" in a separate terminal
 // //your website will pull up
-// //and if you go to the route http://localhost:5173/weather, 
+// //and if you go to the route http://localhost:5173/weather,
 // //you should see the JSON data populate
-
-
