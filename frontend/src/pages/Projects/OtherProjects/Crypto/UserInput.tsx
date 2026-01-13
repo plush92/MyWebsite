@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Container,
   Box,
@@ -12,23 +12,23 @@ import {
   Stack,
   Divider,
   FormHelperText,
-} from "@mui/material";
-import Grid from "@mui/material/Grid";
-import { Input } from "@mui/icons-material";
-import PageLayout from "../../../../components/PageLayout";
-import Chart from "chart.js/auto";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import dayjs, { Dayjs } from "dayjs";
+} from '@mui/material';
+import Grid from '@mui/material/Grid';
+import { Input } from '@mui/icons-material';
+import PageLayout from '../../../../components/PageLayout';
+import Chart from 'chart.js/auto';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
 type ProjectProps = {
-  mode: "light" | "dark";
+  mode: 'light' | 'dark';
   toggleMode: () => void;
 };
 
-type ChartType = "candlestick" | "line" | "area" | "ohlc";
-type TimeInterval = "1m" | "5m" | "15m" | "1h" | "4h" | "1d" | "1w";
+type ChartType = 'candlestick' | 'line' | 'area' | 'ohlc';
+type TimeInterval = '1m' | '5m' | '15m' | '1h' | '4h' | '1d' | '1w';
 
 type InputProps = {
   assetSelection: string;
@@ -76,14 +76,14 @@ const UserInput: React.FC<InputProps> = ({
             <DatePicker
               label="Start Date"
               value={startDate}
-              onChange={(newValue) => setStartDate(newValue)}
-              slotProps={{ textField: { size: "small" } }}
+              onChange={newValue => setStartDate(newValue)}
+              slotProps={{ textField: { size: 'small' } }}
             />
             <DatePicker
               label="End Date"
               value={endDate}
-              onChange={(newValue) => setEndDate(newValue)}
-              slotProps={{ textField: { size: "small" } }}
+              onChange={newValue => setEndDate(newValue)}
+              slotProps={{ textField: { size: 'small' } }}
               minDate={startDate}
             />
           </Stack>

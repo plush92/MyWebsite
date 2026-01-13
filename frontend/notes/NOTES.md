@@ -30,9 +30,9 @@ If you want your site to be a project in itself, how about making it dynamic—m
 
 1. Fix font coloring on light mode buttons
 2. Overall, update stylings for components and consolidate styling into themeprovider.tsx.
-2. Update spacing, placement of blog components
-3. Create backend for blog
-4. make a plan for how you should code all of this stuff.
+3. Update spacing, placement of blog components
+4. Create backend for blog
+5. make a plan for how you should code all of this stuff.
 
 # blog ideas:
 

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import {
   Box,
   Typography,
@@ -6,8 +6,8 @@ import {
   Card,
   CardActionArea,
   CardContent,
-} from "@mui/material";
-import PageLayout from "../../components/PageLayout";
+} from '@mui/material';
+import PageLayout from '../../components/PageLayout';
 
 interface Project {
   name: string;
@@ -15,19 +15,19 @@ interface Project {
 }
 
 type ProjectProps = {
-  mode: "light" | "dark";
+  mode: 'light' | 'dark';
   toggleMode: () => void;
 };
 
 const Projects: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
   const projects: Project[] = [
-    { name: "Pygame RPG", path: "/rpg" },
-    { name: "Options Trading Platform", path: "/options" },
-    { name: "Weather", path: "/weather" },
-    { name: "InputTracker", path: "/inputtracker" },
-    { name: "MoodTracker", path: "/moodtracker" },
-    { name: "War", path: "/war" },
-    { name: "Crypto Trader", path: "/crypto" },
+    { name: 'Pygame RPG', path: '/rpg' },
+    { name: 'Options Trading Platform', path: '/options' },
+    { name: 'Weather', path: '/weather' },
+    { name: 'InputTracker', path: '/inputtracker' },
+    { name: 'MoodTracker', path: '/moodtracker' },
+    { name: 'War', path: '/war' },
+    { name: 'Crypto Trader', path: '/crypto' },
   ];
 
   return (

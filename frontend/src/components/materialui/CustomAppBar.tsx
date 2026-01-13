@@ -11,7 +11,7 @@ type CustomAppBarProps = {
 };
 
 const CustomAppBar: React.FC<CustomAppBarProps> = ({
-  title = "My Portfolio",
+  title = 'My Portfolio',
   sx = [],
   children,
 }) => (

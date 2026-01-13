@@ -9,9 +9,9 @@ interface CustomMultilineTextFieldProps {
 }
 
 export default function CustomMultilineTextField({
-  label = "Multiline",
+  label = 'Multiline',
   rows = 4,
-  defaultValue = "",
+  defaultValue = '',
 }: CustomMultilineTextFieldProps) {
   return (
     <Box

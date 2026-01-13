@@ -6,7 +6,11 @@ interface CustomSliderProps extends SliderProps {
   onChange: (event: Event, value: number | number[]) => void;
 }
 
-const CustomSlider: React.FC<CustomSliderProps> = ({ value, onChange, ...props }) => (
+const CustomSlider: React.FC<CustomSliderProps> = ({
+  value,
+  onChange,
+  ...props
+}) => (
   <Slider
     value={value}
     onChange={onChange}

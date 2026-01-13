@@ -6,21 +6,21 @@
 // import VolatilityCorrelation from './VolatilityCorrelation'
 // import DefiNftMetrics from './DefiNftMetrics'
 
-const CryptoDashboard: React.FC = () =>  {
-    return (
-        <div>
-            <header>
-                <h1>Crypto Dashboard</h1>
-            </header>
-            {/* <MarketOverview />
+const CryptoDashboard: React.FC = () => {
+  return (
+    <div>
+      <header>
+        <h1>Crypto Dashboard</h1>
+      </header>
+      {/* <MarketOverview />
             <PriceVolumeChart />
             <OnChainData />
             <SentimentAnalysis />
             <VolumeLiquidity />
             <VolatilityCorrelation />
             <DefiNftMetrics /> */}
-        </div>
-    );
-}
+    </div>
+  );
+};
 
 export default CryptoDashboard;

@@ -1,9 +1,9 @@
 //state handling (player names, game phase)
 //deciding which child components to render (setup screen, main game, or game over screen)
 
-import React from "react";
-import { useState } from "react";
-import { GameApiResponse, GameState, Card } from "../../../types/warGame";
+import React from 'react';
+import { useState } from 'react';
+import { GameApiResponse, GameState, Card } from '../../../types/warGame';
 import {
   Container,
   Box,
@@ -17,20 +17,20 @@ import {
   Stack,
   Divider,
   FormHelperText,
-} from "@mui/material";
-import Grid from "@mui/material/Grid";
-import { Input } from "@mui/icons-material";
-import { startGame, playRound, resetGame, getGameState } from "./apiClient";
-import PageLayout from "../../../components/PageLayout";
+} from '@mui/material';
+import Grid from '@mui/material/Grid';
+import { Input } from '@mui/icons-material';
+import { startGame, playRound, resetGame, getGameState } from './apiClient';
+import PageLayout from '../../../components/PageLayout';
 
-import GameSetup from "./GameSetup";
-import MainGame from "./MainGame";
-import GameOver from "./GameOver";
-import Info from "./Info";
+import GameSetup from './GameSetup';
+import MainGame from './MainGame';
+import GameOver from './GameOver';
+import Info from './Info';
 
 //Project Props
 type ProjectProps = {
-  mode: "light" | "dark";
+  mode: 'light' | 'dark';
   toggleMode: () => void;
 };
 
@@ -42,9 +42,9 @@ type Card = {
 
 const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
   //State Management
-  const [gamePhase, setGamePhase] = useState<"setup" | "main" | "end">("setup");
-  const [player1name, setPlayer1name] = useState("Player 1");
-  const [player2name, setPlayer2name] = useState("Player 2");
+  const [gamePhase, setGamePhase] = useState<'setup' | 'main' | 'end'>('setup');
+  const [player1name, setPlayer1name] = useState('Player 1');
+  const [player2name, setPlayer2name] = useState('Player 2');
   const [player1score, setPlayer1score] = useState(0);
   const [player2score, setPlayer2score] = useState(0);
   const [player1deck, setPlayer1deck] = useState<Card[]>([]);
@@ -53,9 +53,9 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
 
   //Functions
   function updateStateFromResponse(data: GameApiResponse | GameState) {
-    const gameData = "state" in data ? data.state : data;
-    setPlayer1deck(gameData.players["player 1"].deck || []);
-    setPlayer2deck(gameData.players["player 2"].deck || []);
+    const gameData = 'state' in data ? data.state : data;
+    setPlayer1deck(gameData.players['player 1'].deck || []);
+    setPlayer2deck(gameData.players['player 2'].deck || []);
     setDeck([]);
     setPlayer1score(gameData.scores[player1name] || 0);
     setPlayer2score(gameData.scores[player2name] || 0);
@@ -76,7 +76,7 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
     });
     console.log(data);
     updateStateFromResponse(data);
-    setGamePhase("main");
+    setGamePhase('main');
   };
 
   const handlePlayRound = async () => {
@@ -87,7 +87,7 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
   const handleResetGame = async () => {
     const data = await resetGame(player1name, player2name);
     updateStateFromResponse(data);
-    setGamePhase("main");
+    setGamePhase('main');
   };
 
   const handleGetGameState = async () => {
@@ -96,18 +96,18 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
   };
 
   function handleEndGame() {
-    setGamePhase("end");
+    setGamePhase('end');
   }
 
   function handleRestart() {
-    setPlayer1name("Player 1");
-    setPlayer2name("Player 2");
+    setPlayer1name('Player 1');
+    setPlayer2name('Player 2');
     setPlayer1score(0);
     setPlayer2score(0);
     setPlayer1deck([]);
     setPlayer2deck([]);
     setDeck([]);
-    setGamePhase("setup");
+    setGamePhase('setup');
   }
 
   function getWinner(): string | null {
@@ -120,7 +120,7 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
   }
   return (
     <PageLayout mode={mode} toggleMode={toggleMode}>
-      {gamePhase === "setup" && (
+      {gamePhase === 'setup' && (
         <GameSetup
           player1name={player1name}
           player2name={player2name}
@@ -131,7 +131,7 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
         />
       )}
 
-      {gamePhase === "main" && (
+      {gamePhase === 'main' && (
         <MainGame
           player1name={player1name}
           player2name={player2name}
@@ -145,7 +145,7 @@ const WarGameWrapper: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
         />
       )}
 
-      {gamePhase === "end" && (
+      {gamePhase === 'end' && (
         <GameOver
           player1name={player1name}
           player2name={player2name}

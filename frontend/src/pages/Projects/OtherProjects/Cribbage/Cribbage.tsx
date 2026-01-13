@@ -10,7 +10,7 @@
 // middle game - non crib person places card, other player places card
 // score must update depending on card.
 // numbered scoring (add board + peg later)
-// make frontend first! - two containers to split the p1 p2 hands + middle container for cards + left for 
+// make frontend first! - two containers to split the p1 p2 hands + middle container for cards + left for
 
 //1. Pick a card to select dealer (lowest card is dealer)
 //2. cards are dealt (non dealer is issued card first, then alternate until 6 are issued to each player)
@@ -21,34 +21,34 @@
 //7. process restarts, game repeats until one playet scores 121
 //keep it simple!!!!
 
-import React from "react";
-import { useState } from "react";
+import React from 'react';
+import { useState } from 'react';
 import {
-  Container, Box, Grid, Typography, Autocomplete, TextField,
-  Button, Card, CardContent, Chip, Stack, Divider
-} from "@mui/material";
-import { CARD_DICT } from "./Cards";
+  Container,
+  Box,
+  Grid,
+  Typography,
+  Autocomplete,
+  TextField,
+  Button,
+  Card,
+  CardContent,
+  Chip,
+  Stack,
+  Divider,
+} from '@mui/material';
+import { CARD_DICT } from './Cards';
 
 type ProjectProps = {
-  mode: "light" | "dark";
+  mode: 'light' | 'dark';
   toggleMode: () => void;
 };
 
 const Cribbage: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
-    const [card, setCard] = React.useState<{ label: string; fips: string } | null>(null);
-    
-
-
-
-
-
+  const [card, setCard] = React.useState<{
+    label: string;
+    fips: string;
+  } | null>(null);
 };
 
 export default Cribbage;
-
-
-
-
-
-
-

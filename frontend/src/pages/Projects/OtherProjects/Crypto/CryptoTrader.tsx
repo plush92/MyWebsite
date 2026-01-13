@@ -1,5 +1,5 @@
-import React from "react";
-import { useState } from "react";
+import React from 'react';
+import { useState } from 'react';
 import {
   Container,
   Box,
@@ -13,15 +13,15 @@ import {
   Stack,
   Divider,
   FormHelperText,
-} from "@mui/material";
-import Grid from "@mui/material/Grid";
-import { Input } from "@mui/icons-material";
-import PageLayout from "../../../../components/PageLayout";
-import Chart from "chart.js/auto";
+} from '@mui/material';
+import Grid from '@mui/material/Grid';
+import { Input } from '@mui/icons-material';
+import PageLayout from '../../../../components/PageLayout';
+import Chart from 'chart.js/auto';
 
 //Project Props
 type ProjectProps = {
-  mode: "light" | "dark";
+  mode: 'light' | 'dark';
   toggleMode: () => void;
 };
 

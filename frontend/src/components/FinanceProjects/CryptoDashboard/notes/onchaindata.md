@@ -49,7 +49,7 @@
 
 ## Why On-Chain Data is Useful
 
-- On-chain data provides insights into the fundamental health and user activity of a blockchain network. 
+- On-chain data provides insights into the fundamental health and user activity of a blockchain network.
 - It allows crypto analysts and investors to:
   - Gauge the adoption and growth of a network.
   - Assess security (e.g., through hash rate or staking levels).

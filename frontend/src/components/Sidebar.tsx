@@ -80,7 +80,7 @@ interface SidebarProps {
   onClose: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({open, onClose }) => {
+const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
   const [openCategory, setOpenCategory] = useState<string | null>(null);
 
   const toggleCategory = (categoryName: string) => {
@@ -103,7 +103,7 @@ const Sidebar: React.FC<SidebarProps> = ({open, onClose }) => {
       }}
     >
       <Box sx={{ p: 2 }}>
-        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
           <Typography variant="h6" fontWeight="bold" flexGrow={1}>
             Econ Dashboard
           </Typography>
@@ -116,9 +116,17 @@ const Sidebar: React.FC<SidebarProps> = ({open, onClose }) => {
             <Box key={index}>
               <ListItemButton onClick={() => toggleCategory(category.name)}>
                 <ListItemText primary={category.name} />
-                {openCategory === category.name ? <ExpandLess /> : <ExpandMore />}
+                {openCategory === category.name ? (
+                  <ExpandLess />
+                ) : (
+                  <ExpandMore />
+                )}
               </ListItemButton>
-              <Collapse in={openCategory === category.name} timeout="auto" unmountOnExit>
+              <Collapse
+                in={openCategory === category.name}
+                timeout="auto"
+                unmountOnExit
+              >
                 <List component="div" disablePadding>
                   {category.subcategories.map((sub, subIndex) => (
                     <ListItemButton key={subIndex} sx={{ pl: 4 }}>

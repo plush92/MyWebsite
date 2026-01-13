@@ -1,5 +1,5 @@
-import React from "react";
-import { useState } from "react";
+import React from 'react';
+import { useState } from 'react';
 import {
   Container,
   Box,
@@ -13,15 +13,15 @@ import {
   Stack,
   Divider,
   FormHelperText,
-} from "@mui/material";
-import Grid from "@mui/material/Grid";
-import { Input } from "@mui/icons-material";
-import { startGame, playRound, resetGame, getGameState } from "./apiClient";
-import PageLayout from "../../../components/PageLayout";
+} from '@mui/material';
+import Grid from '@mui/material/Grid';
+import { Input } from '@mui/icons-material';
+import { startGame, playRound, resetGame, getGameState } from './apiClient';
+import PageLayout from '../../../components/PageLayout';
 
 //Project Props
 type ProjectProps = {
-  mode: "light" | "dark";
+  mode: 'light' | 'dark';
   toggleMode: () => void;
 };
 
@@ -31,7 +31,7 @@ const Info: React.FC = () => {
       sx={{
         mt: 4,
         p: 3,
-        backgroundColor: "background.paper",
+        backgroundColor: 'background.paper',
         borderRadius: 2,
         boxShadow: 2,
       }}
@@ -52,7 +52,7 @@ const Info: React.FC = () => {
         </ul>
       </Typography>
 
-      <Box sx={{ mt: 4, display: "flex", gap: 2 }}></Box>
+      <Box sx={{ mt: 4, display: 'flex', gap: 2 }}></Box>
     </Box>
   );
 };

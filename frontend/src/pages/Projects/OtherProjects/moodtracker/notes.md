@@ -9,8 +9,8 @@ Build a simple web app that lets you log your mood throughout the day. But here'
 ## 🛠️ Tech Stack (Flexible)
 
 - **Frontend:** React (perfect for strengthening your React skills)
-- **Backend:** Node.js + Express *(optional if you want persistence)*
-- **Database:** SQLite or Firebase *(optional for storing history)*
+- **Backend:** Node.js + Express _(optional if you want persistence)_
+- **Database:** SQLite or Firebase _(optional for storing history)_
 - **Styling:** Tailwind CSS or plain CSS
 
 ---

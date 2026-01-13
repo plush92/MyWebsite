@@ -12,7 +12,16 @@
 // 5. CardMedia. For images, videos, or other media.
 // 6. CardActions. For buttons or actions at the bottom (like "Learn More", "Share").
 
-import { Card, CardActionArea, CardContent, CardHeader, CardMedia, CardActions, Button, Typography } from '@mui/material';
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  CardActions,
+  Button,
+  Typography,
+} from '@mui/material';
 
 interface CustomCardProps {
   title: string;
@@ -23,21 +32,21 @@ interface CustomCardProps {
   demo?: string;
 }
 
-const CustomCard: React.FC<CustomCardProps> = ({ title, subheader, image, content, github, demo }) => (
+const CustomCard: React.FC<CustomCardProps> = ({
+  title,
+  subheader,
+  image,
+  content,
+  github,
+  demo,
+}) => (
   <Card sx={{ maxWidth: 345 }}>
     <CardActionArea>
       {image && (
-        <CardMedia
-          component="img"
-          height="140"
-          image={image}
-          alt={title}
-        />
+        <CardMedia component="img" height="140" image={image} alt={title} />
       )}
       <CardHeader title={title} subheader={subheader} />
-      <CardContent>
-        {content}
-      </CardContent>
+      <CardContent>{content}</CardContent>
     </CardActionArea>
     <CardActions>
       {github && (

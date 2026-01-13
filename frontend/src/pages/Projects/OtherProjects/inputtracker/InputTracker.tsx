@@ -5,101 +5,99 @@
 // Keeps the typing fast and responsive — no unnecessary re-renders
 
 //variables:
-//input (prev, current), 
+//input (prev, current),
 // # of characters typed in current
 
 //save the input after user stops typing for 1 second
 // no unnecessary re-renders
 
-import React, { useState, useEffect, useRef } from "react";
-import CustomTextField from "../../../../components/materialui/CustomTextField";
-import CustomBox from "../../../../components/materialui/CustomBox";
-import CustomButton from "../../../../components/materialui/CustomButton";
-import PageLayout from "../../../../components/PageLayout";
+import React, { useState, useEffect, useRef } from 'react';
+import CustomTextField from '../../../../components/materialui/CustomTextField';
+import CustomBox from '../../../../components/materialui/CustomBox';
+import CustomButton from '../../../../components/materialui/CustomButton';
+import PageLayout from '../../../../components/PageLayout';
 
 type LayoutProps = {
-    mode: "light" | "dark";
-    toggleMode: () => void;
+  mode: 'light' | 'dark';
+  toggleMode: () => void;
+};
+
+const InputTracker: React.FC<LayoutProps> = ({ mode, toggleMode }) => {
+  const [inputValue, setInputValue] = useState(0);
+
+  // Update the ref every time inputValue changes
+  const prevInputRef = useRef<number | null>(null);
+  useEffect(() => {
+    prevInputRef.current = inputValue;
+  }, [inputValue]);
+
+  // Show the number of renders
+  const renderCount = useRef(1);
+  useEffect(() => {
+    renderCount.current += 1;
+  });
+
+  // Show the time since the last render
+  const lastRenderTime = useRef(Date.now());
+  useEffect(() => {
+    lastRenderTime.current = Date.now();
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(Number(e.target.value));
   };
 
-const InputTracker: React.FC<LayoutProps> = ({mode, toggleMode}) => {
-    const [inputValue, setInputValue] = useState(0);
+  useEffect(() => {
+    console.log('inputValue changed:', inputValue);
+  }, [inputValue]);
 
-    // Update the ref every time inputValue changes
-    const prevInputRef = useRef<number | null>(null);
-    useEffect(() => {
-        prevInputRef.current = inputValue;
-    }, [inputValue]);
+  const handleStaleClick = () => {
+    setInputValue(inputValue + 1);
+    setInputValue(inputValue + 1); // uses stale value
+  };
 
-    // Show the number of renders
-    const renderCount = useRef(1);
-    useEffect(() => {
-        renderCount.current += 1;
-    });
+  const handleFunctionalClick = () => {
+    setInputValue(prev => prev + 1);
+    setInputValue(prev => prev + 1); // uses latest value
+  };
 
-    // Show the time since the last render
-    const lastRenderTime = useRef(Date.now());
-    useEffect(() => {
-        lastRenderTime.current = Date.now();
-    });
+  return (
+    <PageLayout mode={mode} toggleMode={toggleMode}>
+      <CustomBox
+        component="form"
+        styleArray={[
+          {
+            p: 3,
+            bgcolor: 'background.paper',
+            borderRadius: 2,
+            boxShadow: 3,
+            maxWidth: 500,
+            mx: 'auto',
+            mt: 4,
+          },
+        ]}
+      >
+        <CustomTextField
+          id="inputValue"
+          type="inputValue"
+          label="Input"
+          value={inputValue}
+          onChange={handleInputChange}
+        />
+        <p>
+          Last Render: {new Date(lastRenderTime.current).toLocaleTimeString()}
+        </p>
+        <p>Render Count: {renderCount.current}</p>
+        <p>Previous value: {prevInputRef.current}</p>
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(Number(e.target.value));
-    };
+        <CustomButton onClick={handleStaleClick}>Stale +1</CustomButton>
 
-    useEffect(() => {
-        console.log("inputValue changed:", inputValue);
-    }, [inputValue]);
-
-    const handleStaleClick = () => {
-        setInputValue(inputValue + 1);
-        setInputValue(inputValue + 1); // uses stale value
-    };
-    
-    const handleFunctionalClick = () => {
-        setInputValue(prev => prev + 1);
-        setInputValue(prev => prev + 1); // uses latest value
-    };
-
-    return (
-        <PageLayout mode={mode} toggleMode={toggleMode}>
-        <CustomBox
-            component="form"
-            styleArray={[
-                {
-                  p: 3,
-                  bgcolor: 'background.paper',
-                  borderRadius: 2,
-                  boxShadow: 3,
-                  maxWidth: 500,
-                  mx: 'auto',
-                  mt: 4,
-                },
-              ]}
-        >
-            <CustomTextField
-                id="inputValue"
-                type="inputValue"
-                label="Input"
-                value={inputValue}
-                onChange={handleInputChange}
-            />
-            <p>Last Render: {new Date(lastRenderTime.current).toLocaleTimeString()}</p>
-            <p>Render Count: {renderCount.current}</p>
-            <p>Previous value: {prevInputRef.current}</p>
-
-            <CustomButton
-                onClick={handleStaleClick}
-            >Stale +1
-            </CustomButton>
-
-            <CustomButton
-                onClick={handleFunctionalClick}
-            >Functional +2
-            </CustomButton>
-            </CustomBox>
-            </PageLayout>
-    );
+        <CustomButton onClick={handleFunctionalClick}>
+          Functional +2
+        </CustomButton>
+      </CustomBox>
+    </PageLayout>
+  );
 };
 
 export default InputTracker;

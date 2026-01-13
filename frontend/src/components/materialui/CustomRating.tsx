@@ -61,10 +61,7 @@ const CustomRating: React.FC<CustomRatingProps> = ({
 }) => (
   <Rating
     {...props}
-    sx={[
-      ...styleArray,
-      ...(Array.isArray(sx) ? sx : [sx]),
-    ]}
+    sx={[...styleArray, ...(Array.isArray(sx) ? sx : [sx])]}
     icon={<FavoriteIcon fontSize="inherit" />}
     emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
   />

@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import {
   Box,
   Typography,
@@ -8,12 +8,12 @@ import {
   Stack,
   Paper,
   Divider,
-} from "@mui/material";
-import PageLayout from "../../../../components/PageLayout";
+} from '@mui/material';
+import PageLayout from '../../../../components/PageLayout';
 
 //Project Props
 type ProjectProps = {
-  mode: "light" | "dark";
+  mode: 'light' | 'dark';
   toggleMode: () => void;
 };
 
@@ -36,10 +36,10 @@ interface ZipData {
 }
 
 const Weather: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
-  const [lat, setLat] = useState<string>("");
-  const [lon, setLon] = useState<string>("");
+  const [lat, setLat] = useState<string>('');
+  const [lon, setLon] = useState<string>('');
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-  const [zip, setZip] = useState<string>("");
+  const [zip, setZip] = useState<string>('');
   const [zipData, setZipData] = useState<ZipData | null>(null);
 
   useEffect(() => {
@@ -51,14 +51,14 @@ const Weather: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
 
   const fetchWeather = async (): Promise<void> => {
     try {
-      const baseUrl = "http://localhost:5001/weather";
+      const baseUrl = 'http://localhost:5001/weather';
       const params = new URLSearchParams();
 
       if (lat && lon) {
-        params.append("lat", lat);
-        params.append("lon", lon);
+        params.append('lat', lat);
+        params.append('lon', lon);
       } else {
-        alert("Please provide a valid latitude and longitude.");
+        alert('Please provide a valid latitude and longitude.');
         return;
       }
 
@@ -66,19 +66,19 @@ const Weather: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
       const response = await axios.get<WeatherData>(locationUrl);
       setWeatherData(response.data);
     } catch (error) {
-      console.error("Error fetching weather data:", error);
+      console.error('Error fetching weather data:', error);
     }
   };
 
   const fetchZip = async (): Promise<void> => {
     try {
-      const zipUrl = "http://localhost:5001/zip";
+      const zipUrl = 'http://localhost:5001/zip';
       const params = new URLSearchParams();
 
       if (zip) {
-        params.append("zip", zip);
+        params.append('zip', zip);
       } else {
-        alert("Please provide a valid zip code.");
+        alert('Please provide a valid zip code.');
         return;
       }
 
@@ -90,7 +90,7 @@ const Weather: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
       setLat(data.lat);
       setLon(data.lon);
     } catch (error) {
-      console.error("Error fetching zip data:", error);
+      console.error('Error fetching zip data:', error);
     }
   };
 
@@ -111,21 +111,21 @@ const Weather: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
           <TextField
             label="Latitude"
             value={lat}
-            onChange={(e) => setLat(e.target.value)}
+            onChange={e => setLat(e.target.value)}
             fullWidth
             size="small"
           />
           <TextField
             label="Longitude"
             value={lon}
-            onChange={(e) => setLon(e.target.value)}
+            onChange={e => setLon(e.target.value)}
             fullWidth
             size="small"
           />
           <TextField
             label="Zip Code"
             value={zip}
-            onChange={(e) => setZip(e.target.value)}
+            onChange={e => setZip(e.target.value)}
             fullWidth
             size="small"
           />

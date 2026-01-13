@@ -47,18 +47,18 @@
 // .MuiDrawer-anchorTop                // anchor="top"
 // .MuiDrawer-anchorBottom             // anchor="bottom"
 
-import React from "react";
-import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import CustomBox from "./CustomBox";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import { SxProps, Theme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import React from 'react';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import CustomBox from './CustomBox';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import { SxProps, Theme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 const MINI_WIDTH = 56;
 const FULL_WIDTH = 180;
@@ -80,7 +80,7 @@ type CustomDrawerProps = {
   sx?: SxProps<Theme>;
   styleArray?: SxProps<Theme>[];
   children?: React.ReactNode;
-  variant: "persistent" | "permanent" | "temporary";
+  variant: 'persistent' | 'permanent' | 'temporary';
 };
 
 const CustomDrawer: React.FC<CustomDrawerProps> = ({
@@ -103,23 +103,28 @@ const CustomDrawer: React.FC<CustomDrawerProps> = ({
       ...(Array.isArray(sx) ? sx : [sx]),
       {
         flexShrink: 0,
-        whiteSpace: "nowrap",
-        boxSizing: "border-box",
-        "& .MuiDrawer-paper": {
+        whiteSpace: 'nowrap',
+        boxSizing: 'border-box',
+        '& .MuiDrawer-paper': {
           width: open ? FULL_WIDTH : MINI_WIDTH,
-          transition: "width 0.3s",
-          overflowX: "hidden",
+          transition: 'width 0.3s',
+          overflowX: 'hidden',
         },
       },
     ]}
   >
-    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
-
-      <CustomBox sx={{ display: "flex", justifyContent: open ? "flex-end" : "center", p: 1 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <CustomBox
+        sx={{
+          display: 'flex',
+          justifyContent: open ? 'flex-end' : 'center',
+          p: 1,
+        }}
+      >
         <IconButton
           onClick={open ? onClose : onOpen}
           size="small"
-          aria-label={open ? "Close drawer" : "Open drawer"}
+          aria-label={open ? 'Close drawer' : 'Open drawer'}
         >
           {open ? <ChevronLeftIcon /> : <MenuIcon />}
         </IconButton>
@@ -132,7 +137,7 @@ const CustomDrawer: React.FC<CustomDrawerProps> = ({
             onClick={item.onClick}
             sx={{
               minHeight: 48,
-              justifyContent: open ? "initial" : "center",
+              justifyContent: open ? 'initial' : 'center',
               px: 2.5,
             }}
           >
@@ -140,8 +145,8 @@ const CustomDrawer: React.FC<CustomDrawerProps> = ({
               <ListItemIcon
                 sx={{
                   minWidth: 0,
-                  mr: open ? 2 : "auto",
-                  justifyContent: "center",
+                  mr: open ? 2 : 'auto',
+                  justifyContent: 'center',
                 }}
               >
                 {item.icon}

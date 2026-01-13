@@ -11,8 +11,8 @@ export interface Player {
 
 export interface GameState {
   players: {
-    "player 1": Player;
-    "player 2": Player;
+    'player 1': Player;
+    'player 2': Player;
   };
   scores: Record<string, number>;
 }

@@ -1,5 +1,5 @@
 1. Macro Indicators
-Data Sources:
+   Data Sources:
 
 FRED API:
 Real GDP (Inflation-Adjusted)
@@ -9,7 +9,7 @@ Unemployment Rate
 Inflation Rate (CPI)
 
 2. Consumer Health
-Data Sources:
+   Data Sources:
 
 FRED API:
 Consumer Confidence Index
@@ -20,7 +20,7 @@ Household Income
 Population Data
 
 3. Stock Market
-Data Sources:
+   Data Sources:
 
 Yahoo Finance API or Alpha Vantage:
 Stock Market Indexes (e.g., S&P 500, NASDAQ)
@@ -30,7 +30,7 @@ Quandl API (optional):
 Historical Market Data
 
 4. Interest Rates
-Data Sources:
+   Data Sources:
 
 FRED API:
 Federal Funds Rate
@@ -38,7 +38,7 @@ Federal Funds Rate
 Prime Rate
 
 5. Housing Market
-Data Sources:
+   Data Sources:
 
 FRED API:
 Housing Starts
@@ -47,7 +47,7 @@ Census API:
 New Residential Construction Data
 
 6. Trade and Industry
-Data Sources:
+   Data Sources:
 
 FRED API:
 Imports and Exports
@@ -56,7 +56,7 @@ Census API:
 Trade Balance Data
 
 7. Crypto Market (if included)
-Data Sources:
+   Data Sources:
 
 CoinGecko API or CoinMarketCap API:
 Cryptocurrency Prices
@@ -64,7 +64,7 @@ Market Cap by Coin
 Historical Trends
 
 8. Government Fiscal Indicators
-Data Sources:
+   Data Sources:
 
 FRED API:
 Federal Debt
@@ -73,4 +73,4 @@ Treasury API (optional):
 Daily Treasury Statements
 
 9. Customization and User Metrics
-This will aggregate data from various sections based on user selection.
+   This will aggregate data from various sections based on user selection.

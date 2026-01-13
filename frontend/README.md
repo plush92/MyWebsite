@@ -145,7 +145,7 @@ The application supports light/dark themes using Material-UI's theming system:
 // Theme configuration in src/theme.ts
 const theme = createTheme({
   palette: {
-    mode: "light" | "dark",
+    mode: 'light' | 'dark',
     // Custom color palette
   },
 });

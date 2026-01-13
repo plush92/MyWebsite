@@ -27,6 +27,7 @@ Save Drafts
 Comment/guestbook - allow other users to comment on blogs.
 
 # 🌟 High-Impact Additions
+
 1. `Reactions or Like System` Let readers give quick feedback without leaving a comment. Could just be 👍 / ❤️ / 😲, tied to each post.
 2. `Highlight Popular Posts` Either by views (if you’re tracking them) or likes/comments. Display in a sidebar or “Top Posts” section.
 3. `Draft Autosave + Recovery Add` localStorage fallback if the user navigates away mid-post. Think resilience for accidental refreshes.
@@ -37,6 +38,7 @@ Comment/guestbook - allow other users to comment on blogs.
 8. `Fallback 404 Page` Custom “Post Not Found” page if someone mistypes a URL. You could even make it humorous or stylized.
 
 # 🚀 Stretch Features (for later or optional depth)
+
 `Image Uploads:` Drag-and-drop support for blogs with visual flair (could use Firebase, Cloudinary, etc.)
 `Post Analytics:` Views per post with a dashboard to view trends.
 `Post Scheduling:` Write now, publish later—like your own mini CMS.

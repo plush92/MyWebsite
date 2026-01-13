@@ -22,31 +22,31 @@ This way, they can share state (like whether the Drawer is open) and coordinate 
 
 Here’s the pattern I used (based on the MUI docs):
 export default function PersistentDrawerLeft() {
-  const [open, setOpen] = React.useState(false);
+const [open, setOpen] = React.useState(false);
 
-  return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        {/*...AppBar content... */}
-      </AppBar>
-      <Drawer
-        variant="persistent"
-        anchor="left"
-        open={open}
-        sx={{
+return (
+<Box sx={{ display: 'flex' }}>
+<CssBaseline />
+<AppBar position="fixed" open={open}>
+{/_...AppBar content... _/}
+</AppBar>
+<Drawer
+variant="persistent"
+anchor="left"
+open={open}
+sx={{
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': { width: drawerWidth, boxSizing: 'border-box' },
-        }}
-      >
-        {/* ...Drawer content... */}
-      </Drawer>
-      <Main open={open}>
-        {/* ...Main content...*/}
-      </Main>
-    </Box>
-  );
+        }} >
+{/_ ...Drawer content... _/}
+</Drawer>
+
+<Main open={open}>
+{/_ ...Main content..._/}
+</Main>
+</Box>
+);
 }
 
 The open state is shared between the AppBar and Drawer.

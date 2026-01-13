@@ -1,5 +1,5 @@
-import React from "react";
-import { useState } from "react";
+import React from 'react';
+import { useState } from 'react';
 import {
   Container,
   Box,
@@ -13,15 +13,15 @@ import {
   Stack,
   Divider,
   FormHelperText,
-} from "@mui/material";
-import Grid from "@mui/material/Grid";
-import { Input } from "@mui/icons-material";
-import { startGame, playRound, resetGame, getGameState } from "./apiClient";
-import PageLayout from "../../../components/PageLayout";
+} from '@mui/material';
+import Grid from '@mui/material/Grid';
+import { Input } from '@mui/icons-material';
+import { startGame, playRound, resetGame, getGameState } from './apiClient';
+import PageLayout from '../../../components/PageLayout';
 
 //Project Props
 type ProjectProps = {
-  mode: "light" | "dark";
+  mode: 'light' | 'dark';
   toggleMode: () => void;
 };
 
@@ -57,18 +57,18 @@ const MainGame: React.FC<MainGameProps> = ({
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "40vh",
-        backgroundColor: "background.paper",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '40vh',
+        backgroundColor: 'background.paper',
         borderRadius: 3,
         p: 4,
         boxShadow: 4,
       }}
     >
-      <Grid container spacing={2} justifyContent={"center"}>
+      <Grid container spacing={2} justifyContent={'center'}>
         <Grid size={4}>
           <Typography variant="h5">{player1name}</Typography>
           {player1deck.length > 0 ? (
@@ -76,14 +76,14 @@ const MainGame: React.FC<MainGameProps> = ({
               sx={{
                 width: 120,
                 height: 160,
-                backgroundColor: "background.paper",
-                color: "text.primary",
-                border: "1px solid #ccc",
-                borderColor: "divider",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
+                backgroundColor: 'background.paper',
+                color: 'text.primary',
+                border: '1px solid #ccc',
+                borderColor: 'divider',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
                 borderRadius: 2,
                 boxShadow: 3,
               }}
@@ -106,14 +106,14 @@ const MainGame: React.FC<MainGameProps> = ({
               sx={{
                 width: 120,
                 height: 160,
-                backgroundColor: "background.paper",
-                color: "text.primary",
-                border: "1px solid #ccc",
-                borderColor: "divider",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
+                backgroundColor: 'background.paper',
+                color: 'text.primary',
+                border: '1px solid #ccc',
+                borderColor: 'divider',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
                 borderRadius: 2,
                 boxShadow: 3,
               }}
@@ -129,7 +129,7 @@ const MainGame: React.FC<MainGameProps> = ({
           </Typography>
         </Grid>
 
-        <Grid size={12} sx={{ textAlign: "center", mt: 4 }}>
+        <Grid size={12} sx={{ textAlign: 'center', mt: 4 }}>
           <Button
             variant="contained"
             color="primary"

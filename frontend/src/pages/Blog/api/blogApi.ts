@@ -1,6 +1,6 @@
 // blogApi.ts
 const API_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:3001/api/posts";
+  import.meta.env.VITE_API_URL || 'http://localhost:3001/api/posts';
 
 export async function createBlogPost({
   title,
@@ -16,8 +16,8 @@ export async function createBlogPost({
   date?: string | null;
 }) {
   return fetch(API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ title, content, author, slug, date }),
   });
 }
@@ -29,7 +29,7 @@ export async function fetchBlogPosts() {
 
 export async function fetchBlogPostById(id: number | string) {
   const res = await fetch(`${API_URL}/${id}`);
-  if (!res.ok) throw new Error("Failed to fetch post");
+  if (!res.ok) throw new Error('Failed to fetch post');
   return res.json();
 }
 
@@ -38,14 +38,14 @@ export async function updateBlogPost(
   data: { date?: string | null; comment?: string }
 ) {
   return fetch(`${API_URL}/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
 }
 
 export async function deleteBlogPost(id: number | string) {
   return fetch(`${API_URL}/${id}`, {
-    method: "DELETE",
+    method: 'DELETE',
   });
 }

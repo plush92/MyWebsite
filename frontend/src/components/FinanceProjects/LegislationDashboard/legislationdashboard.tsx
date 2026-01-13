@@ -40,7 +40,8 @@ const LegislationDashboard = () => {
                 <li key={index} style={{ marginBottom: '10px' }}>
                   <strong>Bill Title:</strong> {bill.title || 'N/A'} <br />
                   <strong>Bill ID:</strong> {bill.bill_id || 'N/A'} <br />
-                  <strong>Introduced Date:</strong> {bill.introduced_date || 'N/A'}
+                  <strong>Introduced Date:</strong>{' '}
+                  {bill.introduced_date || 'N/A'}
                 </li>
               ))
             ) : (

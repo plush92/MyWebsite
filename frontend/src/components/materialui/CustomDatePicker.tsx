@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DatePicker, DatePickerProps } from '@mui/x-date-pickers/DatePicker';
 import { SxProps, Theme } from '@mui/material/styles';
 
-const sizingProps = { width: "50%", minWidth: 100 };
+const sizingProps = { width: '50%', minWidth: 100 };
 const borderProps = { borderRadius: 1 };
 const shadowProps = { boxShadow: 1 };
 const paddingProps = { p: 1 };
@@ -24,10 +24,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
 }) => (
   <DatePicker
     {...rest}
-    sx={[
-      ...styleArray,
-      ...(Array.isArray(sx) ? sx : [sx]),
-    ]}
+    sx={[...styleArray, ...(Array.isArray(sx) ? sx : [sx])]}
   />
 );
 

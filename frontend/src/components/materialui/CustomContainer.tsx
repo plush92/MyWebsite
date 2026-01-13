@@ -3,9 +3,9 @@ import { SxProps, Theme } from '@mui/material/styles';
 import React from 'react';
 
 // Prop groupings
-const sizingProps = { maxWidth: "md", width: "100%" };
+const sizingProps = { maxWidth: 'md', width: '100%' };
 const paddingProps = { p: 3 };
-const marginProps = { m: "auto" };
+const marginProps = { m: 'auto' };
 const borderProps = { borderRadius: 3 };
 
 export const ContainerSizing = [sizingProps];
@@ -26,10 +26,7 @@ const CustomContainer: React.FC<CustomContainerProps> = ({
 }) => (
   <Container
     {...props}
-    sx={[
-      ...styleArray,
-      ...(Array.isArray(sx) ? sx : [sx]),
-    ]}
+    sx={[...styleArray, ...(Array.isArray(sx) ? sx : [sx])]}
   >
     {children}
   </Container>

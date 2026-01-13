@@ -1,5 +1,5 @@
-import React from "react";
-import { useState } from "react";
+import React from 'react';
+import { useState } from 'react';
 import {
   Container,
   Box,
@@ -13,15 +13,15 @@ import {
   Stack,
   Divider,
   FormHelperText,
-} from "@mui/material";
-import Grid from "@mui/material/Grid";
-import { Input } from "@mui/icons-material";
-import { startGame, playRound, resetGame, getGameState } from "./apiClient";
-import PageLayout from "../../../components/PageLayout";
+} from '@mui/material';
+import Grid from '@mui/material/Grid';
+import { Input } from '@mui/icons-material';
+import { startGame, playRound, resetGame, getGameState } from './apiClient';
+import PageLayout from '../../../components/PageLayout';
 
 //Project Props
 type ProjectProps = {
-  mode: "light" | "dark";
+  mode: 'light' | 'dark';
   toggleMode: () => void;
 };
 
@@ -45,7 +45,7 @@ const GameOver: React.FC<GameOverProps> = ({
   return (
     <Box>
       <Typography variant="h4">Game Over</Typography>
-      <Typography>Winner: {getWinner() || "Tie"}</Typography>
+      <Typography>Winner: {getWinner() || 'Tie'}</Typography>
 
       <Button variant="contained" onClick={handleRestart}>
         Restart Game

@@ -3,7 +3,7 @@ import { SxProps, Theme } from '@mui/material/styles';
 import React from 'react';
 
 // Prop groupings
-const sizingProps = { width: "80%", height: "80%" };
+const sizingProps = { width: '80%', height: '80%' };
 const borderProps = { border: '1px solid', borderRadius: 2 };
 const shadowProps = { boxShadow: 0 };
 
@@ -23,13 +23,7 @@ const CustomBox: React.FC<CustomBoxProps> = ({
   styleArray = [],
   ...props // <-- Add this line
 }) => (
-  <Box
-    {...props}
-    sx={[
-      ...styleArray,
-      ...(Array.isArray(sx) ? sx : [sx]),
-    ]}
-  >
+  <Box {...props} sx={[...styleArray, ...(Array.isArray(sx) ? sx : [sx])]}>
     {children}
   </Box>
 );

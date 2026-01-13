@@ -1,13 +1,13 @@
-import CustomAppBar from "./materialui/CustomAppBar";
-import CustomBox from "./materialui/CustomBox";
-import CustomButton from "./materialui/CustomButton";
-import ThemeToggle from "./ThemeToggle";
-import { Link as RouterLink } from "react-router-dom";
+import CustomAppBar from './materialui/CustomAppBar';
+import CustomBox from './materialui/CustomBox';
+import CustomButton from './materialui/CustomButton';
+import ThemeToggle from './ThemeToggle';
+import { Link as RouterLink } from 'react-router-dom';
 
 type NavBarProps = {
   drawerOpen?: boolean;
   drawerWidth?: number;
-  mode: "light" | "dark";
+  mode: 'light' | 'dark';
   toggleMode: () => void;
 };
 
@@ -20,23 +20,25 @@ const NavBar: React.FC<NavBarProps> = ({
   return (
     <CustomAppBar
       sx={{
-        transition: (theme) =>
-          theme.transitions.create(["margin", "width"], {
+        transition: theme =>
+          theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
           }),
         ...(drawerOpen && {
           width: `calc(100% - ${drawerWidth}px)`,
           marginLeft: `${drawerWidth}px`,
-          transition: (theme) =>
-            theme.transitions.create(["margin", "width"], {
+          transition: theme =>
+            theme.transitions.create(['margin', 'width'], {
               easing: theme.transitions.easing.easeOut,
               duration: theme.transitions.duration.enteringScreen,
             }),
         }),
       }}
     >
-      <CustomBox styleArray={[{ display: "flex", alignItems: "center", width: "100%" }]}>
+      <CustomBox
+        styleArray={[{ display: 'flex', alignItems: 'center', width: '100%' }]}
+      >
         <CustomBox styleArray={[{ flexGrow: 1 }]}>
           <CustomButton component={RouterLink} to="/" color="inherit">
             Home

@@ -1,6 +1,6 @@
 //imports
-import React from "react";
-import PageLayout from "../../../components/PageLayout";
+import React from 'react';
+import PageLayout from '../../../components/PageLayout';
 import {
   Container,
   Box,
@@ -14,7 +14,7 @@ import {
   Chip,
   Stack,
   Divider,
-} from "@mui/material";
+} from '@mui/material';
 import {
   ResponsiveContainer,
   PieChart,
@@ -27,23 +27,23 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-} from "recharts";
-import { STATES } from "./States";
+} from 'recharts';
+import { STATES } from './States';
 import {
   fetchCountiesByState,
   fetchMetricsForState,
   fetchMetricsForCounty,
-} from "./censusApi";
+} from './censusApi';
 
 //types/props
 type ProjectProps = {
-  mode: "light" | "dark";
+  mode: 'light' | 'dark';
   toggleMode: () => void;
 };
 
 type GeoKey =
-  | { kind: "state"; stateFips: string }
-  | { kind: "county"; stateFips: string; countyFips: string };
+  | { kind: 'state'; stateFips: string }
+  | { kind: 'county'; stateFips: string; countyFips: string };
 type GeoChoice = { label: string; key: GeoKey };
 
 type Metrics = {
@@ -53,7 +53,7 @@ type Metrics = {
   age: { children: number; adults: number; seniors: number }; // derived from B01001
 };
 
-const AGE_COLORS = ["#7cb1ff", "#9ccc65", "#ffb74d"];
+const AGE_COLORS = ['#7cb1ff', '#9ccc65', '#ffb74d'];
 
 //Main Function
 const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
@@ -92,29 +92,29 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
 
   const addSelection = async (key: GeoKey, label: string) => {
     const id = JSON.stringify(key);
-    if (selected.some((s) => JSON.stringify(s.key) === id)) return; // already added
-    setSelected((prev) => [...prev, { key, label }]);
+    if (selected.some(s => JSON.stringify(s.key) === id)) return; // already added
+    setSelected(prev => [...prev, { key, label }]);
 
     setLoadingKey(id);
     setError(null);
     try {
       const metrics =
-        key.kind === "state"
+        key.kind === 'state'
           ? await fetchMetricsForState(key.stateFips)
           : await fetchMetricsForCounty(key.stateFips, key.countyFips);
 
-      setData((prev) => ({ ...prev, [id]: metrics }));
+      setData(prev => ({ ...prev, [id]: metrics }));
     } catch (e: unknown) {
       console.error(e);
-      setError("Failed to load Census data. Try again.");
+      setError('Failed to load Census data. Try again.');
     } finally {
       setLoadingKey(null);
     }
   };
 
   const removeSelection = (id: string) => {
-    setSelected((prev) => prev.filter((s) => JSON.stringify(s.key) !== id));
-    setData((prev) => {
+    setSelected(prev => prev.filter(s => JSON.stringify(s.key) !== id));
+    setData(prev => {
       const copy = { ...prev };
       delete copy[id];
       return copy;
@@ -122,7 +122,7 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
   };
 
   const incomeCompare = selected
-    .map((s) => {
+    .map(s => {
       const id = JSON.stringify(s.key);
       const m = data[id];
       return m ? { name: m.name, MedianIncome: m.medianIncome } : null;
@@ -135,7 +135,7 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
         <Typography variant="h3" sx={{ fontWeight: 700, mb: 1 }}>
           U.S. Demographics Explorer
         </Typography>
-        <Typography variant="subtitle1" sx={{ color: "text.secondary", mb: 3 }}>
+        <Typography variant="subtitle1" sx={{ color: 'text.secondary', mb: 3 }}>
           Select a state or county to view population, median income, and age
           distribution (ACS 5‑Year). Compare multiple locations side‑by‑side.
         </Typography>
@@ -145,10 +145,10 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
             <Grid container spacing={2} alignItems="center">
               <Grid item xs={12} md={4}>
                 <Autocomplete
-                  options={STATES.map((s) => ({ label: s.name, fips: s.fips }))}
+                  options={STATES.map(s => ({ label: s.name, fips: s.fips }))}
                   value={stateChoice}
                   onChange={(_, v) => setStateChoice(v)}
-                  renderInput={(params) => (
+                  renderInput={params => (
                     <TextField {...params} label="State" />
                   )}
                 />
@@ -158,7 +158,7 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
                   options={counties}
                   value={countyChoice}
                   onChange={(_, v) => setCountyChoice(v)}
-                  renderInput={(params) => (
+                  renderInput={params => (
                     <TextField {...params} label="County (optional)" />
                   )}
                   disabled={!stateChoice}
@@ -174,7 +174,7 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
                       if (countyChoice) {
                         addSelection(
                           {
-                            kind: "county",
+                            kind: 'county',
                             stateFips: stateChoice.fips,
                             countyFips: countyChoice.countyFips,
                           },
@@ -182,13 +182,13 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
                         );
                       } else {
                         addSelection(
-                          { kind: "state", stateFips: stateChoice.fips },
+                          { kind: 'state', stateFips: stateChoice.fips },
                           stateChoice.label
                         );
                       }
                     }}
                   >
-                    {loadingKey ? "Loading…" : "Add to Compare"}
+                    {loadingKey ? 'Loading…' : 'Add to Compare'}
                   </Button>
                   <Button
                     variant="outlined"
@@ -205,18 +205,18 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
           </CardContent>
         </Card>
 
-        {error && <Box sx={{ color: "error.main", mb: 2 }}>{error}</Box>}
+        {error && <Box sx={{ color: 'error.main', mb: 2 }}>{error}</Box>}
 
         {/* Selected chips */}
-        <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", mb: 2 }}>
-          {selected.map((s) => {
+        <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', mb: 2 }}>
+          {selected.map(s => {
             const id = JSON.stringify(s.key);
             return (
               <Chip
                 key={id}
                 label={s.label}
                 onDelete={() => removeSelection(id)}
-                color={data[id] ? "primary" : "default"}
+                color={data[id] ? 'primary' : 'default'}
               />
             );
           })}
@@ -224,7 +224,7 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
 
         {/* Detail cards for each selection */}
         <Grid container spacing={3}>
-          {selected.map((s) => {
+          {selected.map(s => {
             const id = JSON.stringify(s.key);
             const m = data[id];
             return (
@@ -264,15 +264,15 @@ const CensusExplorer: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
                               <Pie
                                 data={[
                                   {
-                                    name: "Children (0–17)",
+                                    name: 'Children (0–17)',
                                     value: m.age.children,
                                   },
                                   {
-                                    name: "Adults (18–64)",
+                                    name: 'Adults (18–64)',
                                     value: m.age.adults,
                                   },
                                   {
-                                    name: "Seniors (65+)",
+                                    name: 'Seniors (65+)',
                                     value: m.age.seniors,
                                   },
                                 ]}

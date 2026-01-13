@@ -1,5 +1,5 @@
 // Minimal Census API helpers (ACS 5-year 2022)
-const YEAR = "2022";
+const YEAR = '2022';
 const BASE = `https://api.census.gov/data/${YEAR}/acs/acs5`;
 
 // Convert string numbers safely
@@ -73,45 +73,45 @@ function toMetrics(row: string[], geoNameIndex = 0): Metrics {
 
 // IMPORTANT: We request variables in a specific order so indexes above match
 const VARS = [
-  "NAME",
-  "B01001_001E", // total population
+  'NAME',
+  'B01001_001E', // total population
 
   // Male 003-006 (under 5, 5-9, 10-14, 15-17)
-  "B01001_003E",
-  "B01001_004E",
-  "B01001_005E",
-  "B01001_006E",
+  'B01001_003E',
+  'B01001_004E',
+  'B01001_005E',
+  'B01001_006E',
 
   // Male 020-025 (65-66, 67-69, 70-74, 75-79, 80-84, 85+)
-  "B01001_020E",
-  "B01001_021E",
-  "B01001_022E",
-  "B01001_023E",
-  "B01001_024E",
-  "B01001_025E",
+  'B01001_020E',
+  'B01001_021E',
+  'B01001_022E',
+  'B01001_023E',
+  'B01001_024E',
+  'B01001_025E',
 
   // Female 027-030 (under 5, 5-9, 10-14, 15-17)
-  "B01001_027E",
-  "B01001_028E",
-  "B01001_029E",
-  "B01001_030E",
+  'B01001_027E',
+  'B01001_028E',
+  'B01001_029E',
+  'B01001_030E',
 
   // Female 044-049 (65-66, 67-69, 70-74, 75-79, 80-84, 85+)
-  "B01001_044E",
-  "B01001_045E",
-  "B01001_046E",
-  "B01001_047E",
-  "B01001_048E",
-  "B01001_049E",
+  'B01001_044E',
+  'B01001_045E',
+  'B01001_046E',
+  'B01001_047E',
+  'B01001_048E',
+  'B01001_049E',
 
   // Median household income
-  "B19013_001E",
+  'B19013_001E',
 ];
 
 export async function fetchMetricsForState(
   stateFips: string
 ): Promise<Metrics> {
-  const url = `${BASE}?get=${VARS.join(",")}&for=state:${stateFips}`;
+  const url = `${BASE}?get=${VARS.join(',')}&for=state:${stateFips}`;
   const res = await fetch(url);
   const json: CensusApiResponse = await res.json();
   return toMetrics(json[1]); // first data row
@@ -121,7 +121,7 @@ export async function fetchMetricsForCounty(
   stateFips: string,
   countyFips: string
 ): Promise<Metrics> {
-  const url = `${BASE}?get=${VARS.join(",")}&for=county:${countyFips}&in=state:${stateFips}`;
+  const url = `${BASE}?get=${VARS.join(',')}&for=county:${countyFips}&in=state:${stateFips}`;
   const res = await fetch(url);
   const json: CensusApiResponse = await res.json();
   return toMetrics(json[1]);

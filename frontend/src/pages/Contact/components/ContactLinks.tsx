@@ -1,4 +1,4 @@
-import { Link, Typography } from "@mui/material";
+import { Link, Typography } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 const contactLinks = [
@@ -11,15 +11,15 @@ const contactLinks = [
   >
     🔗 LinkedIn
   </Link>,
-  <Typography key="sep1" variant="body1" sx={{ mx: 1 }}>|</Typography>,
-  <Link
-    key="email"
-    href="mailto:bpduffy1231@gmail.com"
-    underline="hover"
-  >
+  <Typography key="sep1" variant="body1" sx={{ mx: 1 }}>
+    |
+  </Typography>,
+  <Link key="email" href="mailto:bpduffy1231@gmail.com" underline="hover">
     📧 Email
   </Link>,
-  <Typography key="sep2" variant="body1" sx={{ mx: 1 }}>|</Typography>,
+  <Typography key="sep2" variant="body1" sx={{ mx: 1 }}>
+    |
+  </Typography>,
   <Link
     key="resume"
     href="/resume.pdf"
@@ -29,7 +29,9 @@ const contactLinks = [
   >
     📄 Resume
   </Link>,
-  <Typography key="sep3" variant="body1" sx={{ mx: 1 }}>|</Typography>,
+  <Typography key="sep3" variant="body1" sx={{ mx: 1 }}>
+    |
+  </Typography>,
   <Link
     key="github"
     href="https://github.com/plush92"
@@ -37,7 +39,7 @@ const contactLinks = [
     rel="noopener noreferrer"
     underline="hover"
   >
-    <GitHubIcon sx={{ verticalAlign: "middle" }} /> GitHub
+    <GitHubIcon sx={{ verticalAlign: 'middle' }} /> GitHub
   </Link>,
 ];
 

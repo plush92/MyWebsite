@@ -19,7 +19,7 @@ import { TextField, TextFieldProps } from '@mui/material';
 import { SxProps, Theme } from '@mui/material/styles';
 import React from 'react';
 
-const sizingProps = { width: "100%", minWidth: 200 };
+const sizingProps = { width: '100%', minWidth: 200 };
 const borderProps = { borderRadius: 2 };
 const shadowProps = { boxShadow: 1 };
 const paddingProps = { p: 1 };
@@ -32,9 +32,9 @@ export const TextFieldPadding = [paddingProps];
 export const TextFieldFont = [fontProps];
 
 type CustomTextFieldProps = TextFieldProps & {
-    sx?: SxProps<Theme>;
-    styleArray?: SxProps<Theme>[];
-  };
+  sx?: SxProps<Theme>;
+  styleArray?: SxProps<Theme>[];
+};
 
 const CustomTextField: React.FC<CustomTextFieldProps> = ({
   sx = [],
@@ -43,10 +43,7 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
 }) => (
   <TextField
     {...props}
-    sx={[
-      ...styleArray,
-      ...(Array.isArray(sx) ? sx : [sx]),
-    ]}
+    sx={[...styleArray, ...(Array.isArray(sx) ? sx : [sx])]}
   />
 );
 

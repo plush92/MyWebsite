@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import GDPChart from "./GDPChart"; // Import the new chart component
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import GDPChart from './GDPChart'; // Import the new chart component
 import {
   GdpApiResponse,
   ProcessedGdpData,
   FredObservation,
-} from "../../../../../types/fredApi";
+} from '../../../../../types/fredApi';
 
 const GDP = () => {
   const [gdpData, setGdpData] = useState<ProcessedGdpData | null>(null); // Initialize data state
@@ -18,7 +18,7 @@ const GDP = () => {
       try {
         setLoading(true); // Start loading
         const response = await axios.get<GdpApiResponse>(
-          "http://127.0.0.1:5000/econ/gdp"
+          'http://127.0.0.1:5000/econ/gdp'
         );
         const data = response.data;
         setRawData(data); // Store raw response
@@ -31,8 +31,8 @@ const GDP = () => {
             [], // Map the values for the chart
         });
       } catch (err) {
-        console.error("Error fetching gdp data:", err);
-        setError("Failed to load GDP data.");
+        console.error('Error fetching gdp data:', err);
+        setError('Failed to load GDP data.');
       } finally {
         setLoading(false); // Stop loading
       }
@@ -58,7 +58,7 @@ const GDP = () => {
   return (
     <div>
       <h2>GDP Data</h2>
-      <GDPChart data={gdpData} />{" "}
+      <GDPChart data={gdpData} />{' '}
       {/* Pass the processed data to the chart component */}
       <h3>Raw Data</h3>
       <h4>GDP Data</h4>

@@ -1,15 +1,12 @@
-import CustomSwitch from "./materialui/CustomSwitch";
+import CustomSwitch from './materialui/CustomSwitch';
 
 interface ThemeToggleProps {
-  mode: "light" | "dark";
+  mode: 'light' | 'dark';
   toggleMode: () => void;
 }
 
 const ThemeToggle: React.FC<ThemeToggleProps> = ({ mode, toggleMode }) => (
-  <CustomSwitch
-    checked={mode === "dark"}
-    onChange={toggleMode}
-  />
+  <CustomSwitch checked={mode === 'dark'} onChange={toggleMode} />
 );
 
 export default ThemeToggle;

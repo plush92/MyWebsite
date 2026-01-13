@@ -61,12 +61,14 @@
 // .MuiButton-loadingPositionEnd    // Spinner aligned right
 
 // // Implementation Example:
-{/* <CustomButton
+{
+  /* <CustomButton
   styleArray={[...ButtonSizing, ...ButtonColor]}
   sx={{ mt: 2 }}
 >
   Submit
-</CustomButton> */}
+</CustomButton> */
+}
 
 import Button, { ButtonProps } from '@mui/material/Button';
 import { SxProps, Theme } from '@mui/material/styles';
@@ -74,18 +76,19 @@ import React from 'react';
 import { LinkProps } from 'react-router-dom';
 
 const sizingProps = { minWidth: 120, minHeight: 40 };
-const colorProps = { backgroundColor: "#1976d2", color: "#fff" };
+const colorProps = { backgroundColor: '#1976d2', color: '#fff' };
 const spacingProps = { m: 1, px: 3, py: 1 };
 
 export const ButtonSizing = [sizingProps];
 export const ButtonColor = [colorProps];
 export const ButtonSpacing = [spacingProps];
 
-type CustomButtonProps = ButtonProps & Partial<LinkProps> & {
-  sx?: SxProps<Theme>;
-  styleArray?: SxProps<Theme>[];
-  children?: React.ReactNode;
-};
+type CustomButtonProps = ButtonProps &
+  Partial<LinkProps> & {
+    sx?: SxProps<Theme>;
+    styleArray?: SxProps<Theme>[];
+    children?: React.ReactNode;
+  };
 
 const CustomButton: React.FC<CustomButtonProps> = ({
   sx = [],
@@ -96,10 +99,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   <Button
     variant="contained"
     {...props}
-    sx={[
-      ...styleArray,
-      ...(Array.isArray(sx) ? sx : [sx]),
-    ]}
+    sx={[...styleArray, ...(Array.isArray(sx) ? sx : [sx])]}
   >
     {children}
   </Button>
