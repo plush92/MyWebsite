@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { useState } from 'react';
-import { GameApiResponse, GameState, Card } from '../../../types/warGame';
+import { GameApiResponse, GameState } from '../../../types/warGame';
 import {
   Container,
   Box,

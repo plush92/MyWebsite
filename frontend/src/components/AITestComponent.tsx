@@ -16,7 +16,7 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from '@mui/material';
-import { aiClient, getAIProviderStatus } from '../../services/aiService';
+import { aiClient, getAIProviderStatus } from '../services/aiService';
 
 const AITestComponent: React.FC = () => {
   const [message, setMessage] = useState('');

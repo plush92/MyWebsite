@@ -99,7 +99,7 @@ router.post('/openai', async (req, res) => {
 });
 
 // Get AI configuration status
-router.get('/status', (req, res) => {
+router.get('/status', (_req, res) => {
   const claudeEnabled =
     process.env.ENABLE_CLAUDE_SONNET_4_5 === 'true' &&
     !!process.env.ANTHROPIC_API_KEY;
