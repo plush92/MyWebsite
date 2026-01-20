@@ -3,6 +3,13 @@
  * Handles multiple AI providers including OpenAI and Anthropic Claude
  */
 
+import logger, {
+  logError,
+  logInfo,
+  logApiRequest,
+  logApiResponse,
+} from './logger';
+
 export interface AIProvider {
   name: string;
   apiKey: string | undefined;
@@ -96,18 +103,38 @@ export class AIClient {
 
   async sendMessage(message: string, model?: string): Promise<string> {
     const selectedModel = model || this.config.defaultModel;
+    const provider = this.config.providers[this.config.defaultProvider];
+
+    logInfo('AI request initiated', {
+      provider: provider.name,
+      model: selectedModel,
+      messageLength: message.length,
+    });
 
     try {
+      const endpoint = '/api/ai/anthropic';
+      const requestData = {
+        message,
+        model: selectedModel,
+      };
+
+      logApiRequest('POST', endpoint, {
+        model: selectedModel,
+        messageLength: message.length,
+      });
+
       // For now, we'll make a simple API call to the backend
-      const response = await fetch('/api/ai/anthropic', {
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          message,
-          model: selectedModel,
-        }),
+        body: JSON.stringify(requestData),
+      });
+
+      logApiResponse('POST', endpoint, response.status, {
+        ok: response.ok,
+        model: selectedModel,
       });
 
       if (!response.ok) {
@@ -115,9 +142,26 @@ export class AIClient {
       }
 
       const data = await response.json();
-      return data.response || 'No response received';
+      const aiResponse = data.response || 'No response received';
+
+      logInfo('AI response received successfully', {
+        provider: provider.name,
+        model: selectedModel,
+        responseLength: aiResponse.length,
+      });
+
+      return aiResponse;
     } catch (error) {
-      console.error('AI Client Error:', error);
+      logError(
+        'AI Client Error',
+        {
+          provider: provider.name,
+          model: selectedModel,
+          messageLength: message.length,
+        },
+        error instanceof Error ? error : undefined
+      );
+
       return `Error: ${error instanceof Error ? error.message : 'Unknown error occurred'}`;
     }
   }

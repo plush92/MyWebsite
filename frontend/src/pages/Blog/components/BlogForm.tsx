@@ -1,5 +1,5 @@
 //to run, cd into the backend file and run node src/blogform/blogform.js
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import CustomBox, {
   BoxSizing,
@@ -46,7 +46,22 @@ import {
 //Toast notifications
 import { useToast } from '../../../components/ToastProvider';
 
+// Logging
+import logger, {
+  logError,
+  logInfo,
+  logUserAction,
+  setLogContext,
+  clearLogContext,
+} from '../../../services/logger';
+
 const BlogForm: React.FC = () => {
+  // Set logging context for this component
+  React.useEffect(() => {
+    setLogContext('BlogForm');
+    return () => clearLogContext();
+  }, []);
+
   // Hook for toast notifications
   const { showSuccess, showError, showInfo, showWarning } = useToast();
 
@@ -101,10 +116,13 @@ const BlogForm: React.FC = () => {
         date: date ? date.toISOString() : undefined,
       };
 
-      console.log('Creating post with data:', postData);
+      logUserAction('Create Blog Post', { title, author });
+      logInfo('Creating post with data', postData);
       showInfo('Creating blog post...');
 
       await createBlogPost(postData);
+
+      logInfo('Blog post created successfully', { title, author });
       showSuccess('Blog post created successfully!');
 
       // Clear the form after successful creation
@@ -114,19 +132,32 @@ const BlogForm: React.FC = () => {
       setSlug('');
       setDate(new Date());
     } catch (error) {
-      console.error('Error creating post:', error);
+      logError(
+        'Error creating post',
+        { postData },
+        error instanceof Error ? error : undefined
+      );
       showError('Failed to create blog post. Please try again.');
     }
   };
 
   const handleFetch = async () => {
     try {
+      logUserAction('Fetch Blog Posts');
+      logInfo('Fetching blog posts');
       showInfo('Fetching blog posts...');
+
       const data = await fetchBlogPosts();
       setPosts(data);
+
+      logInfo('Blog posts fetched successfully', { count: data.length });
       showSuccess(`Successfully fetched ${data.length} blog posts!`);
     } catch (error) {
-      console.error('Error fetching posts:', error);
+      logError(
+        'Error fetching posts',
+        {},
+        error instanceof Error ? error : undefined
+      );
       showError('Failed to fetch blog posts. Please check your connection.');
     }
   };
@@ -138,11 +169,20 @@ const BlogForm: React.FC = () => {
         return;
       }
 
+      logUserAction('Update Blog Post', { postId: selectedId });
+      logInfo('Updating blog post', { selectedId });
       showInfo('Updating blog post...');
+
       await updateBlogPost(selectedId, { comment: 'Updated comment!' });
+
+      logInfo('Blog post updated successfully', { postId: selectedId });
       showSuccess('Blog post updated successfully!');
     } catch (error) {
-      console.error('Error updating post:', error);
+      logError(
+        'Error updating post',
+        { postId: selectedId },
+        error instanceof Error ? error : undefined
+      );
       showError('Failed to update blog post. Please try again.');
     }
   };
@@ -163,15 +203,24 @@ const BlogForm: React.FC = () => {
         return;
       }
 
+      logUserAction('Delete Blog Post', { postId: selectedId });
+      logInfo('Deleting blog post', { selectedId });
       showInfo('Deleting blog post...');
+
       await deleteBlogPost(selectedId);
+
+      logInfo('Blog post deleted successfully', { postId: selectedId });
       showSuccess('Blog post deleted successfully!');
 
       // Clear selection and refresh posts
       setSelectedId('');
       handleFetch();
     } catch (error) {
-      console.error('Error deleting post:', error);
+      logError(
+        'Error deleting post',
+        { postId: selectedId },
+        error instanceof Error ? error : undefined
+      );
       showError('Failed to delete blog post. Please try again.');
     }
   };

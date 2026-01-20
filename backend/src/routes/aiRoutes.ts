@@ -1,15 +1,24 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import { createRequestLogger } from '../blog/utils/logger.js';
 
 dotenv.config();
 
 const router = express.Router();
 
 // Anthropic Claude API endpoint
-router.post('/anthropic', async (req, res) => {
+router.post('/anthropic', async (req: any, res: any) => {
+  const logger = createRequestLogger(req.requestId || 'unknown');
   const { message, model = 'claude-3-5-sonnet-20241022' } = req.body;
+  const startTime = Date.now();
+
+  logger.info('Anthropic AI request received', {
+    model,
+    messageLength: message?.length || 0,
+  });
 
   if (!process.env.ANTHROPIC_API_KEY) {
+    logger.error('Anthropic API key not configured');
     return res.status(500).json({
       error: 'Anthropic API key not configured',
       enabled: false,
@@ -36,27 +45,51 @@ router.post('/anthropic', async (req, res) => {
       }),
     });
 
+    const duration = Date.now() - startTime;
+
     if (!response.ok) {
       throw new Error(`Anthropic API error: ${response.status}`);
     }
 
     const data = await response.json();
+    const responseText = data.content[0].text;
+
+    logger.info('Anthropic AI response received', {
+      model,
+      duration,
+      responseLength: responseText?.length || 0,
+    });
+
     res.json({
-      response: data.content[0].text,
+      response: responseText,
       model: model,
       provider: 'anthropic',
     });
   } catch (error) {
-    console.error('Anthropic API Error:', error);
+    const duration = Date.now() - startTime;
+    logger.error('Anthropic API Error', {
+      model,
+      duration,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
+
     res.status(500).json({ error: 'Failed to get response from Claude' });
   }
 });
 
 // OpenAI API endpoint
-router.post('/openai', async (req, res) => {
+router.post('/openai', async (req: any, res: any) => {
+  const logger = createRequestLogger(req.requestId || 'unknown');
   const { message, model = 'gpt-4' } = req.body;
+  const startTime = Date.now();
+
+  logger.info('OpenAI AI request received', {
+    model,
+    messageLength: message?.length || 0,
+  });
 
   if (!process.env.OPENAI_API_KEY) {
+    logger.error('OpenAI API key not configured');
     return res.status(500).json({
       error: 'OpenAI API key not configured',
       enabled: false,
@@ -82,24 +115,40 @@ router.post('/openai', async (req, res) => {
       }),
     });
 
+    const duration = Date.now() - startTime;
+
     if (!response.ok) {
       throw new Error(`OpenAI API error: ${response.status}`);
     }
 
     const data = await response.json();
+    const responseText = data.choices[0].message.content;
+
+    logger.info('OpenAI AI response received', {
+      model,
+      duration,
+      responseLength: responseText?.length || 0,
+    });
+
     res.json({
-      response: data.choices[0].message.content,
+      response: responseText,
       model: model,
       provider: 'openai',
     });
   } catch (error) {
-    console.error('OpenAI API Error:', error);
+    const duration = Date.now() - startTime;
+    logger.error('OpenAI API Error', {
+      model,
+      duration,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
+
     res.status(500).json({ error: 'Failed to get response from OpenAI' });
   }
 });
 
 // Get AI configuration status
-router.get('/status', (_req, res) => {
+router.get('/status', (_req: any, res: any) => {
   const claudeEnabled =
     process.env.ENABLE_CLAUDE_SONNET_4_5 === 'true' &&
     !!process.env.ANTHROPIC_API_KEY;

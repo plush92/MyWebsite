@@ -15,6 +15,7 @@ import {
   BugReport,
   ExpandMore,
 } from '@mui/icons-material';
+import logger, { logError } from '../services/logger';
 
 interface ErrorBoundaryState {
   hasError: boolean;
@@ -74,15 +75,16 @@ class AdvancedErrorBoundary extends React.Component<
     const { onError, name } = this.props;
     const { eventId } = this.state;
 
-    // Enhanced logging
-    console.group(
-      `🚨 Error Boundary Caught Error (${name || 'Unknown Component'})`
+    // Enhanced logging with structured logger
+    logError(
+      `Error Boundary Caught Error (${name || 'Unknown Component'})`,
+      {
+        componentName: name || 'Unknown Component',
+        componentStack: errorInfo.componentStack,
+        eventId,
+      },
+      error
     );
-    console.error('Error:', error);
-    console.error('Error Info:', errorInfo);
-    console.error('Component Stack:', errorInfo.componentStack);
-    console.error('Event ID:', eventId);
-    console.groupEnd();
 
     // Save error info to state
     this.setState({
@@ -107,10 +109,10 @@ class AdvancedErrorBoundary extends React.Component<
   ) => {
     if (process.env.NODE_ENV === 'production') {
       // Example: Send to error reporting service
-      console.log('📊 Reporting error to service:', {
+      logger.info('Reporting error to service', {
         message: error.message,
-        stack: error.stack,
-        componentStack: errorInfo.componentStack,
+        stack: error.stack?.substring(0, 200) + '...', // Truncate for logging
+        componentStack: errorInfo.componentStack?.substring(0, 200) + '...', // Truncate for logging
         eventId,
         userAgent: navigator.userAgent,
         url: window.location.href,
@@ -125,7 +127,11 @@ class AdvancedErrorBoundary extends React.Component<
     const newRetryCount = this.state.retryCount + 1;
 
     if (newRetryCount <= maxRetries) {
-      console.log(`🔄 Retrying... (Attempt ${newRetryCount}/${maxRetries})`);
+      logger.info(`Retrying component recovery`, {
+        attempt: newRetryCount,
+        maxRetries,
+        componentName: this.props.name || 'Unknown',
+      });
 
       this.setState({
         hasError: false,
@@ -137,11 +143,16 @@ class AdvancedErrorBoundary extends React.Component<
       // Auto-retry after a delay for first retry
       if (newRetryCount === 1) {
         this.retryTimeoutId = setTimeout(() => {
-          console.log('⏰ Auto-retry timeout completed');
+          logger.info('Auto-retry timeout completed', {
+            componentName: this.props.name || 'Unknown',
+          });
         }, 1000);
       }
     } else {
-      console.log('❌ Max retries exceeded');
+      logger.warn('Max retries exceeded', {
+        maxRetries,
+        componentName: this.props.name || 'Unknown',
+      });
       alert('Maximum retry attempts exceeded. Please refresh the page.');
     }
   };
