@@ -341,7 +341,7 @@ _Combining analytical finance background with modern web development skills_
 
 - 📧 **Email**: [bpduffy1231@gmail.com](mailto:bpduffy1231@gmail.com)
 - 🌐 **Portfolio**: [https://plush92.github.io/MyWebsite/](https://plush92.github.io/MyWebsite/)
-- 💼 **LinkedIn**: [Connect with me on LinkedIn](https://linkedin.com/in/your-profile)
+- 💼 **LinkedIn**: [Connect with me on LinkedIn](www.linkedin.com/in/brendan-d-04341574)
 - 🐙 **GitHub**: [@plush92](https://github.com/plush92)
 
 ---
