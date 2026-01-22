@@ -15,7 +15,10 @@ const CustomAppBar: React.FC<CustomAppBarProps> = ({
   sx = [],
   children,
 }) => (
-  <AppBar position="static" sx={sx}>
+  <AppBar
+    position="fixed"
+    sx={{ zIndex: theme => theme.zIndex.drawer + 1, ...sx }}
+  >
     <Toolbar>
       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
         {title}

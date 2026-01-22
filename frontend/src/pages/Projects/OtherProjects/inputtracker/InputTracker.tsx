@@ -12,6 +12,7 @@
 // no unnecessary re-renders
 
 import React, { useState, useEffect, useRef } from 'react';
+import { Typography, Paper, Alert } from '@mui/material';
 import CustomTextField from '../../../../components/materialui/CustomTextField';
 import CustomBox from '../../../../components/materialui/CustomBox';
 import CustomButton from '../../../../components/materialui/CustomButton';
@@ -23,13 +24,17 @@ type LayoutProps = {
 };
 
 const InputTracker: React.FC<LayoutProps> = ({ mode, toggleMode }) => {
-  const [inputValue, setInputValue] = useState(0);
+  const [inputValue, setInputValue] = useState('');
+  const [charCount, setCharCount] = useState(0);
+  const [wordCount, setWordCount] = useState(0);
+  const [isAutoSaving, setIsAutoSaving] = useState(false);
+  const [lastSaved, setLastSaved] = useState<string>('');
 
   // Update the ref every time inputValue changes
-  const prevInputRef = useRef<number | null>(null);
+  const prevInputRef = useRef<string>('');
   useEffect(() => {
     prevInputRef.current = inputValue;
-  }, [inputValue]);
+  });
 
   // Show the number of renders
   const renderCount = useRef(1);
@@ -44,57 +49,143 @@ const InputTracker: React.FC<LayoutProps> = ({ mode, toggleMode }) => {
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(Number(e.target.value));
+    const value = e.target.value;
+    setInputValue(value);
+    setCharCount(value.length);
+    setWordCount(value.trim() ? value.trim().split(/\s+/).length : 0);
   };
 
+  // Auto-save functionality with debounce
+  const timeoutRef = useRef<NodeJS.Timeout>();
   useEffect(() => {
-    console.log('inputValue changed:', inputValue);
+    if (inputValue) {
+      setIsAutoSaving(true);
+
+      // Clear previous timeout
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+
+      // Set new timeout for 1 second
+      timeoutRef.current = setTimeout(() => {
+        setIsAutoSaving(false);
+        setLastSaved(new Date().toLocaleTimeString());
+        console.log('Auto-saved:', inputValue);
+      }, 1000);
+    }
+
+    // Cleanup timeout on unmount
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, [inputValue]);
 
+  const handleClear = () => {
+    setInputValue('');
+    setCharCount(0);
+    setWordCount(0);
+    setLastSaved('');
+  };
+
   const handleStaleClick = () => {
-    setInputValue(inputValue + 1);
-    setInputValue(inputValue + 1); // uses stale value
+    setCharCount(charCount + 1);
+    setCharCount(charCount + 1); // uses stale value
   };
 
   const handleFunctionalClick = () => {
-    setInputValue(prev => prev + 1);
-    setInputValue(prev => prev + 1); // uses latest value
+    setCharCount(prev => prev + 1);
+    setCharCount(prev => prev + 1); // uses latest value
   };
 
   return (
     <PageLayout mode={mode} toggleMode={toggleMode}>
       <CustomBox
-        component="form"
         styleArray={[
           {
-            p: 3,
-            bgcolor: 'background.paper',
-            borderRadius: 2,
-            boxShadow: 3,
-            maxWidth: 500,
+            maxWidth: 800,
             mx: 'auto',
-            mt: 4,
+            mt: 2,
           },
         ]}
       >
-        <CustomTextField
-          id="inputValue"
-          type="inputValue"
-          label="Input"
-          value={inputValue}
-          onChange={handleInputChange}
-        />
-        <p>
-          Last Render: {new Date(lastRenderTime.current).toLocaleTimeString()}
-        </p>
-        <p>Render Count: {renderCount.current}</p>
-        <p>Previous value: {prevInputRef.current}</p>
+        <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
+          <Typography variant="h4" gutterBottom>
+            Input Tracker
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+            This component demonstrates React hooks, state management, and
+            performance optimizations.
+          </Typography>
 
-        <CustomButton onClick={handleStaleClick}>Stale +1</CustomButton>
+          <CustomTextField
+            id="inputValue"
+            label="Type something here..."
+            value={inputValue}
+            onChange={handleInputChange}
+            multiline
+            rows={4}
+            fullWidth
+            placeholder="Start typing to see the tracker in action..."
+            sx={{ mb: 2 }}
+          />
 
-        <CustomButton onClick={handleFunctionalClick}>
-          Functional +2
-        </CustomButton>
+          <CustomBox styleArray={[{ display: 'flex', gap: 2, mb: 2 }]}>
+            <CustomButton onClick={handleClear} color="secondary">
+              Clear Input
+            </CustomButton>
+            <CustomButton onClick={handleStaleClick} color="warning">
+              Stale Counter +1
+            </CustomButton>
+            <CustomButton onClick={handleFunctionalClick} color="success">
+              Functional Counter +2
+            </CustomButton>
+          </CustomBox>
+
+          {isAutoSaving && (
+            <Alert severity="info" sx={{ mb: 2 }}>
+              Auto-saving in progress...
+            </Alert>
+          )}
+
+          <Paper variant="outlined" sx={{ p: 2 }}>
+            <Typography variant="h6" gutterBottom>
+              Live Statistics
+            </Typography>
+            <CustomBox
+              styleArray={[
+                { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 },
+              ]}
+            >
+              <Typography>
+                <strong>Current Input:</strong> "{inputValue || 'Empty'}"
+              </Typography>
+              <Typography>
+                <strong>Previous Input:</strong> "
+                {prevInputRef.current || 'None'}"
+              </Typography>
+              <Typography>
+                <strong>Character Count:</strong> {charCount}
+              </Typography>
+              <Typography>
+                <strong>Word Count:</strong> {wordCount}
+              </Typography>
+              <Typography>
+                <strong>Render Count:</strong> {renderCount.current}
+              </Typography>
+              <Typography>
+                <strong>Last Render:</strong>{' '}
+                {new Date(lastRenderTime.current).toLocaleTimeString()}
+              </Typography>
+              {lastSaved && (
+                <Typography sx={{ gridColumn: 'span 2' }}>
+                  <strong>Last Auto-saved:</strong> {lastSaved}
+                </Typography>
+              )}
+            </CustomBox>
+          </Paper>
+        </Paper>
       </CustomBox>
     </PageLayout>
   );

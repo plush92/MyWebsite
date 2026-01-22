@@ -58,8 +58,8 @@ const PageLayout: React.FC<PageLayoutProps> = ({
             sx={{ zIndex: 1100 }} // Set Drawer z-index
           />
         )}
-        {/* Main content area, grows to fill space, with padding */}
-        <CustomBox component="main" styleArray={[{ flexGrow: 1, p: 3 }]}>
+        {/* Main content area, grows to fill space, with padding and top margin for fixed header */}
+        <CustomBox component="main" styleArray={[{ flexGrow: 1, p: 3, mt: 8 }]}>
           {children}
         </CustomBox>
       </CustomBox>

@@ -81,8 +81,12 @@ const PygameRPG: React.FC<ProjectProps> = ({ mode, toggleMode }) => {
               <CardMedia
                 component="img"
                 image={reviewImg}
-                alt="Message feedback"
-                sx={{ height: 280, objectFit: 'cover' }}
+                alt="Player feedback"
+                sx={{
+                  height: 280,
+                  objectFit: 'contain',
+                  backgroundColor: '#f5f5f5',
+                }}
               />
               <CardContent>
                 <Typography variant="h6" sx={{ mb: 1 }}>

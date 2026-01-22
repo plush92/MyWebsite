@@ -112,7 +112,12 @@ export class AIClient {
     });
 
     try {
-      const endpoint = '/api/ai/anthropic';
+      // Determine endpoint based on provider
+      const endpoint =
+        this.config.defaultProvider === 'anthropic'
+          ? '/api/ai/anthropic'
+          : '/api/ai/openai';
+
       const requestData = {
         message,
         model: selectedModel,
@@ -123,8 +128,10 @@ export class AIClient {
         messageLength: message.length,
       });
 
-      // For now, we'll make a simple API call to the backend
-      const response = await fetch(endpoint, {
+      // Check if we're in development mode and backend might not be running
+      const baseURL = import.meta.env.DEV ? 'http://localhost:3001' : '';
+
+      const response = await fetch(`${baseURL}${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -138,7 +145,10 @@ export class AIClient {
       });
 
       if (!response.ok) {
-        throw new Error(`AI API error: ${response.status}`);
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(
+          `AI API error: ${response.status} - ${errorData.error || 'Unknown error'}`
+        );
       }
 
       const data = await response.json();
